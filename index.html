@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1F3A5F">
+<!-- 第二道防線：萬一被注入程式，也只能連本站＋這個 Supabase 專案。換 Supabase 專案時這行的網址要跟 CONFIG 一起改 -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://knsdpvmhloobfduhfwyk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>會考複習總覽</title>
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root{
+  --ink:#1F3A5F;--acc:#4A7BC8;--red:#C0392B;--bg2:#ECF3FB;
+  --yel:#F2C94C;--yelInk:#4D3A00;--grn:#2E7D4F;--grey:#DCE2EA;--line:#CAD6E5;
+  --text:#1B2632;--muted:#5B6B7E;--navW:180px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--text)}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:16px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;cursor:pointer}
+h1,h2,h3{color:var(--ink);margin:0}
+h2{font-size:18px;margin:20px 0 8px}
+.muted{color:var(--muted);font-size:14px}
+
+/* 導覽：手機底部、電腦左側 */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;background:var(--ink);padding-bottom:env(safe-area-inset-bottom)}
+nav.tabs .brand{display:none}
+nav.tabs button{flex:1;background:none;border:0;color:#C8D8EC;padding:12px 0;font-size:15px}
+nav.tabs button[aria-current=page]{color:#fff;font-weight:700;box-shadow:inset 0 3px 0 var(--acc)}
+main{padding:12px 16px 96px;max-width:1180px}
+@media (min-width:768px){
+  nav.tabs{top:0;right:auto;width:var(--navW);flex-direction:column;padding:16px 0}
+  nav.tabs .brand{display:block;color:#fff;font-weight:700;padding:4px 20px 16px;font-size:17px}
+  nav.tabs button{flex:none;text-align:left;padding:12px 20px}
+  nav.tabs button[aria-current=page]{box-shadow:inset 4px 0 0 var(--acc);background:rgba(255,255,255,.08)}
+  main{margin-left:var(--navW);padding:24px 32px 48px}
+}
+
+/* 顏色對應 */
+.c-red{background:var(--red);color:#fff}
+.c-yel{background:var(--yel);color:var(--yelInk)}
+.c-grn{background:var(--grn);color:#fff}
+.c-none{background:var(--grey);color:var(--ink)}
+
+/* 總覽 */
+.count{background:var(--ink);color:#fff;border-radius:12px;padding:16px}
+.count b{font-size:34px;line-height:1.1}
+.count .sub{color:#C8D8EC;font-size:14px}
+.summary{margin:12px 0 0;padding:10px 12px;background:var(--bg2);border-radius:8px}
+.summary .r{color:var(--red);font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px;color:var(--muted);margin:4px 0 8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:4px}
+.grade-row{margin:10px 0}
+.grade-row h3{font-size:15px;margin-bottom:4px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:6px}
+.tile{border:0;border-radius:8px;padding:6px 2px;text-align:center;line-height:1.15}
+.tile small{display:block;font-size:12px;opacity:.9}
+.tile b{font-size:18px}
+.prio{list-style:none;margin:0;padding:0}
+.prio li{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.dot{flex:none;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.prio .t{flex:1;min-width:0;overflow-wrap:anywhere}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--red);color:var(--red);border-radius:10px;padding:0 8px;margin-left:4px;white-space:nowrap}
+.linkbtn{background:none;border:0;color:var(--acc);padding:0;text-decoration:underline}
+
+/* 章節 */
+.banner{background:var(--bg2);border-left:4px solid var(--acc);padding:10px 12px;border-radius:6px;margin-bottom:12px}
+.bar{height:8px;background:#fff;border-radius:4px;overflow:hidden;margin-top:6px;border:1px solid var(--line)}
+.bar i{display:block;height:100%;background:var(--acc)}
+details.grade{border:1px solid var(--line);border-radius:10px;margin:10px 0;overflow:hidden}
+details.grade>summary{background:var(--ink);color:#fff;padding:10px 12px;font-weight:700;cursor:pointer}
+details.ch>summary{background:var(--bg2);color:var(--ink);padding:8px 12px;font-weight:600;cursor:pointer;border-top:1px solid var(--line)}
+.urow{padding:10px 12px;border-top:1px solid var(--line)}
+.urow .name{font-weight:600;overflow-wrap:anywhere}
+.drawer .hd b,.selbar span,.prompt div,.tcard .name{min-width:0;overflow-wrap:anywhere}
+.ctrls{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:6px}
+.fams{display:flex;gap:4px}
+.fams button{width:38px;height:38px;border-radius:8px;border:1px solid var(--line);background:#fff;font-weight:700}
+.fams button[aria-pressed=true].f1,.fams button[aria-pressed=true].f2{background:var(--red);color:#fff;border-color:var(--red)}
+.fams button[aria-pressed=true].f3{background:var(--yel);color:var(--yelInk);border-color:#C9A227}
+.fams button[aria-pressed=true].f4,.fams button[aria-pressed=true].f5{background:var(--grn);color:#fff;border-color:var(--grn)}
+.revs{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--muted)}
+.revs button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:18px;line-height:1}
+.revs b{min-width:20px;text-align:center;color:var(--text);font-size:16px}
+
+/* 計畫 */
+.plan-top{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:8px}
+.btn{border:1px solid var(--acc);background:#fff;color:var(--acc);border-radius:8px;padding:8px 14px;font-weight:600}
+.btn.pri{background:var(--acc);color:#fff}
+.btn.red{border-color:var(--red);color:var(--red)}
+.btn.sm{padding:5px 10px;font-size:14px}
+.selbar{position:sticky;top:0;z-index:10;background:var(--ink);color:#fff;border-radius:8px;padding:10px 12px;margin-bottom:8px;display:flex;gap:8px;align-items:center;justify-content:space-between}
+.selbar .btn{border-color:#fff;color:#fff;background:transparent}
+.week{border:1px solid var(--line);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.wk-head{display:flex;width:100%;justify-content:space-between;align-items:center;background:var(--bg2);border:0;padding:10px 12px;text-align:left;color:var(--ink);font-weight:600}
+.wk-head .now{background:var(--acc);color:#fff;border-radius:10px;padding:0 8px;font-size:12px;margin-left:6px}
+.wk-head .st{font-weight:400;font-size:14px;color:var(--muted)}
+.day{display:flex;gap:8px;border-top:1px solid var(--line);padding:6px 8px;min-height:48px}
+.day .lbl{flex:none;width:52px;font-size:13px;color:var(--muted);line-height:1.3}
+.day .lbl b{font-size:15px;color:var(--ink)}
+.day.today{background:#F6F9FE}
+.day.today .lbl b{color:var(--acc)}
+.day.past{background:#FAFAFA}
+.day.past .lbl{opacity:.7}
+.day.exam .lbl::after{content:"會考";display:block;color:var(--red);font-weight:700}
+.day .cards{flex:1;display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;min-width:0}
+.selecting .day{cursor:pointer}
+.selecting .day:hover,.day.drop{outline:2px dashed var(--acc);outline-offset:-3px}
+.chip{display:inline-flex;align-items:center;gap:4px;max-width:100%;border:1px solid var(--line);border-left:5px solid var(--grey);background:#fff;border-radius:6px;padding:3px 8px;font-size:13px;text-align:left;line-height:1.3}
+.chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.chip.b-red{border-left-color:var(--red)}.chip.b-yel{border-left-color:#D9A800}.chip.b-grn{border-left-color:var(--grn)}
+.chip.done{background:var(--bg2);color:var(--muted);text-decoration:line-through}
+.chip.late{border-color:var(--red);border-style:dashed;border-left-style:solid}
+.chip.late::before{content:"逾期";color:var(--red);font-weight:700;text-decoration:none}
+.chip.sel{outline:2px solid var(--acc)}
+.pool-wrap{display:none}
+.pool h3{font-size:14px;margin:12px 0 6px}
+.pool .chips{display:flex;flex-direction:column;gap:6px}
+.pool .chip{width:100%;padding:6px 8px;font-size:14px}
+.pool .chip em{font-style:normal;font-size:12px;color:var(--muted);flex:none;margin-left:auto}
+@media (min-width:768px){
+  .plan-grid{display:grid;grid-template-columns:240px 1fr;gap:16px;align-items:start}
+  .pool-wrap{display:block;position:sticky;top:12px;max-height:calc(100vh - 36px);overflow:auto;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+  .pool-wrap .pool .chip{cursor:grab;touch-action:none;user-select:none}
+  #addBtn{display:none}
+  .wk-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+  .day{flex-direction:column;border-left:1px solid var(--line);min-height:110px;padding:6px}
+  .day:first-child{border-left:0}
+  .day .lbl{width:auto}
+  .day .cards{flex-direction:column;flex-wrap:nowrap}
+  .day .chip{width:100%}
+  .day .chip span{white-space:normal;word-break:break-all}
+}
+.ghost{position:fixed;z-index:50;pointer-events:none;opacity:.9;box-shadow:0 4px 12px rgba(0,0,0,.2);background:#fff}
+
+/* 今天 */
+.tcard{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;border:1px solid var(--line);border-left:5px solid var(--grey);border-radius:8px;padding:10px 12px;margin:8px 0}
+.tcard.b-red{border-left-color:var(--red)}.tcard.b-yel{border-left-color:#D9A800}.tcard.b-grn{border-left-color:var(--grn)}
+.tcard.late{background:#FDF3F2}
+.tcard .t{flex:1 1 180px;min-width:0;overflow-wrap:anywhere}
+.tcard .acts{display:flex;gap:6px;flex-wrap:wrap}
+.tcard.done .t .name{text-decoration:line-through;color:var(--muted)}
+h2.late{color:var(--red)}
+.empty{padding:16px;background:var(--bg2);border-radius:8px;color:var(--muted)}
+
+/* 抽屜、提示 */
+.backdrop{position:fixed;inset:0;background:rgba(15,30,50,.35);z-index:30}
+.drawer{position:fixed;left:0;right:0;bottom:0;z-index:31;background:#fff;border-radius:14px 14px 0 0;max-height:72vh;overflow:auto;padding:12px 16px calc(16px + env(safe-area-inset-bottom))}
+.drawer .hd{display:flex;justify-content:space-between;align-items:center;position:sticky;top:-12px;background:#fff;padding:4px 0 8px}
+.sheet-acts{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.sheet-acts .btn{padding:12px}
+@media (min-width:768px){.drawer{left:50%;right:auto;width:440px;transform:translateX(-50%);bottom:24px;border-radius:14px}}
+.prompt{position:fixed;left:12px;right:12px;bottom:calc(64px + env(safe-area-inset-bottom));z-index:25;background:var(--ink);color:#fff;border-radius:10px;padding:10px 12px;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.prompt .row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:center}
+.prompt .row button{min-width:38px;height:36px;border-radius:8px;border:1px solid #fff;background:transparent;color:#fff;font-weight:700}
+.prompt .row .lnk{border:0;text-decoration:underline;font-weight:400;min-width:0}
+@media (min-width:768px){.prompt{left:auto;right:24px;bottom:24px;width:380px}}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom));z-index:40;background:#222;color:#fff;padding:8px 14px;border-radius:8px;font-size:14px;max-width:90vw}
+@media (min-width:768px){.toast{bottom:24px}}
+
+/* 自我測試 */
+.st li.ok{color:var(--grn)} .st li.bad{color:var(--red);font-weight:700}
+
+/* 同步狀態 */
+.syncst{font-size:13px;color:var(--muted);padding:8px 16px 0}
+.syncst[hidden],#robar[hidden]{display:none}
+.syncst.act{color:var(--acc);text-decoration:underline;cursor:pointer}
+
+/* 老師端 */
+#robar{position:sticky;top:0;z-index:15;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;background:#FFF8E6;border-bottom:1px solid #E8D9A8;padding:8px 16px;font-size:14px}
+#robar .acts{display:flex;gap:6px}
+@media (min-width:768px){ .syncst,#robar{margin-left:var(--navW)} .syncst{padding:12px 32px 0} #robar{padding:10px 32px} body.t-home main{margin-left:0} }
+body.ro .revs button,body.ro #addBtn,body.ro .tcard .acts,body.ro .pool-wrap{display:none}
+body.ro .fams button{pointer-events:none}
+body.ro .plan-grid{grid-template-columns:1fr}
+body.ro .day .chip{cursor:default}
+.slist{list-style:none;margin:0;padding:0}
+.slist li{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0}
+.slist .t{flex:1 1 200px;min-width:0;overflow-wrap:anywhere}
+.slist .acts{display:flex;gap:6px}
+.badge{display:inline-block;font-size:13px;border-radius:10px;padding:0 8px;margin:4px 6px 0 0;background:var(--bg2);color:var(--ink)}
+.badge.r{background:var(--red);color:#fff}
+.tform{display:flex;flex-direction:column;gap:10px;max-width:420px}
+.tform label{display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--muted)}
+.tform input,.linkcard input{font:inherit;font-size:16px;padding:10px;border:1px solid var(--line);border-radius:8px;width:100%;color:var(--text)}
+.linkcard{background:var(--bg2);border-left:4px solid var(--red);border-radius:8px;padding:12px;margin:8px 0 16px;display:flex;flex-direction:column;gap:8px;max-width:640px}
+.terr{color:var(--red)}
+</style>
+</head>
+<body>
+<nav class="tabs" id="nav">
+  <div class="brand">會考複習總覽</div>
+  <button data-act="tab" data-tab="overview">總覽</button>
+  <button data-act="tab" data-tab="units">章節</button>
+  <button data-act="tab" data-tab="plan">計畫</button>
+  <button data-act="tab" data-tab="today">今天</button>
+</nav>
+<div id="robar" hidden></div>
+<div id="syncSt" class="syncst" role="status" hidden></div>
+<main id="main"></main>
+<div id="layer"></div>
+<script id="catalog-embed" type="application/json">{"id":"math-kx-108","subject":"數學","publisher":"康軒","curriculum":"108","source":"均一教育平台 類康軒版（依康軒113學年度章節架構）","units":[{"id":"m-kx-7a-1-1","grade":"七上","ch":1,"chTitle":"整數的運算","sec":1,"title":"負數與數線","weight":1},{"id":"m-kx-7a-1-2","grade":"七上","ch":1,"chTitle":"整數的運算","sec":2,"title":"整數的加減","weight":1},{"id":"m-kx-7a-1-3","grade":"七上","ch":1,"chTitle":"整數的運算","sec":3,"title":"整數的乘除與四則運算","weight":1},{"id":"m-kx-7a-1-4","grade":"七上","ch":1,"chTitle":"整數的運算","sec":4,"title":"指數記法與科學記號","weight":1},{"id":"m-kx-7a-2-1","grade":"七上","ch":2,"chTitle":"分數的運算","sec":1,"title":"因數與倍數","weight":1},{"id":"m-kx-7a-2-2","grade":"七上","ch":2,"chTitle":"分數的運算","sec":2,"title":"最大公因數與最小公倍數","weight":1},{"id":"m-kx-7a-2-3","grade":"七上","ch":2,"chTitle":"分數的運算","sec":3,"title":"分數的四則運算","weight":1},{"id":"m-kx-7a-2-4","grade":"七上","ch":2,"chTitle":"分數的運算","sec":4,"title":"指數律","weight":1},{"id":"m-kx-7a-3-1","grade":"七上","ch":3,"chTitle":"一元一次方程式","sec":1,"title":"代數式的化簡","weight":1},{"id":"m-kx-7a-3-2","grade":"七上","ch":3,"chTitle":"一元一次方程式","sec":2,"title":"一元一次方程式","weight":1},{"id":"m-kx-7a-3-3","grade":"七上","ch":3,"chTitle":"一元一次方程式","sec":3,"title":"應用問題","weight":1},{"id":"m-kx-7b-1-1","grade":"七下","ch":1,"chTitle":"二元一次聯立方程式","sec":1,"title":"二元一次方程式","weight":1},{"id":"m-kx-7b-1-2","grade":"七下","ch":1,"chTitle":"二元一次聯立方程式","sec":2,"title":"解二元一次聯立方程式","weight":1},{"id":"m-kx-7b-1-3","grade":"七下","ch":1,"chTitle":"二元一次聯立方程式","sec":3,"title":"應用問題","weight":1},{"id":"m-kx-7b-2-1","grade":"七下","ch":2,"chTitle":"直角坐標與二元一次方程式的圖形","sec":1,"title":"直角坐標平面","weight":1},{"id":"m-kx-7b-2-2","grade":"七下","ch":2,"chTitle":"直角坐標與二元一次方程式的圖形","sec":2,"title":"二元一次方程式的圖形","weight":1},{"id":"m-kx-7b-3-1","grade":"七下","ch":3,"chTitle":"比與比例式","sec":1,"title":"比例式","weight":1},{"id":"m-kx-7b-3-2","grade":"七下","ch":3,"chTitle":"比與比例式","sec":2,"title":"正比與反比","weight":1},{"id":"m-kx-7b-4-1","grade":"七下","ch":4,"chTitle":"一元一次不等式","sec":1,"title":"認識一元一次不等式","weight":1},{"id":"m-kx-7b-4-2","grade":"七下","ch":4,"chTitle":"一元一次不等式","sec":2,"title":"解一元一次不等式","weight":1},{"id":"m-kx-7b-5-1","grade":"七下","ch":5,"chTitle":"統計","sec":1,"title":"統計圖表與資料分析","weight":1},{"id":"m-kx-7b-6-1","grade":"七下","ch":6,"chTitle":"生活中的幾何","sec":1,"title":"垂直、線對稱與三視圖","weight":1},{"id":"m-kx-8a-1-1","grade":"八上","ch":1,"chTitle":"乘法公式與多項式","sec":1,"title":"乘法公式","weight":1},{"id":"m-kx-8a-1-2","grade":"八上","ch":1,"chTitle":"乘法公式與多項式","sec":2,"title":"多項式與其加減運算","weight":1},{"id":"m-kx-8a-1-3","grade":"八上","ch":1,"chTitle":"乘法公式與多項式","sec":3,"title":"多項式的乘除運算","weight":1},{"id":"m-kx-8a-2-1","grade":"八上","ch":2,"chTitle":"平方根與畢氏定理","sec":1,"title":"平方根與近似值","weight":1},{"id":"m-kx-8a-2-2","grade":"八上","ch":2,"chTitle":"平方根與畢氏定理","sec":2,"title":"根式的運算","weight":1},{"id":"m-kx-8a-2-3","grade":"八上","ch":2,"chTitle":"平方根與畢氏定理","sec":3,"title":"畢氏定理","weight":1},{"id":"m-kx-8a-3-1","grade":"八上","ch":3,"chTitle":"因式分解","sec":1,"title":"利用提公因式與乘法公式做因式分解","weight":1},{"id":"m-kx-8a-3-2","grade":"八上","ch":3,"chTitle":"因式分解","sec":2,"title":"利用十字交乘法做因式分解","weight":1},{"id":"m-kx-8a-4-1","grade":"八上","ch":4,"chTitle":"一元二次方程式","sec":1,"title":"因式分解解一元二次方程式","weight":1},{"id":"m-kx-8a-4-2","grade":"八上","ch":4,"chTitle":"一元二次方程式","sec":2,"title":"配方法與公式解","weight":1},{"id":"m-kx-8a-4-3","grade":"八上","ch":4,"chTitle":"一元二次方程式","sec":3,"title":"應用問題","weight":1},{"id":"m-kx-8a-5-1","grade":"八上","ch":5,"chTitle":"統計資料處理","sec":1,"title":"資料整理與統計圖表","weight":1},{"id":"m-kx-8b-1-1","grade":"八下","ch":1,"chTitle":"數列與級數","sec":1,"title":"等差數列","weight":1},{"id":"m-kx-8b-1-2","grade":"八下","ch":1,"chTitle":"數列與級數","sec":2,"title":"等差級數","weight":1},{"id":"m-kx-8b-1-3","grade":"八下","ch":1,"chTitle":"數列與級數","sec":3,"title":"等比數列","weight":1},{"id":"m-kx-8b-2-1","grade":"八下","ch":2,"chTitle":"函數","sec":1,"title":"函數與函數圖形","weight":1},{"id":"m-kx-8b-3-1","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":1,"title":"三角形與多邊形的內角與外角","weight":1},{"id":"m-kx-8b-3-2","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":2,"title":"尺規作圖","weight":1},{"id":"m-kx-8b-3-3","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":3,"title":"三角形的全等性質","weight":1},{"id":"m-kx-8b-3-4","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":4,"title":"垂直平分線與角平分線的性質","weight":1},{"id":"m-kx-8b-3-5","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":5,"title":"三角形的邊角關係","weight":1},{"id":"m-kx-8b-4-1","grade":"八下","ch":4,"chTitle":"平行與四邊形","sec":1,"title":"平行","weight":1},{"id":"m-kx-8b-4-2","grade":"八下","ch":4,"chTitle":"平行與四邊形","sec":2,"title":"平行四邊形","weight":1},{"id":"m-kx-8b-4-3","grade":"八下","ch":4,"chTitle":"平行與四邊形","sec":3,"title":"特殊四邊形的性質","weight":1},{"id":"m-kx-9a-1-1","grade":"九上","ch":1,"chTitle":"相似形","sec":1,"title":"連比例","weight":1},{"id":"m-kx-9a-1-2","grade":"九上","ch":1,"chTitle":"相似形","sec":2,"title":"比例線段","weight":1},{"id":"m-kx-9a-1-3","grade":"九上","ch":1,"chTitle":"相似形","sec":3,"title":"縮放與相似","weight":1},{"id":"m-kx-9a-1-4","grade":"九上","ch":1,"chTitle":"相似形","sec":4,"title":"相似三角形的應用","weight":1},{"id":"m-kx-9a-2-1","grade":"九上","ch":2,"chTitle":"圓","sec":1,"title":"點、直線與圓之間的位置關係","weight":1},{"id":"m-kx-9a-2-2","grade":"九上","ch":2,"chTitle":"圓","sec":2,"title":"圓心角、圓周角與弧的關係","weight":1},{"id":"m-kx-9a-3-1","grade":"九上","ch":3,"chTitle":"幾何與證明","sec":1,"title":"證明與推理","weight":1},{"id":"m-kx-9a-3-2","grade":"九上","ch":3,"chTitle":"幾何與證明","sec":2,"title":"三角形的外心、內心與重心","weight":1},{"id":"m-kx-9b-1-1","grade":"九下","ch":1,"chTitle":"二次函數","sec":1,"title":"二次函數的圖形與最大值、最小值","weight":1},{"id":"m-kx-9b-2-1","grade":"九下","ch":2,"chTitle":"統計與機率","sec":1,"title":"資料的分析","weight":1},{"id":"m-kx-9b-2-2","grade":"九下","ch":2,"chTitle":"統計與機率","sec":2,"title":"機率","weight":1},{"id":"m-kx-9b-3-1","grade":"九下","ch":3,"chTitle":"生活中的立體圖形","sec":1,"title":"空間中的線、平面與形體","weight":1}]}</script>
+<script>
+(function(){
+'use strict';
+const EXAM_DATE = '2027-05-15';   // 會考暫定日期（公告後改這裡）
+const STORE_KEY = 'huikao.v1';
+const CATALOG_URL = 'data/math-kx-108.json';
+const WD = ['日','一','二','三','四','五','六'];
+
+/* ---------- 雲端同步設定（跟統測單字 SRS App 同一個 Supabase 專案）。CONFIG 留空＝只存這台裝置
+   anon key 本來就是公開的（只代表「沒登入的人」）；真正的門鎖是 supabase/001_hk.sql 的權限設計
+   換 Supabase 專案時，<head> 的 CSP connect-src 也要一起改 ---------- */
+const CONFIG = { SUPABASE_URL: "https://knsdpvmhloobfduhfwyk.supabase.co", SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtuc2Rwdm1obG9vYmZkdWhmd3lrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyNzMyMTMsImV4cCI6MjA5OTg0OTIxM30.HiH0OjKi1CllfM31YL2ETn3bxM9omzAtAF3QSQqnK80" };   // 先在 Supabase 跑過 supabase/001_hk.sql 才有作用
+const CLOUD = !!(CONFIG.SUPABASE_URL && CONFIG.SUPABASE_ANON_KEY);
+const SYNC_KEY = 'huikao.sync';
+const TOKEN_RE=/^[0-9a-f]{32}$/, UNIT_RE=/^[a-z0-9-]{1,40}$/, CARD_RE=/^[a-z0-9]{1,40}$/, DATE_RE=/^\d{4}-\d\d-\d\d$/;
+const MAX_P=200, MAX_C=2000;   // 單次上傳上限（跟 hk_save 一樣）
+// 學生連結 ?s=代碼：一開始就從網址拿掉（避免截圖、分享網址、瀏覽紀錄外流）；代碼只存在這台裝置
+function takeToken(){
+  const u=new URL(location.href); if(!u.searchParams.has('s')) return null;
+  const t=(u.searchParams.get('s')||'').trim().toLowerCase();
+  u.searchParams.delete('s'); history.replaceState(null,'',u.pathname+u.search+u.hash);
+  return TOKEN_RE.test(t) ? t : null;
+}
+const urlToken = takeToken();
+
+/* ---------- 日期（一律用本機時間，不用 toISOString） ---------- */
+const pad = n => String(n).padStart(2,'0');
+function fmtDate(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+function parseDate(s){ const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); }
+function todayStr(){ return fmtDate(new Date()); }
+function addDays(s,n){ const d=parseDate(s); d.setDate(d.getDate()+n); return fmtDate(d); }
+function mondayOf(s){ const d=parseDate(s); return addDays(s, -((d.getDay()+6)%7)); }
+function daysBetween(a,b){ const [y1,m1,d1]=a.split('-').map(Number),[y2,m2,d2]=b.split('-').map(Number);
+  return Math.round((Date.UTC(y2,m2-1,d2)-Date.UTC(y1,m1-1,d1))/864e5); }
+function weeksUntil(today,exam){ const out=[]; for(let w=mondayOf(today); w<=exam; w=addDays(w,7)) out.push(w); return out; }
+function md(s){ const d=parseDate(s); return (d.getMonth()+1)+'/'+d.getDate(); }
+function mdw(s){ return md(s)+'（'+WD[parseDate(s).getDay()]+'）'; }
+
+/* ---------- 資料儲存（雲端同步接在 save 這一層） ---------- */
+let READONLY = false;   // 老師端唯讀檢視：不存檔、不同步（不會把學生的資料寫進老師這台）
+let onSave = null;      // 雲端模式：存檔後排程上傳
+let storage = null;
+try { storage = window.localStorage; } catch(e) { storage = null; }
+function emptyState(){ return {progress:{}, plan:[]}; }
+let state = emptyState();
+function load(){
+  try { const raw = storage && storage.getItem(STORE_KEY); if(!raw) return emptyState();
+    const s = JSON.parse(raw) || {}, progress = {};
+    const src = s.progress && typeof s.progress==='object' && !Array.isArray(s.progress) ? s.progress : {};
+    for(const [id,p] of Object.entries(src)){ if(!p || typeof p!=='object') continue;
+      const f=Number(p.fam), r=Math.floor(Number(p.reviews));
+      progress[id] = {fam: Number.isInteger(f)&&f>=1&&f<=5 ? f : null, reviews: r>0 ? r : 0, updatedAt: Number(p.updatedAt)||0}; }
+    const plan = (Array.isArray(s.plan)?s.plan:[]).filter(c=>c && typeof c==='object' && typeof c.unitId==='string' && typeof c.date==='string' && /^\d{4}-\d\d-\d\d$/.test(c.date));
+    return {progress, plan};
+  } catch(e){ return emptyState(); }
+}
+function saveLocal(){ try { storage && storage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+function save(){ if(READONLY) return; saveLocal(); if(onSave) onSave(); }
+function memStorage(){ const m={}; return {getItem:k=>k in m?m[k]:null, setItem:(k,v)=>{m[k]=String(v);}, removeItem:k=>{delete m[k];}}; }
+
+/* ---------- 章節表 ---------- */
+let UNITS = [], UNIT = {};
+const GRADES = ['七上','七下','八上','八下','九上','九下'];
+function setCatalog(cat){ UNITS = cat.units.map(u=>({...u})); UNIT = Object.create(null); /* 沒有原型：雲端來的怪 id（例 constructor）查不到東西 */ UNITS.forEach((u,i)=>{UNIT[u.id]=u; u._i=i;}); }
+function code(u){ return u.grade+' '+u.ch+'-'+u.sec; }
+function label(u){ return code(u)+' '+u.title; }
+
+/* ---------- 規則 ---------- */
+function prog(id){ return state.progress[id] || {fam:null, reviews:0, updatedAt:0}; }
+function famClass(f){ return !f ? 'none' : f<=2 ? 'red' : f===3 ? 'yel' : 'grn'; }
+function needsHelp(p){ return !!p.fam && p.fam<=2 && p.reviews>=3; }
+function priority(){
+  const rated=[], unrated=[];
+  UNITS.forEach(u=>{ const p=prog(u.id); if(!p.fam) unrated.push(u); else if(p.fam<=3) rated.push(u); });
+  rated.sort((a,b)=>{ const pa=prog(a.id),pb=prog(b.id); return pa.fam-pb.fam || pa.reviews-pb.reviews || a._i-b._i; });
+  return {rated, unrated};
+}
+function liveCards(){ return state.plan.filter(c=>c && !c.deleted && UNIT[c.unitId]); }  // 章節表若刪了某節，舊卡片先不顯示
+function pendingFor(id){ return liveCards().some(c=>c.unitId===id && !c.doneAt); }
+function overdue(today){ return liveCards().filter(c=>c.date<today && !c.doneAt).sort((a,b)=>a.date<b.date?-1:1); }
+function cardsOn(date){ return liveCards().filter(c=>c.date===date); }
+
+/* ---------- 寫入動作（每個動作都更新 updatedAt 再存檔） ---------- */
+function touch(id){ const p={...prog(id), updatedAt:Date.now()}; state.progress[id]=p; return p; }
+function setFam(id,f){ touch(id).fam=f; save(); }
+function bumpReviews(id,d){ const p=touch(id); p.reviews=Math.max(0,p.reviews+d); save(); }
+function newId(){ return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+function placeCard(unitId,date){
+  const c={id:newId(), unitId, date, doneAt:null, deleted:false, updatedAt:Date.now()};
+  state.plan.push(c); save(); return c;
+}
+function card(id){ return state.plan.find(c=>c.id===id); }
+function moveCard(id,date){ const c=card(id); c.date=date; c.updatedAt=Date.now(); save(); }
+function removeCard(id){ const c=card(id); c.deleted=true; c.updatedAt=Date.now(); save(); }
+function completeCard(id){ const c=card(id); if(c.doneAt) return; c.doneAt=Date.now(); c.updatedAt=c.doneAt; bumpReviews(c.unitId,1); }
+function undoComplete(id){ const c=card(id); if(!c.doneAt) return; c.doneAt=null; c.updatedAt=Date.now(); bumpReviews(c.unitId,-1); }
+
+/* ---------- 畫面 ---------- */
+const $main = document.getElementById('main'), $layer = document.getElementById('layer');
+const ui = { tab:'overview', sel:null, drawer:null, prompt:null, openWeeks:null, closedUnits:{} };
+const esc = s => String(s).replace(/[&<>"]/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+
+function render(){
+  document.querySelectorAll('#nav button').forEach(b=>{ if(b.dataset.tab===ui.tab) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
+  ({overview:viewOverview, units:viewUnits, plan:viewPlan, today:viewToday})[ui.tab]();
+  renderLayer();
+}
+
+function viewOverview(){
+  const t=todayStr(), days=daysBetween(t,EXAM_DATE);
+  const reds=UNITS.filter(u=>famClass(prog(u.id).fam)==='red');
+  const unplanned=reds.filter(u=>!pendingFor(u.id));
+  const {rated,unrated}=priority();
+  let h=`<div class="count"><div class="sub">距離會考（暫定 ${EXAM_DATE.replace(/-/g,'/')}）</div><b>${Math.max(0,days)}</b> 天　<span class="sub">約 ${Math.ceil(Math.max(0,days)/7)} 週</span></div>`;
+  h+=`<p class="summary">紅色 <span class="r">${reds.length}</span> 節、其中 <span class="r">${unplanned.length}</span> 節還沒排進計畫</p>`;
+  h+=`<h2>全部章節</h2><div class="legend"><span><i class="c-red"></i>1–2 分</span><span><i class="c-yel"></i>3 分</span><span><i class="c-grn"></i>4–5 分</span><span><i class="c-none"></i>還沒評</span><span>格內數字＝複習次數</span></div>`;
+  GRADES.forEach(g=>{
+    const us=UNITS.filter(u=>u.grade===g); if(!us.length) return;
+    h+=`<div class="grade-row"><h3>${g}</h3><div class="tiles">`+us.map(u=>{const p=prog(u.id);
+      return `<button class="tile c-${famClass(p.fam)}" data-act="goUnit" data-unit="${u.id}" title="${esc(label(u))}" aria-label="${esc(label(u))}，${p.fam?p.fam+'分':'未評分'}，複習${p.reviews}次"><small>${u.ch}-${u.sec}</small><b>${p.reviews}</b></button>`}).join('')+`</div></div>`;
+  });
+  h+=`<h2>優先衝刺清單</h2>`;
+  if(!rated.length) h+=`<p class="empty">目前沒有 3 分以下的章節。${unrated.length?'先去「章節」評分吧。':''}</p>`;
+  else h+=`<ul class="prio">`+rated.map(u=>{const p=prog(u.id);
+    return `<li><span class="dot c-${famClass(p.fam)}">${p.fam}</span><div class="t">${esc(label(u))}${needsHelp(p)?'<span class="tag">需要老師幫忙</span>':''}<div class="muted">複習 ${p.reviews} 次${pendingFor(u.id)?'・已排進計畫':''}</div></div></li>`}).join('')+`</ul>`;
+  if(unrated.length) h+=`<h2>還沒評分（${unrated.length} 節）</h2><p class="muted">${unrated.map(u=>esc(code(u))).join('、')}</p><button class="btn" data-act="tab" data-tab="units">去評分</button>`;
+  $main.innerHTML=h;
+}
+
+function viewUnits(){
+  const rated=UNITS.filter(u=>prog(u.id).fam).length, N=UNITS.length;
+  let h='';
+  if(rated<N) h+=`<div class="banner"><b>先把每一節都評一次分</b>（1＝完全不會、5＝很有把握）<div class="muted">已評 ${rated}/${N}</div><div class="bar"><i style="width:${Math.round(rated/N*100)}%"></i></div></div>`;
+  GRADES.forEach(g=>{
+    const us=UNITS.filter(u=>u.grade===g); if(!us.length) return;
+    h+=`<details class="grade" data-key="${g}" ${ui.closedUnits[g]?'':'open'}><summary>${g}</summary>`;
+    [...new Set(us.map(u=>u.ch))].forEach(ch=>{
+      const cs=us.filter(u=>u.ch===ch), k=g+ch;
+      h+=`<details class="ch" data-key="${k}" ${ui.closedUnits[k]?'':'open'}><summary>第 ${ch} 章 ${esc(cs[0].chTitle)}</summary>`;
+      cs.forEach(u=>{const p=prog(u.id);
+        h+=`<div class="urow" id="u-${u.id}"><div class="name">${u.ch}-${u.sec} ${esc(u.title)}</div><div class="ctrls"><div class="fams" role="group" aria-label="熟悉度">`+
+          [1,2,3,4,5].map(f=>`<button class="f${f}" data-act="fam" data-unit="${u.id}" data-f="${f}" aria-pressed="${p.fam===f}">${f}</button>`).join('')+
+          `</div><div class="revs">複習<button data-act="rev" data-unit="${u.id}" data-d="-1" aria-label="次數減一">−</button><b>${p.reviews}</b><button data-act="rev" data-unit="${u.id}" data-d="1" aria-label="次數加一">＋</button>次</div></div></div>`;
+      });
+      h+=`</details>`;
+    });
+    h+=`</details>`;
+  });
+  $main.innerHTML=h;
+}
+
+function chipClass(c,t){ return 'chip b-'+famClass(prog(c.unitId).fam)+(c.doneAt?' done':'')+(!c.doneAt&&c.date<t?' late':''); }
+function poolHtml(){
+  return GRADES.map(g=>{
+    const us=UNITS.filter(u=>u.grade===g).sort((a,b)=>{const fa=prog(a.id).fam||9, fb=prog(b.id).fam||9; return fa-fb || a._i-b._i;});
+    return `<h3>${g}</h3><div class="chips">`+us.map(u=>{const p=prog(u.id);
+      return `<button class="chip b-${famClass(p.fam)}${ui.sel&&ui.sel.unitId===u.id&&!ui.sel.cardId?' sel':''}" data-act="pick" data-unit="${u.id}"><span>${u.ch}-${u.sec} ${esc(u.title)}</span><em>${p.fam?p.fam+'分':'未評'}</em></button>`}).join('')+`</div>`;
+  }).join('');
+}
+function viewPlan(){
+  const t=todayStr(), weeks=weeksUntil(t,EXAM_DATE), cur=mondayOf(t);
+  if(!ui.openWeeks) ui.openWeeks={[cur]:true};
+  let h='';
+  if(ui.sel){ const u=UNIT[ui.sel.unitId];
+    h+=`<div class="selbar"><span>${ui.sel.cardId?'改期':'已選'}：${esc(label(u))}，請點日期</span><button class="btn sm" data-act="cancelSel">取消</button></div>`; }
+  h+=`<div class="plan-top"><div class="muted">到會考共 ${weeks.length} 週</div><button class="btn pri" id="addBtn" data-act="openPool">＋加入章節</button></div>`;
+  h+=`<div class="plan-grid${ui.sel?' selecting':''}"><aside class="pool-wrap"><div class="muted">拖曳到日期格，或點一下再點日期</div><div class="pool">${poolHtml()}</div></aside><div>`;
+  weeks.forEach(w=>{
+    const days=[0,1,2,3,4,5,6].map(i=>addDays(w,i));
+    const cs=liveCards().filter(c=>c.date>=w&&c.date<=days[6]), done=cs.filter(c=>c.doneAt).length;
+    const open=!!ui.openWeeks[w];
+    h+=`<section class="week"><button class="wk-head" data-act="toggleWeek" data-week="${w}" aria-expanded="${open}"><span>${md(w)}–${md(days[6])}${w===cur?'<span class="now">本週</span>':''}</span><span class="st">${cs.length} 張／完成 ${done}　${open?'▲':'▼'}</span></button>`;
+    if(open){
+      h+=`<div class="wk-days">`+days.map(d=>`<div class="day${d===t?' today':''}${d<t?' past':''}${d===EXAM_DATE?' exam':''}" data-act="day" data-date="${d}"><div class="lbl"><b>${WD[parseDate(d).getDay()]}</b> ${md(d)}</div><div class="cards">`+
+        cardsOn(d).map(c=>`<button class="${chipClass(c,t)}" data-act="card" data-card="${c.id}"><span>${UNIT[c.unitId].grade}${UNIT[c.unitId].ch}-${UNIT[c.unitId].sec} ${esc(UNIT[c.unitId].title)}</span></button>`).join('')+`</div></div>`).join('')+`</div>`;
+    }
+    h+=`</section>`;
+  });
+  h+=`</div></div>`;
+  $main.innerHTML=h;
+}
+
+function tcard(c,t,late){
+  const u=UNIT[c.unitId], p=prog(u.id);
+  let acts;
+  if(late) acts=`<button class="btn sm pri" data-act="toToday" data-card="${c.id}">移到今天</button><button class="btn sm" data-act="resched" data-card="${c.id}">改期</button>`;
+  else if(c.doneAt) acts=`<span class="muted">已完成</span><button class="btn sm" data-act="undo" data-card="${c.id}">取消完成</button>`;
+  else acts=`<button class="btn sm pri" data-act="done" data-card="${c.id}">完成</button><button class="btn sm" data-act="resched" data-card="${c.id}">改期</button>`;
+  return `<div class="tcard b-${famClass(p.fam)}${late?' late':''}${c.doneAt?' done':''}"><div class="t"><div class="name">${esc(label(u))}</div><div class="muted">${late?'原定 '+mdw(c.date)+'・':''}${p.fam?p.fam+' 分':'未評分'}・複習 ${p.reviews} 次</div></div><div class="acts">${acts}</div></div>`;
+}
+function viewToday(){
+  const t=todayStr(), late=overdue(t), list=cardsOn(t).sort((a,b)=>(!!a.doneAt)-(!!b.doneAt));
+  let h='';
+  if(late.length) h+=`<h2 class="late">逾期（${late.length}）</h2>`+late.map(c=>tcard(c,t,true)).join('');
+  h+=`<h2>今天 ${mdw(t)}</h2>`;
+  h+= list.length ? list.map(c=>tcard(c,t,false)).join('') : `<div class="empty">今天沒有排卡片。<button class="linkbtn" data-act="tab" data-tab="plan">去計畫排幾張</button></div>`;
+  $main.innerHTML=h;
+}
+
+function renderLayer(){
+  let h='';
+  if(ui.drawer==='pool') h+=`<div class="backdrop" data-act="closeDrawer"></div><div class="drawer" role="dialog" aria-label="加入章節"><div class="hd"><b>選一個章節（弱的在前）</b><button class="btn sm" data-act="closeDrawer">關閉</button></div><div class="pool">${poolHtml()}</div></div>`;
+  else if(ui.drawer && ui.drawer.card){ const c=card(ui.drawer.card), u=UNIT[c.unitId];
+    h+=`<div class="backdrop" data-act="closeDrawer"></div><div class="drawer" role="dialog" aria-label="卡片動作"><div class="hd"><b>${esc(label(u))}</b><button class="btn sm" data-act="closeDrawer">關閉</button></div><div class="muted">排在 ${mdw(c.date)}${c.doneAt?'・已完成':''}</div><div class="sheet-acts">`+
+      (c.doneAt?`<button class="btn" data-act="undo" data-card="${c.id}">取消完成</button>`:`<button class="btn pri" data-act="done" data-card="${c.id}">完成</button>`)+
+      `<button class="btn" data-act="resched" data-card="${c.id}">改期</button><button class="btn red" data-act="remove" data-card="${c.id}">移除</button></div></div>`; }
+  if(ui.prompt){ const c=card(ui.prompt), u=UNIT[c.unitId];
+    h+=`<div class="prompt" role="status"><div>完成「${esc(u.title)}」，複習 ${prog(u.id).reviews} 次。現在熟悉度幾分？</div><div class="row">`+
+      [1,2,3,4,5].map(f=>`<button data-act="rate" data-unit="${u.id}" data-f="${f}">${f}</button>`).join('')+
+      `<button class="lnk" data-act="skipRate">略過</button><button class="lnk" data-act="undo" data-card="${c.id}">取消完成</button></div></div>`; }
+  $layer.innerHTML=h;
+}
+
+let toastTimer;
+function toast(msg){ let el=document.querySelector('.toast'); if(!el){el=document.createElement('div');el.className='toast';el.setAttribute('role','status');document.body.appendChild(el);}
+  el.textContent=msg; const pr=document.querySelector('.prompt');  // 有「現在幾分？」時浮在它上面
+  el.style.bottom = pr ? (innerHeight-pr.getBoundingClientRect().top+8)+'px' : '';
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.remove(),2200); }
+
+function go(tab){ if(tab!=='plan') ui.sel=null; ui.tab=tab; if(location.hash!=='#'+tab) history.replaceState(null,'','#'+tab); render(); window.scrollTo(0,0); }
+function dropOn(date){
+  if(!ui.sel) return false;
+  if(date<todayStr()){ toast('不能排在過去的日期'); return false; }
+  const s=ui.sel; ui.sel=null;
+  if(s.cardId) moveCard(s.cardId,date); else placeCard(s.unitId,date);
+  const w=mondayOf(date); if(ui.openWeeks) ui.openWeeks[w]=true;
+  render(); toast('已排到 '+mdw(date));
+  return true;
+}
+
+/* ---------- 事件 ---------- */
+let suppressClick=false;
+// 老師唯讀檢視時擋掉的動作（會改資料、或會打開改資料的抽屜）
+const RO_BLOCK=new Set(['fam','rev','openPool','pick','day','card','done','undo','remove','resched','toToday','rate','skipRate','syncLink']);
+document.addEventListener('click', e=>{
+  if(suppressClick){ suppressClick=false; return; }
+  const el=e.target.closest('[data-act]'); if(!el) return;
+  const a=el.dataset, id=a.card;
+  if(READONLY && RO_BLOCK.has(a.act)){ toast('老師端只能看，不能改'); return; }
+  switch(a.act){
+    case 'syncLink': askLink(); break;
+    case 'tab': ui.drawer=null; go(a.tab); break;
+    case 'goUnit': ui.closedUnits={}; go('units'); { const r=document.getElementById('u-'+a.unit); r&&r.scrollIntoView({block:'center'}); } break;
+    case 'fam': setFam(a.unit,+a.f); render(); break;
+    case 'rev': bumpReviews(a.unit,+a.d); render(); break;
+    case 'openPool': ui.drawer='pool'; renderLayer(); break;
+    case 'closeDrawer': ui.drawer=null; renderLayer(); break;
+    case 'pick': ui.sel={unitId:a.unit}; ui.drawer=null; render(); break;
+    case 'cancelSel': ui.sel=null; render(); break;
+    case 'day': dropOn(a.date); break;
+    case 'card': if(ui.sel){ dropOn(el.closest('.day').dataset.date); break; } ui.drawer={card:id}; renderLayer(); break;
+    case 'toggleWeek': ui.openWeeks[a.week]=!ui.openWeeks[a.week]; render(); break;
+    case 'done': completeCard(id); ui.drawer=null; ui.prompt=id; render(); break;
+    case 'undo': undoComplete(id); ui.drawer=null; if(ui.prompt===id) ui.prompt=null; render(); toast('已取消完成'); break;
+    case 'remove': removeCard(id); ui.drawer=null; render(); toast('已移除'); break;
+    case 'resched': ui.sel={cardId:id, unitId:card(id).unitId}; ui.drawer=null; ui.openWeeks=ui.openWeeks||{}; ui.openWeeks[mondayOf(todayStr())]=true; go('plan'); break;
+    case 'toToday': moveCard(id,todayStr()); render(); break;
+    case 'rate': setFam(a.unit,+a.f); ui.prompt=null; render(); toast('已更新為 '+a.f+' 分'); break;
+    case 'skipRate': ui.prompt=null; renderLayer(); break;
+  }
+});
+document.addEventListener('toggle', e=>{ const d=e.target; if(d.matches&&d.matches('details[data-key]')) ui.closedUnits[d.dataset.key]=!d.open; }, true);
+addEventListener('hashchange',()=>{ if(READONLY && !ui.viewing) return; const t=location.hash.slice(1); if(t!==ui.tab && ['overview','units','plan','today'].includes(t)) go(t); });
+
+/* 電腦版拖曳：章節池的卡片拖到日期格（滑鼠才啟用，手機用點選） */
+let drag=null;
+document.addEventListener('pointerdown', e=>{
+  if(e.pointerType!=='mouse' || e.button!==0 || READONLY) return;
+  const chip=e.target.closest('.pool-wrap .chip'); if(!chip) return;
+  drag={chip, unitId:chip.dataset.unit, x:e.clientX, y:e.clientY, ghost:null, over:null};
+  chip.setPointerCapture(e.pointerId);
+  e.preventDefault();  // 避免拖曳時反白選字
+});
+document.addEventListener('pointermove', e=>{
+  if(!drag) return;
+  if(!drag.ghost){ if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)<6) return;
+    const g=drag.chip.cloneNode(true); g.classList.add('ghost'); g.style.width=drag.chip.offsetWidth+'px'; document.body.appendChild(g); drag.ghost=g; }
+  drag.ghost.style.left=(e.clientX+8)+'px'; drag.ghost.style.top=(e.clientY+8)+'px';
+  const over=(document.elementFromPoint(e.clientX,e.clientY)||document.body).closest('.day');
+  if(over!==drag.over){ drag.over&&drag.over.classList.remove('drop'); over&&over.classList.add('drop'); drag.over=over; }
+});
+function endDrag(e){
+  if(!drag) return; const d=drag; drag=null;
+  if(!d.ghost) return;  // 沒移動＝一般點擊，交給 click 處理
+  d.ghost.remove(); d.over&&d.over.classList.remove('drop');
+  suppressClick=true; setTimeout(()=>suppressClick=false,0);
+  if(e.type==='pointerup' && d.over){ const prev=ui.sel; ui.sel={unitId:d.unitId}; if(!dropOn(d.over.dataset.date)) ui.sel=prev; }
+}
+document.addEventListener('pointerup', endDrag);
+document.addEventListener('pointercancel', endDrag);
+
+/* ---------- 雲端同步（Supabase）
+   - 學生不用登入：老師給的連結 ?s=代碼 存在這台裝置；雲端只認代碼
+   - 本機優先：先畫本機資料，背景再跟雲端合併；每一列（一節／一張卡）各自比 updatedAt，新的贏
+   - synced 記「雲端已經有的版本」：本機某列的 updatedAt 跟它不一樣＝還沒上傳（離線也記得，重開網頁照樣補傳）
+   - 這台沒成功下載過雲端之前不上傳；換成另一位學生的連結會先問
+   ---------- */
+const isObj=o=>!!o && typeof o==='object' && !Array.isArray(o);
+const msOk=x=>Number.isInteger(x) && x>=0 && x<1e15;
+const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k) ? o[k] : undefined;
+const okCardRow=c=>isObj(c) && typeof c.id==='string' && CARD_RE.test(c.id) && typeof c.unitId==='string' && UNIT_RE.test(c.unitId) && typeof c.date==='string' && DATE_RE.test(c.date) && msOk(c.updatedAt);
+const hasLocal=st=>Object.keys(st.progress).length>0 || st.plan.length>0;
+
+// 雲端／老師端讀到的資料：形狀不對的列直接丟掉（學生端寫的資料不完全可信）
+function cleanRemote(r){
+  const progress={}, plan=[];
+  (Array.isArray(r&&r.progress)?r.progress:[]).forEach(p=>{
+    if(!isObj(p) || typeof p.unitId!=='string' || !UNIT_RE.test(p.unitId) || !msOk(p.updatedAt)) return;
+    progress[p.unitId]={fam: Number.isInteger(p.fam)&&p.fam>=1&&p.fam<=5 ? p.fam : null, reviews: Number.isInteger(p.reviews)&&p.reviews>0 ? p.reviews : 0, updatedAt:p.updatedAt};
+  });
+  (Array.isArray(r&&r.plan)?r.plan:[]).forEach(c=>{
+    if(!okCardRow(c)) return;
+    plan.push({id:c.id, unitId:c.unitId, date:c.date, doneAt: msOk(c.doneAt)&&c.doneAt>0 ? c.doneAt : null, deleted:c.deleted===true, updatedAt:c.updatedAt});
+  });
+  return {progress, plan};
+}
+// 把雲端那份併進 st，同時更新 synced。回傳這台有沒有被改到
+// 規則：本機「還沒上傳」的列（updatedAt ≠ synced）才跟雲端比新舊；已上傳過的列一律照雲端（雲端是準的）
+// → 時鐘快的裝置：雲端把它的時間壓回「現在＋10 分鐘」後，這台也跟著改用雲端的時間，之後別台的修改蓋得過來
+const P_KEYS=['fam','reviews','updatedAt'], C_KEYS=['unitId','date','doneAt','deleted','updatedAt'];
+const sameRow=(a,b,keys)=>keys.every(k=>a[k]===b[k]);
+function mergeRemote(st,rem,synced){
+  let changed=false;
+  const keepLocal=(l,r,s)=>!!l && s!==l.updatedAt && l.updatedAt>=r.updatedAt;   // 還沒上傳、而且不比雲端舊
+  for(const id of Object.keys(rem.progress)){
+    const r=rem.progress[id], l=own(st.progress,id);
+    if(keepLocal(l,r,own(synced.p,id))) continue;
+    if(!l || !sameRow(l,r,P_KEYS)){ st.progress[id]=r; changed=true; }
+    synced.p[id]=r.updatedAt;
+  }
+  const at=new Map(); st.plan.forEach((c,i)=>{ if(c && typeof c.id==='string') at.set(c.id,i); });
+  rem.plan.forEach(r=>{
+    const i=at.get(r.id), l=i==null ? null : st.plan[i];
+    if(keepLocal(l,r,own(synced.c,r.id))) return;
+    if(!l || !sameRow(l,r,C_KEYS)){ if(l) st.plan[i]=r; else { at.set(r.id,st.plan.length); st.plan.push(r); } changed=true; }
+    synced.c[r.id]=r.updatedAt;
+  });
+  return changed;
+}
+// 要上傳的列：updatedAt 跟雲端已知版本不一樣的（形狀不對的本機舊資料跳過，免得整筆被拒、卡住同步）
+function dirtyRows(st,synced){
+  const progress=[], plan=[], seen=new Set();
+  for(const id of Object.keys(st.progress)){ const p=st.progress[id];
+    if(progress.length<MAX_P && UNIT_RE.test(id) && isObj(p) && msOk(p.updatedAt) && own(synced.p,id)!==p.updatedAt)
+      progress.push({unitId:id, fam: Number.isInteger(p.fam)&&p.fam>=1&&p.fam<=5 ? p.fam : null, reviews: Number.isInteger(p.reviews)&&p.reviews>0 ? Math.min(p.reviews,99999) : 0, updatedAt:p.updatedAt}); }
+  st.plan.forEach(c=>{
+    if(plan.length<MAX_C && okCardRow(c) && !seen.has(c.id) && own(synced.c,c.id)!==c.updatedAt){ seen.add(c.id);
+      plan.push({id:c.id, unitId:c.unitId, date:c.date, doneAt: msOk(c.doneAt)&&c.doneAt>0 ? c.doneAt : null, deleted:c.deleted===true, updatedAt:c.updatedAt}); }
+  });
+  return {progress, plan};
+}
+
+// 同步引擎。o：{ rpc(name,args)→Promise（網路錯丟 {offline:true}）, metaLoad, metaSave, getState, saveLocal, reset, status(code), ask(kind,info)→Promise<bool>, onMerged() }
+function makeSync(o){
+  const fresh=()=>({p:{},c:{}});
+  let M=o.metaLoad(); if(!isObj(M) || (M.token && !TOKEN_RE.test(M.token))) M={};
+  if(!isObj(M.synced) || !isObj(M.synced.p) || !isObj(M.synced.c)) M.synced=fresh();
+  let chain=Promise.resolve(), timer=null, prev=null;
+  const run=fn=>(chain=chain.then(fn,fn));
+  const put=()=>o.metaSave(M);
+  const fail=e=>o.status(e&&e.offline ? 'offline' : 'error');
+  const dirtyCount=()=>{ const d=dirtyRows(o.getState(),M.synced); return d.progress.length+d.plan.length; };
+
+  async function pull(){
+    if(!M.token){ o.status('nolink'); return false; }
+    o.status('busy');
+    let r; try { r=await o.rpc('hk_load',{p_token:M.token}); } catch(e){ fail(e); return false; }
+    if(!r || !r.ok){
+      if(r && r.error==='invalid_link'){ if(prev && !M.pulled){ M=prev; put(); } prev=null; o.status('invalid'); }
+      else o.status('error');
+      return false;
+    }
+    const nick=typeof r.nickname==='string' ? r.nickname.slice(0,40) : '', sid=String(r.sid||'');
+    if(!M.pulled){   // 這台第一次用這個連結
+      if(M.sid && M.sid!==sid){
+        if(!(await o.ask('switch',{from:M.name,to:nick}))){ M=prev&&prev.token ? prev : {synced:fresh()}; prev=null; put(); o.status(M.token?'ok':'nolink'); return false; }
+        o.reset();
+      } else if(!M.sid && hasLocal(o.getState()) && !(await o.ask('bind',{to:nick}))) o.reset();
+    }
+    const first=!M.pulled;
+    M.sid=sid; M.name=nick; M.pulled=true; prev=null;
+    const changed=mergeRemote(o.getState(), cleanRemote(r), M.synced);
+    if(changed) o.saveLocal();
+    put();
+    if(changed || first) o.onMerged();
+    return push();
+  }
+
+  async function push(){
+    if(!M.token || !M.pulled) return false;   // 沒成功下載過雲端之前絕不上傳
+    const d=dirtyRows(o.getState(),M.synced);
+    if(!d.progress.length && !d.plan.length){ o.status('ok'); return true; }
+    o.status('busy');
+    let r; try { r=await o.rpc('hk_save',{p_token:M.token, p_progress:d.progress, p_plan:d.plan}); } catch(e){ fail(e); return false; }
+    if(r && r.ok){
+      d.progress.forEach(x=>{ M.synced.p[x.unitId]=x.updatedAt; }); d.plan.forEach(x=>{ M.synced.c[x.id]=x.updatedAt; });
+      // 回傳的是雲端整包：剛送出的列（途中沒再改的）改用雲端的版本（例：時間被壓回），順便拿到別台的修改
+      const changed=mergeRemote(o.getState(), cleanRemote(r), M.synced);
+      if(changed) o.saveLocal();
+      put();
+      if(changed) o.onMerged();
+      if(dirtyCount()) schedule(1500); else o.status('ok');   // 上傳途中又改了、或超過單次上限 → 再送一次
+      return true;
+    }
+    const err=r && r.error;
+    if(err==='too_fast'){ schedule(3000); return false; }
+    o.status(err==='invalid_link' ? 'invalid' : 'error');
+    return false;
+  }
+
+  function schedule(ms){   // 改完 2 秒後送；還沒下載過雲端就先下載（成功後會接著上傳）
+    if(!M.token) return;
+    clearTimeout(timer); o.status('pending');
+    timer=setTimeout(()=>run(M.pulled ? push : pull), ms==null ? 2000 : ms);
+  }
+  function setToken(tk){
+    if(!TOKEN_RE.test(tk||'') || tk===M.token) return false;
+    prev=M.token ? M : null;
+    M={token:tk, sid:M.sid, name:M.name, synced:fresh()}; put();   // 留 sid：判斷是同一位學生（重設連結）還是換人
+    return true;
+  }
+  return { pull:()=>run(pull), push:()=>{ clearTimeout(timer); return run(push); }, schedule, setToken, meta:()=>M, dirtyCount };
+}
+
+/* 學生端接上雲端 */
+const $sync=document.getElementById('syncSt');
+const SYNC_TEXT={ local:'只存在這台裝置', nolink:'只存在這台裝置・有老師給的連結？點這裡', busy:'同步中…', pending:'同步中…',
+  offline:'離線，稍後上傳', invalid:'連結已失效・點這裡貼上老師給的新連結', error:'雲端同步出錯，稍後會再試' };
+let sync=null;
+function setSync(code){
+  $sync.hidden=false;
+  const who=sync && sync.meta().name ? sync.meta().name+'・' : '';
+  $sync.textContent = code==='ok' ? who+'已同步 '+new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false}) : (SYNC_TEXT[code]||'');
+  const link = code==='nolink' || code==='invalid';
+  $sync.classList.toggle('act',link);
+  if(link) $sync.dataset.act='syncLink'; else delete $sync.dataset.act;
+}
+function loadSdk(){
+  if(window.supabase) return Promise.resolve();
+  return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src='vendor/supabase.js'; s.onload=res; s.onerror=()=>rej({offline:true, message:'SDK 載入失敗'}); document.head.appendChild(s); });
+}
+let sbStudent=null;
+async function studentRpc(name,args){
+  if(!sbStudent){ await loadSdk();
+    sbStudent=window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY, {auth:{persistSession:false, autoRefreshToken:false, detectSessionInUrl:false}}); }
+  const r=await Promise.race([sbStudent.rpc(name,args), new Promise((_,rej)=>setTimeout(()=>rej({offline:true}),15000))]);
+  if(r.error) throw {offline:!r.error.code, message:r.error.message};   // 沒有錯誤碼＝網路斷了
+  return r.data;
+}
+async function askLink(){
+  if(!sync) return;
+  const v=(prompt('貼上老師給的連結')||'').trim().toLowerCase();
+  const m=v.match(/[?&]s=([0-9a-f]{32})(?![0-9a-f])/) || v.match(/^([0-9a-f]{32})$/);
+  if(!m){ if(v) toast('看不懂這個連結'); return; }
+  sync.setToken(m[1]); sync.pull();
+}
+function bootSync(){
+  if(!CLOUD){ setSync('local'); return; }
+  sync=makeSync({
+    rpc: studentRpc,
+    metaLoad:()=>{ try { return JSON.parse(storage.getItem(SYNC_KEY)); } catch(e){ return null; } },
+    metaSave:m=>{ try { storage.setItem(SYNC_KEY, JSON.stringify(m)); } catch(e){} },
+    getState:()=>state, saveLocal, reset:()=>{ state=emptyState(); saveLocal(); },
+    status:setSync,
+    ask:(kind,info)=>Promise.resolve(confirm(kind==='switch'
+      ? `這台裝置原本連的是「${info.from||'另一位學生'}」，要換成「${info.to}」嗎？\n\n換了之後，這台會改用「${info.to}」的雲端進度（這台還沒上傳的紀錄會不見）。`
+      : `這台裝置已經有複習紀錄。\n\n要把它合併到「${info.to}」的雲端進度嗎？\n確定＝合併（學生自己的手機或電腦選這個）\n取消＝這台改用雲端進度（這台原本的紀錄會被取代）`)),
+    onMerged:()=>{ if(!drag) render(); },
+  });
+  onSave=()=>sync.schedule();
+  if(urlToken) sync.setToken(urlToken);
+  document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='hidden') sync.push(); else sync.pull(); });
+  addEventListener('online',()=>sync.pull());
+  if(sync.meta().token) sync.pull(); else setSync('nolink');
+}
+
+/* ---------- 老師端 ?teacher=1：Supabase 帳號登入 → 學生名單 → 唯讀看單一學生
+   學生的進度是學生端寫的（較不可信）：字串一律 esc()、列先過 cleanRemote、章節名稱只用章節表裡的
+   ---------- */
+function realTeacherApi(){
+  let sb=null;
+  const q=async p=>{ const r=await p; if(r.error) throw r.error; return r.data; };
+  const all=async mk=>{ const out=[]; for(let i=0;;i+=1000){ const d=await q(mk().range(i,i+999)); out.push(...d); if(d.length<1000) return out; } };  // 一次最多回 1000 列
+  const ms=v=>{ const t=Date.parse(String(v||'').replace(/(\.\d{3})\d+/,'$1')); return isNaN(t) ? 0 : t; };
+  return {
+    async init(){ await loadSdk();
+      sb=window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY, {auth:{storageKey:'huikao-teacher', persistSession:true, autoRefreshToken:true, detectSessionInUrl:false}});
+      const {data}=await sb.auth.getSession(); return !!(data && data.session); },
+    async login(email,password){ const {error}=await sb.auth.signInWithPassword({email,password}); if(error) throw error; },
+    logout:()=>sb.auth.signOut(),
+    isTeacher:()=>q(sb.rpc('hk_is_teacher')),
+    async summary(today){
+      const [students,reds,late]=await Promise.all([
+        all(()=>sb.from('hk_students').select('id,nickname,last_seen_at').order('created_at').order('id')),
+        all(()=>sb.from('hk_progress').select('student_id,unit_id').lte('fam',2).order('student_id').order('unit_id')),
+        all(()=>sb.from('hk_plan').select('student_id,unit_id').eq('deleted',false).is('done_at',null).lt('date',today).order('student_id').order('id')),
+      ]);
+      return {students,reds,late};
+    },
+    async student(id){
+      const [p,c]=await Promise.all([
+        all(()=>sb.from('hk_progress').select('unit_id,fam,reviews,updated_at').eq('student_id',id).order('unit_id')),
+        all(()=>sb.from('hk_plan').select('id,unit_id,date,done_at,deleted,updated_at').eq('student_id',id).eq('deleted',false).order('date').order('id')),
+      ]);
+      return cleanRemote({
+        progress:p.map(x=>({unitId:x.unit_id, fam:x.fam, reviews:x.reviews, updatedAt:ms(x.updated_at)})),
+        plan:c.map(x=>({id:x.id, unitId:x.unit_id, date:x.date, doneAt:x.done_at ? (ms(x.done_at)||1) : null, deleted:x.deleted, updatedAt:ms(x.updated_at)})) });
+    },
+    create:nickname=>q(sb.rpc('hk_create_student',{p_nickname:nickname})),
+    reset:id=>q(sb.rpc('hk_reset_link',{p_student:id})),
+  };
+}
+function summarize(sum){   // 名單：紅色節數、逾期張數（只算章節表裡有的節）
+  const n=(rows,id)=>rows.filter(r=>r.student_id===id && own(UNIT,r.unit_id)).length;
+  return sum.students.map(s=>({id:String(s.id), nickname:String(s.nickname), last_seen_at:s.last_seen_at, reds:n(sum.reds,s.id), late:n(sum.late,s.id)}));
+}
+let TAPI=null;
+const $robar=document.getElementById('robar');
+const byId=id=>document.getElementById(id);
+const fmtTime=iso=>{ const t=Date.parse(iso||''); return isNaN(t) ? '還沒同步過' : new Date(t).toLocaleString('zh-TW',{timeZone:'Asia/Taipei',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}); };
+const LOGOUT=`<p><button class="btn" id="tOut">登出</button></p>`;
+function bindLogout(){ const b=byId('tOut'); if(b) b.onclick=async()=>{ try { await TAPI.logout(); } catch(e){} teacherLogin(); }; }
+function teacherShell(viewing){
+  byId('nav').style.display=viewing ? '' : 'none'; $robar.hidden=!viewing;
+  document.body.classList.toggle('t-home',!viewing); $layer.innerHTML='';
+  if(!viewing){ ui.viewing=null; state=emptyState(); if(location.hash) history.replaceState(null,'',location.pathname+location.search); }
+}
+async function teacherBoot(api){
+  READONLY=true; document.body.classList.add('ro'); document.title='會考複習總覽・老師端';
+  teacherShell(false);
+  if(!api && !CLOUD){ $main.innerHTML=`<p class="empty">還沒接上雲端：index.html 的 CONFIG 是空的。</p>`; return; }
+  TAPI=api || realTeacherApi();
+  let has;
+  try { has=await TAPI.init(); } catch(e){ $main.innerHTML=`<p class="empty">連不上網路；老師端需要網路才能看。</p>`; return; }
+  has ? teacherHome() : teacherLogin();
+}
+function teacherLogin(msg){
+  teacherShell(false);
+  $main.innerHTML=`<h2>老師登入</h2><p class="muted">用統測單字 App 的同一組老師帳號</p><div class="tform">
+    <label>Email<input id="tEm" type="email" autocomplete="username" autocapitalize="off"></label>
+    <label>密碼<input id="tPw" type="password" autocomplete="current-password"></label>
+    <button class="btn pri" id="tLogin">登入</button>${msg?`<p class="terr">${esc(msg)}</p>`:''}</div>
+    <p><a href="./">← 回學生畫面</a></p>`;
+  const go=async()=>{ byId('tLogin').disabled=true;
+    try { await TAPI.login(byId('tEm').value.trim(), byId('tPw').value); }
+    catch(e){ const m=(e&&e.message)||''; return teacherLogin(/invalid/i.test(m) ? '帳號或密碼不對' : '登入失敗：'+m); }
+    teacherHome(); };
+  byId('tLogin').onclick=go;
+  byId('tPw').onkeydown=e=>{ if(e.key==='Enter') go(); };
+}
+function linkCard(nick,token){
+  if(!TOKEN_RE.test(token||'')) return `<p class="empty terr">產生連結失敗，請再試一次</p>`;
+  const url=location.origin+location.pathname+'?s='+token;
+  return `<div class="linkcard"><b>「${esc(nick)}」的專屬連結</b><input id="tLink" readonly value="${esc(url)}"><button class="btn pri" id="tCopy">複製連結</button>
+    <p class="muted">這個連結只會顯示這一次（雲端只存它的指紋）。請私訊給學生本人或家長，不要貼到群組。弄丟了就按「重設連結」，舊的會立刻失效（進度不會不見）。</p></div>`;
+}
+function bindCopy(){
+  const b=byId('tCopy'); if(!b) return;
+  b.onclick=()=>{ const v=byId('tLink').value;
+    (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(()=>toast('已複製'),()=>{ byId('tLink').select(); toast('請長按連結手動複製'); }); };
+}
+async function teacherHome(flash){
+  teacherShell(false);
+  $main.innerHTML='<p class="muted">載入中…</p>';
+  let isT, list;
+  try { isT=await TAPI.isTeacher(); if(isT) list=summarize(await TAPI.summary(todayStr())); }
+  catch(e){ $main.innerHTML=`<p class="empty">讀取失敗：${esc((e&&e.message)||e)}<br>第一次用的話，請確認已在 Supabase 執行過 supabase/001_hk.sql。</p>`+LOGOUT; return bindLogout(); }
+  if(!isT){ $main.innerHTML=`<p class="empty">這個帳號沒有老師權限（不在 hk_teachers 名單裡）。</p>`+LOGOUT; return bindLogout(); }
+  $main.innerHTML=(flash||'')+`<h2>學生（${list.length}）</h2>`+(list.length ? `<ul class="slist">`+list.map((s,i)=>`<li><div class="t"><b>${esc(s.nickname)}</b><div class="muted">最後更新 ${esc(fmtTime(s.last_seen_at))}</div>
+      <span class="badge${s.reds?' r':''}">紅色 ${s.reds} 節</span><span class="badge${s.late?' r':''}">逾期 ${s.late} 張</span></div>
+      <div class="acts"><button class="btn sm pri" data-tv="${i}">查看</button><button class="btn sm" data-tr="${i}">重設連結</button></div></li>`).join('')+`</ul>`
+    : `<p class="empty">還沒有學生，先在下面新增。</p>`)+
+    `<h2>新增學生</h2><div class="tform"><input id="tNick" maxlength="40" placeholder="暱稱（不要用全名）" aria-label="暱稱"><button class="btn pri" id="tAdd">新增並產生專屬連結</button></div>`+LOGOUT;
+  bindCopy(); bindLogout();
+  $main.querySelectorAll('[data-tv]').forEach(b=>b.onclick=()=>{ const s=list[+b.dataset.tv]; teacherView(s.id,s.nickname); });
+  $main.querySelectorAll('[data-tr]').forEach(b=>b.onclick=async()=>{ const s=list[+b.dataset.tr];
+    if(!confirm(`重設「${s.nickname}」的連結？\n舊連結會立刻失效，學生要用新連結重新打開一次（進度不會不見）。`)) return;
+    try { const r=await TAPI.reset(s.id); if(!r || !r.ok) throw new Error('重設失敗'); teacherHome(linkCard(s.nickname,r.token)); }
+    catch(e){ toast((e&&e.message)||'重設失敗'); } });
+  byId('tAdd').onclick=async()=>{ const nick=byId('tNick').value.trim();
+    if(!nick) return toast('先填暱稱');
+    byId('tAdd').disabled=true;
+    try { const r=await TAPI.create(nick); if(!r || !r.ok) throw new Error(r && r.error==='bad_nickname' ? '暱稱要 1～40 個字' : '新增失敗'); teacherHome(linkCard(r.nickname,r.token)); }
+    catch(e){ toast((e&&e.message)||'新增失敗'); byId('tAdd').disabled=false; } };
+}
+async function teacherView(id,nick){
+  $main.innerHTML='<p class="muted">載入中…</p>';
+  let st;
+  try { st=await TAPI.student(id); } catch(e){ $main.innerHTML=`<p class="empty">讀取失敗：${esc((e&&e.message)||e)}</p><p><button class="btn" id="tBack2">← 學生名單</button></p>`; byId('tBack2').onclick=()=>teacherHome(); return; }
+  teacherShell(true);
+  state=st;
+  Object.assign(ui,{tab:'overview', sel:null, drawer:null, prompt:null, openWeeks:null, closedUnits:{}, viewing:{id,nick}});
+  $robar.innerHTML=`<span>唯讀檢視：<b>${esc(nick)}</b></span><span class="acts"><button class="btn sm" id="tRefresh">重新整理</button><button class="btn sm" id="tBack">← 學生名單</button></span>`;
+  byId('tRefresh').onclick=()=>{ const t=ui.tab; teacherView(id,nick).then(()=>{ if(ui.viewing) go(t); }); };
+  byId('tBack').onclick=()=>teacherHome();
+  go('overview');
+}
+
+/* ---------- 假伺服器：照 supabase/001_hk.sql 的 hk_load / hk_save 規則用 JS 重寫（selftest 與老師端示範用，完全不連網） ---------- */
+function fakeServer(){
+  const F={students:[], prog:[], plan:[], offline:false, now:()=>Date.now()};   // now：伺服器時鐘（測試可改）
+  const tok=()=>Array.from({length:32},()=>'0123456789abcdef'[Math.floor(Math.random()*16)]).join('');   // 只給假伺服器用
+  const strip=rows=>rows.map(r=>{ const {sid,...x}=r; return x; });
+  F.dump=s=>JSON.parse(JSON.stringify({ok:true, sid:s.id, nickname:s.nickname,
+    progress:strip(F.prog.filter(r=>r.sid===s.id)), plan:strip(F.plan.filter(r=>r.sid===s.id))}));
+  F.create=nickname=>{ const s={id:'sid-'+(F.students.length+1), nickname, token:tok(), last_seen_at:null}; F.students.push(s); return {ok:true, id:s.id, nickname, token:s.token}; };
+  F.reset=id=>{ const s=F.students.find(x=>x.id===id); if(!s) return {ok:false, error:'not_found'}; s.token=tok(); return {ok:true, token:s.token}; };
+  const pOk=p=>isObj(p) && Object.keys(p).every(k=>['unitId','fam','reviews','updatedAt'].includes(k)) && typeof p.unitId==='string' && UNIT_RE.test(p.unitId)
+    && (p.fam===null || [1,2,3,4,5].includes(p.fam)) && Number.isInteger(p.reviews) && p.reviews>=0 && p.reviews<=99999 && msOk(p.updatedAt);
+  const cOk=c=>okCardRow(c) && Object.keys(c).every(k=>['id','unitId','date','doneAt','deleted','updatedAt'].includes(k))
+    && (c.doneAt===null || msOk(c.doneAt)) && typeof c.deleted==='boolean' && !isNaN(parseDate(c.date)) && fmtDate(parseDate(c.date))===c.date;
+  const upsert=(arr,sid,row,key)=>{ const i=arr.findIndex(r=>r.sid===sid && r[key]===row[key]);
+    if(i<0) arr.push({sid,...row}); else if(row.updatedAt>arr[i].updatedAt) arr[i]={sid,...row}; };
+  F.rpc=async(name,args)=>{
+    if(F.offline) throw {offline:true};
+    const a=JSON.parse(JSON.stringify(args));   // 模擬經過網路
+    const s=TOKEN_RE.test(a.p_token||'') && F.students.find(x=>x.token===a.p_token);
+    if(!s) return {ok:false, error:'invalid_link'};
+    if(name==='hk_load') return F.dump(s);
+    if(name!=='hk_save') throw new Error('unknown rpc '+name);
+    const P=a.p_progress||[], C=a.p_plan||[];
+    if(!Array.isArray(P) || !Array.isArray(C)) return {ok:false, error:'bad_rows'};
+    if(P.length>MAX_P || C.length>MAX_C) return {ok:false, error:'too_many'};
+    if(!P.every(pOk) || !C.every(cOk) || new Set(P.map(p=>p.unitId)).size!==P.length || new Set(C.map(c=>c.id)).size!==C.length) return {ok:false, error:'bad_rows'};
+    const max=F.now()+600000;   // 未來時間最多記到「現在＋10 分鐘」
+    P.forEach(p=>upsert(F.prog,s.id,{...p, updatedAt:Math.min(p.updatedAt,max)},'unitId'));
+    C.forEach(c=>upsert(F.plan,s.id,{...c, updatedAt:Math.min(c.updatedAt,max)},'id'));
+    s.last_seen_at=new Date().toISOString();
+    return F.dump(s);
+  };
+  return F;
+}
+function fakeTeacherApi(F){
+  return { init:async()=>true, login:async()=>{}, logout:async()=>{}, isTeacher:async()=>true,
+    summary:async today=>({ students:F.students.map(s=>({id:s.id, nickname:s.nickname, last_seen_at:s.last_seen_at})),
+      reds:F.prog.filter(r=>r.fam && r.fam<=2).map(r=>({student_id:r.sid, unit_id:r.unitId})),
+      late:F.plan.filter(c=>!c.deleted && !c.doneAt && c.date<today).map(c=>({student_id:c.sid, unit_id:c.unitId})) }),
+    student:async id=>cleanRemote(F.dump(F.students.find(s=>s.id===id))),
+    create:async n=>F.create(n), reset:async id=>F.reset(id) };
+}
+// 老師端示範（?selftest=teacher）：假資料，給截圖與操作練習用
+function demoServer(){
+  const F=fakeServer(), t=todayStr(), now=Date.now();
+  [['小明',0.35],['阿華',0.1]].forEach(([nick,weak],k)=>{
+    F.create(nick); const s=F.students[F.students.length-1]; s.last_seen_at=new Date(now-k*86400000-3600000).toISOString();
+    UNITS.forEach((u,i)=>{ const x=(i*37+k*11)%100/100;
+      if(i<40-k*15) F.prog.push({sid:s.id, unitId:u.id, fam: x<weak ? 1+(i%2) : x<weak+0.25 ? 3 : 4+(i%2), reviews:(i*7+k)%5, updatedAt:now}); });
+    [-3,-1,0,0,1,2,4,6].forEach((d,j)=>{ const u=UNITS[(j*5+k*3)%UNITS.length];
+      F.plan.push({sid:s.id, id:'d'+k+'x'+j, unitId:u.id, date:addDays(t,d), doneAt: d<0&&j===0 ? now : null, deleted:false, updatedAt:now}); });
+  });
+  return F;
+}
+
+/* ---------- 自我測試 ?selftest=1 ---------- */
+// 雲端同步：每台「裝置」有自己的進度與同步紀錄，共用一台假伺服器（完全不連網）
+async function cloudTests(ok, eq){
+  const ids=UNITS.map(u=>u.id), [a,b,c,,e,f]=ids;
+  const last=arr=>arr[arr.length-1], tick=()=>new Promise(r=>setTimeout(r,3));   // tick：確保下一次修改的時間比上一次新
+  const F=fakeServer(), S1=F.create('測試甲'), tok=S1.token;
+  const row=(sid,u)=>F.prog.find(r=>r.sid===sid && r.unitId===u);
+  const dev=(meta,st)=>{ const d={st:st||emptyState(), meta:meta||null, codes:[], asks:[], answer:true};
+    d.sync=makeSync({ rpc:F.rpc, metaLoad:()=>d.meta && JSON.parse(d.meta), metaSave:m=>{ d.meta=JSON.stringify(m); },
+      getState:()=>d.st, saveLocal:()=>{}, reset:()=>{ d.st=emptyState(); }, status:s=>d.codes.push(s),
+      ask:async k=>{ d.asks.push(k); return d.answer; }, onMerged:()=>{} });
+    return d; };
+  const on=(d,fn)=>{ state=d.st; fn(); d.st=state; };   // 動作函式改的是全域 state → 先指到那台
+
+  // 1. 每一列新的贏（兩個方向）
+  F.prog.push({sid:S1.id, unitId:a, fam:4, reviews:2, updatedAt:2000}, {sid:S1.id, unitId:b, fam:1, reviews:0, updatedAt:2500});
+  const D1=dev(); D1.st.progress[a]={fam:2,reviews:1,updatedAt:1000}; D1.st.progress[b]={fam:5,reviews:3,updatedAt:3000};
+  D1.sync.setToken(tok); await D1.sync.pull();
+  ok('LWW：雲端較新 → 這台改用雲端的', D1.st.progress[a].fam===4 && D1.st.progress[a].updatedAt===2000);
+  ok('LWW：這台較新 → 上傳後雲端改用這台的', row(S1.id,b).fam===5 && row(S1.id,b).updatedAt===3000 && row(S1.id,a).fam===4);
+  ok('這台已有紀錄、第一次接雲端 → 先問要不要合併', eq(D1.asks,['bind']) && last(D1.codes)==='ok');
+
+  // 2. 還沒下載過雲端之前不上傳；錯的連結什麼都不寫
+  const D0=dev(); D0.sync.setToken(tok); D0.st.progress[a]={fam:1,reviews:0,updatedAt:9e12};
+  const r0=await D0.sync.push();
+  const W=dev(); W.st.progress[a]={fam:1,reviews:0,updatedAt:9e12}; W.sync.setToken('f'.repeat(32)); await W.sync.pull();
+  ok('沒下載過雲端之前不上傳；錯的連結顯示失效、什麼都不寫', r0===false && last(W.codes)==='invalid' && row(S1.id,a).fam===4);
+
+  // 3. 離線排隊 → 重開網頁（還是離線）→ 恢復網路後補傳
+  F.offline=true; await tick(); on(D1,()=>setFam(c,1)); await D1.sync.push();
+  const wasOff=last(D1.codes)==='offline' && !row(S1.id,c) && D1.sync.dirtyCount()===1;
+  const R1=dev(D1.meta, JSON.parse(JSON.stringify(D1.st)));
+  await R1.sync.pull(); const stillOff=last(R1.codes)==='offline';
+  F.offline=false; await R1.sync.pull();   // 等同 online 事件
+  ok('離線時排隊（重開網頁也還在）、恢復網路後補傳', wasOff && stillOff && row(S1.id,c) && row(S1.id,c).fam===1 && last(R1.codes)==='ok' && R1.sync.dirtyCount()===0);
+
+  // 4. 兩台改不同的列，兩邊都留下；軟刪除也會同步
+  const A=dev(), B=dev(); A.sync.setToken(tok); B.sync.setToken(tok); await A.sync.pull(); await B.sync.pull();
+  await tick(); let ca, cb;
+  on(A,()=>{ setFam(e,3); ca=placeCard(e,'2027-01-04'); });
+  on(B,()=>{ setFam(f,2); cb=placeCard(f,'2027-01-05'); });
+  await A.sync.push(); await B.sync.push(); await A.sync.pull();
+  const both=d=>d.st.progress[e] && d.st.progress[e].fam===3 && d.st.progress[f] && d.st.progress[f].fam===2 && d.st.plan.some(x=>x.id===ca.id) && d.st.plan.some(x=>x.id===cb.id);
+  ok('兩台同時改不同的節／卡，合併後兩台都有', both(A) && both(B) && A.st.progress[c].fam===1);
+  await tick(); on(A,()=>removeCard(ca.id)); await A.sync.push(); await B.sync.pull();
+  state=B.st; const gone=!liveCards().some(x=>x.id===ca.id) && liveCards().some(x=>x.id===cb.id);
+  ok('刪除（軟刪除）會同步到另一台', gone && B.st.plan.find(x=>x.id===ca.id).deleted===true);
+  await tick(); on(B,()=>setFam(e,5)); await tick(); on(A,()=>setFam(e,1));   // 同一節兩台都改：後改的贏
+  await B.sync.push(); await A.sync.push(); await B.sync.pull();
+  ok('同一節兩台都改 → 後改的那台贏', A.st.progress[e].fam===1 && B.st.progress[e].fam===1 && row(S1.id,e).fam===1);
+
+  // 4b. 時鐘快一天的裝置：雲端把時間壓回「現在＋10 分鐘」→ 這台改用雲端的；之後別台（時間正常）的修改這台收得到
+  const T0=Date.now(); F.now=()=>T0;
+  A.st.progress[b]={fam:5, reviews:9, updatedAt:T0+86400000}; await A.sync.push();
+  const clamped=row(S1.id,b).updatedAt===T0+600000 && A.st.progress[b].updatedAt===T0+600000 && A.sync.dirtyCount()===0;
+  F.now=()=>T0+1200000;   // 過了 20 分鐘
+  B.st.progress[b]={fam:2, reviews:1, updatedAt:T0+900000}; await B.sync.push(); await A.sync.pull();
+  F.now=()=>Date.now();
+  ok('時鐘快的裝置：雲端壓回時間後這台跟著改；之後別台的修改這台收得到', clamped && row(S1.id,b).fam===2 && A.st.progress[b].fam===2 && A.st.progress[b].updatedAt===T0+900000, JSON.stringify(A.st.progress[b]));
+
+  // 5. 換成另一位學生的連結：先問；取消就維持原本的學生、確定就整個換掉（不會把甲的資料灌給乙）
+  const S2=F.create('測試乙'); A.answer=false; A.sync.setToken(S2.token); await A.sync.pull();
+  const kept=A.asks.includes('switch') && A.sync.meta().token===tok && !F.prog.some(r=>r.sid===S2.id);
+  A.answer=true; A.sync.setToken(S2.token); await A.sync.pull();
+  ok('換成別的學生連結：先問、取消就不換、確定換也不會把舊資料灌過去', kept && Object.keys(A.st.progress).length===0 && !F.prog.some(r=>r.sid===S2.id) && A.sync.meta().sid===S2.id);
+  // 老師重設連結（同一位學生）→ 不問、直接合併
+  const B2tok=F.reset(S1.id).token; const nAsk=B.asks.length; B.sync.setToken(B2tok); await B.sync.pull();
+  ok('重設連結後用新連結：同一位學生直接接回、不用問', B.asks.length===nAsk && last(B.codes)==='ok' && B.st.progress[e].fam===1);
+
+  // 6. 雲端資料清洗
+  const cr=cleanRemote({progress:[{unitId:'__proto__',fam:1,reviews:0,updatedAt:1},{unitId:a,fam:9,reviews:-2,updatedAt:5},{unitId:'<b>',fam:1,reviews:0,updatedAt:1},{unitId:b,fam:2,reviews:0,updatedAt:'5'}],
+    plan:[{id:'<img src=x onerror=alert(1)>',unitId:a,date:'2027-01-01',updatedAt:1},{id:'ok1',unitId:a,date:'2027-1-1',updatedAt:1},{id:'ok2',unitId:a,date:'2027-01-01',doneAt:'x',deleted:'yes',updatedAt:2}]});
+  ok('雲端資料清洗（怪 id、怪日期、型別不對、分數超出範圍）', eq(Object.keys(cr.progress),[a]) && cr.progress[a].fam===null && cr.progress[a].reviews===0 && cr.plan.length===1 && cr.plan[0].id==='ok2' && cr.plan[0].doneAt===null && cr.plan[0].deleted===false);
+  ok('雲端的怪章節 id（constructor）查不到章節表', !UNIT['constructor'] && !UNIT['__proto__']);
+
+  // 7. 網址裡的代碼讀一次就拿掉
+  const keep=location.pathname+location.search+location.hash;
+  history.replaceState(null,'',location.pathname+'?selftest=1&s='+'ab'.repeat(16)+'#plan');
+  const t1=takeToken(), s1=location.search, h1=location.hash;
+  history.replaceState(null,'',location.pathname+'?s=%3Cscript%3E&x=1');
+  const t2=takeToken(), s2=location.search;
+  history.replaceState(null,'',keep);
+  ok('網址裡的連結代碼讀一次就從網址拿掉（壞代碼也拿掉）', t1==='ab'.repeat(16) && s1==='?selftest=1' && h1==='#plan' && t2===null && s2==='?x=1');
+
+  // 8. 老師唯讀模式：按鈕改不了、也不會存檔
+  state=emptyState(); setFam(a,3); const tc=placeCard(a,todayStr());
+  const snap=JSON.stringify(state), stored=storage.getItem(STORE_KEY);
+  READONLY=true; document.body.classList.add('ro');
+  ui.tab='units'; render();
+  document.querySelector('[data-act="fam"][data-unit="'+a+'"][data-f="1"]').click();
+  document.querySelector('[data-act="rev"][data-unit="'+a+'"][data-d="1"]').click();
+  ui.tab='today'; render();
+  const doneBtn=document.querySelector('[data-act="done"]'); doneBtn && doneBtn.click();
+  ui.tab='plan'; render();
+  const chip=document.querySelector('.day [data-act="card"]'); chip && chip.click();
+  const unchanged=JSON.stringify(state)===snap && !ui.drawer && !ui.prompt && !!doneBtn && !!chip;
+  state.progress[a].fam=5; save(); const notSaved=storage.getItem(STORE_KEY)===stored;
+  state.progress[a].fam=3; READONLY=false; document.body.classList.remove('ro');
+  ok('老師唯讀模式：評分、次數、完成、改期都按不動，也不會存檔', unchanged && notSaved && card(tc.id) && !card(tc.id).doneAt);
+
+  // 9. 老師名單的紅色、逾期數字
+  const FT=fakeServer(), T1=FT.create('小明'), sid=T1.id;
+  FT.prog.push({sid,unitId:a,fam:1,reviews:0,updatedAt:1},{sid,unitId:b,fam:2,reviews:0,updatedAt:1},{sid,unitId:c,fam:3,reviews:0,updatedAt:1},{sid,unitId:'constructor',fam:1,reviews:0,updatedAt:1});
+  FT.plan.push({sid,id:'p1',unitId:a,date:'2020-01-01',doneAt:null,deleted:false,updatedAt:1},{sid,id:'p2',unitId:a,date:'2020-01-01',doneAt:5,deleted:false,updatedAt:1},
+    {sid,id:'p3',unitId:a,date:'2020-01-01',doneAt:null,deleted:true,updatedAt:1},{sid,id:'p4',unitId:a,date:'2999-01-01',doneAt:null,deleted:false,updatedAt:1});
+  const L=summarize(await fakeTeacherApi(FT).summary(todayStr()));
+  ok('老師名單：紅色節數、逾期張數（已完成／已刪除／未來的不算）', L.length===1 && L[0].reds===2 && L[0].late===1, JSON.stringify(L));
+}
+
+async function selftest(){
+  storage = memStorage(); state = emptyState();   // 不碰真正的 localStorage
+  const R=[]; const ok=(name,cond,info)=>R.push({name,pass:!!cond,info:info||''});
+  const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+  const ids=UNITS.map(u=>u.id);
+  ok('章節表 id 不重複', new Set(ids).size===ids.length, ids.length+' 節');
+  if(window.__fetchedCatalog) ok('內嵌備份章節表＝data JSON', eq(window.__fetchedCatalog, JSON.parse(document.getElementById('catalog-embed').textContent)));
+  ok('顏色對應', eq([null,1,2,3,4,5].map(famClass), ['none','red','red','yel','grn','grn']));
+  const [a,b,c,d,e2,f]=ids;
+  state.progress={[a]:{fam:3,reviews:0},[b]:{fam:1,reviews:4},[c]:{fam:1,reviews:2},[d]:{fam:2,reviews:0},[e2]:{fam:4,reviews:0}};
+  const pr=priority();
+  ok('衝刺清單排序（分數低→次數少）', eq(pr.rated.map(u=>u.id),[c,b,d,a]), pr.rated.map(u=>u.id).join(','));
+  ok('4 分以上不進清單、未評分另列', !pr.rated.some(u=>u.id===e2) && pr.unrated.some(u=>u.id===f) && pr.unrated.length===UNITS.length-5);
+  ok('需要老師幫忙（≥3 次且 ≤2 分）', needsHelp(prog(b)) && !needsHelp(prog(c)) && !needsHelp({fam:3,reviews:5}) && !needsHelp({fam:null,reviews:5}));
+  ok('本機日期不受 UTC 影響', fmtDate(new Date(2026,10,16,0,30))==='2026-11-16');
+  ok('倒數天數 11/16→5/15＝180', daysBetween('2026-11-16','2027-05-15')===180);
+  const W=weeksUntil('2026-11-18','2027-05-15');
+  ok('週從本週一開始', W[0]==='2026-11-16', W[0]);
+  ok('每週都是週一且連續', W.every((w,i)=>parseDate(w).getDay()===1 && (!i || daysBetween(W[i-1],w)===7)));
+  const last=W[W.length-1];
+  ok('最後一週包含會考日', last<='2027-05-15' && addDays(last,6)>='2027-05-15', last+'，共 '+W.length+' 週');
+  ok('週日也算當週', mondayOf('2026-11-22')==='2026-11-16' && mondayOf('2026-11-23')==='2026-11-23');
+  state=emptyState();
+  const c1=placeCard(a,'2026-11-20'); placeCard(a,'2026-11-27');
+  ok('placeCard 放卡（同一節可排多次）', cardsOn('2026-11-20').length===1 && c1.unitId===a && !c1.doneAt && liveCards().filter(x=>x.unitId===a).length===2);
+  moveCard(c1.id,'2026-11-21'); ok('改期', cardsOn('2026-11-21').length===1 && !cardsOn('2026-11-20').length);
+  completeCard(c1.id); ok('完成 → 次數 +1', prog(a).reviews===1 && !!card(c1.id).doneAt);
+  completeCard(c1.id); ok('重複按完成不會再加', prog(a).reviews===1);
+  undoComplete(c1.id); ok('取消完成 → 次數 −1', prog(a).reviews===0 && !card(c1.id).doneAt);
+  completeCard(c1.id); state.progress[a].reviews=0; undoComplete(c1.id);
+  ok('取消完成不會低於 0', prog(a).reviews===0);
+  state=emptyState();
+  const T='2026-11-18';
+  const late=placeCard(a,'2026-11-17'), lateDone=placeCard(b,'2026-11-16'), lateDel=placeCard(c,'2026-11-15'); placeCard(d,T);
+  completeCard(lateDone.id); removeCard(lateDel.id);
+  ok('逾期判斷（未完成、未移除、日期在今天前）', eq(overdue(T).map(x=>x.id),[late.id]));
+  setFam(a,2); ok('紅色節有待做卡＝已排', pendingFor(a) && !pendingFor(e2));
+  const before=JSON.stringify(state); state=load();
+  ok('存檔讀回一致', JSON.stringify(state)===before);
+  storage.setItem(STORE_KEY,'{壞掉'); state=load(); ok('存檔壞掉時不當機、回到空白', eq(state,emptyState()));
+  storage.setItem(STORE_KEY,'{"progress":{},"plan":[null]}'); state=load(); ok('plan 有 null 會被濾掉', eq(state,emptyState()) && liveCards().length===0);
+  storage.setItem(STORE_KEY,'{"progress":"abc"}'); state=load(); ok('progress 不是物件時回到空白', eq(state,emptyState()));
+  storage.setItem(STORE_KEY,JSON.stringify({progress:{[a]:{fam:2},[b]:{fam:9,reviews:-3},[c]:{fam:'3',reviews:2.7}},plan:[{id:'x',unitId:a},{id:'y',unitId:a,date:'2026-11-20'}]}));
+  state=load(); ok('讀檔時修正欄位（缺 reviews、分數超出範圍、日期缺漏）', prog(a).reviews===0 && prog(a).fam===2 && prog(b).fam===null && prog(b).reviews===0 && prog(c).fam===3 && prog(c).reviews===2 && state.plan.length===1);
+  state=emptyState();
+  const yday=addDays(todayStr(),-1), tday=todayStr();
+  ui.sel={unitId:a}; const r1=dropOn(yday); const n1=liveCards().length;
+  const c9=placeCard(a,tday); ui.sel={cardId:c9.id,unitId:a}; const r2=dropOn(yday);
+  ok('不能排到或改期到過去的日期', r1===false && n1===0 && r2===false && card(c9.id).date===tday);
+  ui.sel={unitId:a}; ok('今天可以排', dropOn(tday)===true && cardsOn(tday).length===2);
+  ui.sel=null; document.querySelector('.toast')&&document.querySelector('.toast').remove();
+  try { await cloudTests(ok, eq); } catch(e){ ok('雲端同步測試沒有中途出錯', false, String(e&&e.stack||e)); }
+  READONLY=false; document.body.classList.remove('ro'); state=emptyState(); Object.assign(ui,{tab:'overview',sel:null,drawer:null,prompt:null});
+  $layer.innerHTML=''; document.querySelector('.toast')&&document.querySelector('.toast').remove();
+  const pass=R.filter(r=>r.pass).length;
+  document.title=`selftest ${pass}/${R.length}`;
+  $main.innerHTML=`<h2 id="st-sum" data-pass="${pass}" data-total="${R.length}">自我測試：${pass}/${R.length} 通過</h2><ol class="st">`+R.map(r=>`<li class="${r.pass?'ok':'bad'}">${r.pass?'通過':'失敗'}｜${esc(r.name)}${r.info?' <span class="muted">('+esc(r.info)+')</span>':''}</li>`).join('')+`</ol>`;
+  document.getElementById('nav').style.display='none';
+}
+
+/* ---------- 啟動 ---------- */
+async function boot(){
+  let cat=null;
+  if(location.protocol.startsWith('http')){
+    try { const r=await fetch(CATALOG_URL,{cache:'no-cache'}); if(r.ok){ cat=await r.json(); window.__fetchedCatalog=cat; } } catch(e){}
+  }
+  if(!cat) cat=JSON.parse(document.getElementById('catalog-embed').textContent);  // file:// 直接開檔時用內嵌備份
+  setCatalog(cat);
+  const qp=new URLSearchParams(location.search);
+  if(qp.get('selftest')==='1') return selftest();
+  if(qp.get('selftest')==='teacher') return teacherBoot(fakeTeacherApi(demoServer()));   // 老師端示範：假資料、不連網
+  if(qp.get('teacher')==='1') return teacherBoot();
+  state=load();
+  const h=location.hash.slice(1); if(['overview','units','plan','today'].includes(h)) ui.tab=h;
+  render();
+  bootSync();   // 先畫本機資料，雲端在背景合併
+  if(location.protocol.startsWith('http')){ const l=document.createElement('link'); l.rel='manifest'; l.href='manifest.json'; document.head.appendChild(l); }  // file:// 開檔時不載入 manifest（瀏覽器會報錯）
+  if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+}
+boot();
+})();
+</script>
+</body>
+</html>
