@@ -1,0 +1,385 @@
+{
+ "id": "eng-hk",
+ "subject": "英文",
+ "short": "英",
+ "publisher": "會考技能（不分版本）",
+ "curriculum": "108",
+ "source": "依國中教育會考英語科（閱讀＋聽力）題型與108課綱國中英語文語言結構整理；未逐條比對官方附錄，主要依經驗彙整。課綱參考：https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg024068/ch05/type2/gov40/num14/images/BB.pdf",
+ "groups": [
+  "文法",
+  "閱讀",
+  "聽力"
+ ],
+ "units": [
+  {
+   "id": "eng-g-01",
+   "grade": "文法",
+   "ch": 1,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "現在簡單式（be 動詞與一般動詞）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-02",
+   "grade": "文法",
+   "ch": 2,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "現在進行式",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-03",
+   "grade": "文法",
+   "ch": 3,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "過去簡單式",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-04",
+   "grade": "文法",
+   "ch": 4,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "未來式（will / be going to）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-05",
+   "grade": "文法",
+   "ch": 5,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "過去進行式與時態綜合判斷",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-06",
+   "grade": "文法",
+   "ch": 6,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "現在完成式（含 for / since / ever / yet）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-07",
+   "grade": "文法",
+   "ch": 7,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "助動詞（can, may, must, should, have to）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-08",
+   "grade": "文法",
+   "ch": 8,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "名詞與數量詞（可數 / 不可數、some / any、many / much）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-09",
+   "grade": "文法",
+   "ch": 9,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "代名詞（人稱、所有格、反身、one / another / the other）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-10",
+   "grade": "文法",
+   "ch": 10,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "形容詞與副詞（含頻率副詞）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-11",
+   "grade": "文法",
+   "ch": 11,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "比較級與最高級",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-12",
+   "grade": "文法",
+   "ch": 12,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "祈使句與感嘆句",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-13",
+   "grade": "文法",
+   "ch": 13,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "疑問詞問句（Wh- / How 系列）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-14",
+   "grade": "文法",
+   "ch": 14,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "附加問句",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-15",
+   "grade": "文法",
+   "ch": 15,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "不定詞（to V）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-16",
+   "grade": "文法",
+   "ch": 16,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "動名詞與 to V / V-ing 的選用",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-17",
+   "grade": "文法",
+   "ch": 17,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "感官動詞與使役動詞",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-18",
+   "grade": "文法",
+   "ch": 18,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "被動語態",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-19",
+   "grade": "文法",
+   "ch": 19,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "連接詞（對等與從屬：because, although, when, if…）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-20",
+   "grade": "文法",
+   "ch": 20,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "條件句 if 與時間副詞子句（主要子句用未來式）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-21",
+   "grade": "文法",
+   "ch": 21,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "間接問句",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-22",
+   "grade": "文法",
+   "ch": 22,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "關係代名詞（who / which / that）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-23",
+   "grade": "文法",
+   "ch": 23,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "分詞當形容詞（-ing / -ed）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-24",
+   "grade": "文法",
+   "ch": 24,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "介系詞（時間、地點、方式）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-g-25",
+   "grade": "文法",
+   "ch": 25,
+   "chTitle": "文法",
+   "sec": null,
+   "title": "常用句型（too…to、so…that、enough to、It takes / spend / cost）",
+   "weight": 1,
+   "strand": "文法"
+  },
+  {
+   "id": "eng-r-01",
+   "grade": "閱讀",
+   "ch": 1,
+   "chTitle": "閱讀",
+   "sec": null,
+   "title": "主旨大意",
+   "weight": 1,
+   "strand": "閱讀"
+  },
+  {
+   "id": "eng-r-02",
+   "grade": "閱讀",
+   "ch": 2,
+   "chTitle": "閱讀",
+   "sec": null,
+   "title": "細節理解",
+   "weight": 1,
+   "strand": "閱讀"
+  },
+  {
+   "id": "eng-r-03",
+   "grade": "閱讀",
+   "ch": 3,
+   "chTitle": "閱讀",
+   "sec": null,
+   "title": "推論（言外之意）",
+   "weight": 1,
+   "strand": "閱讀"
+  },
+  {
+   "id": "eng-r-04",
+   "grade": "閱讀",
+   "ch": 4,
+   "chTitle": "閱讀",
+   "sec": null,
+   "title": "字義猜測（上下文線索）",
+   "weight": 1,
+   "strand": "閱讀"
+  },
+  {
+   "id": "eng-r-05",
+   "grade": "閱讀",
+   "ch": 5,
+   "chTitle": "閱讀",
+   "sec": null,
+   "title": "指涉（代名詞指什麼）",
+   "weight": 1,
+   "strand": "閱讀"
+  },
+  {
+   "id": "eng-r-06",
+   "grade": "閱讀",
+   "ch": 6,
+   "chTitle": "閱讀",
+   "sec": null,
+   "title": "圖表與表格判讀",
+   "weight": 1,
+   "strand": "閱讀"
+  },
+  {
+   "id": "eng-r-07",
+   "grade": "閱讀",
+   "ch": 7,
+   "chTitle": "閱讀",
+   "sec": null,
+   "title": "實用文本（廣告、告示、菜單、時刻表）",
+   "weight": 1,
+   "strand": "閱讀"
+  },
+  {
+   "id": "eng-r-08",
+   "grade": "閱讀",
+   "ch": 8,
+   "chTitle": "閱讀",
+   "sec": null,
+   "title": "書信、Email 與對話閱讀",
+   "weight": 1,
+   "strand": "閱讀"
+  },
+  {
+   "id": "eng-r-09",
+   "grade": "閱讀",
+   "ch": 9,
+   "chTitle": "閱讀",
+   "sec": null,
+   "title": "作者目的、語氣與篇章結構",
+   "weight": 1,
+   "strand": "閱讀"
+  },
+  {
+   "id": "eng-l-01",
+   "grade": "聽力",
+   "ch": 1,
+   "chTitle": "聽力",
+   "sec": null,
+   "title": "辨識句意（看圖選句）",
+   "weight": 1,
+   "strand": "聽力"
+  },
+  {
+   "id": "eng-l-02",
+   "grade": "聽力",
+   "ch": 2,
+   "chTitle": "聽力",
+   "sec": null,
+   "title": "基本問答（選適當回應）",
+   "weight": 1,
+   "strand": "聽力"
+  },
+  {
+   "id": "eng-l-03",
+   "grade": "聽力",
+   "ch": 3,
+   "chTitle": "聽力",
+   "sec": null,
+   "title": "言談理解（對話與短文）",
+   "weight": 1,
+   "strand": "聽力"
+  }
+ ]
+}

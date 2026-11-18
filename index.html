@@ -64,6 +64,24 @@ main{padding:12px 16px 96px;max-width:1180px}
 .prio .t{flex:1;min-width:0;overflow-wrap:anywhere}
 .tag{display:inline-block;font-size:12px;border:1px solid var(--red);color:var(--red);border-radius:10px;padding:0 8px;margin-left:4px;white-space:nowrap}
 .linkbtn{background:none;border:0;color:var(--acc);padding:0;text-decoration:underline}
+.more{margin-top:8px}
+
+/* 科目切換、各科比例條 */
+.subjbar{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.subjbar button{min-width:44px;height:36px;border-radius:18px;border:1px solid var(--line);background:#fff;padding:0 12px;font-weight:600;color:var(--ink)}
+.subjbar button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.pool .subjbar{margin:4px 0 0}
+.srow{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:10px 0}
+.srow .hd{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-weight:600;color:var(--ink)}
+.srow .hd span{font-weight:400;font-size:13px;color:var(--muted)}
+.sbar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--grey);margin-top:6px}
+.sbar i{display:block;height:100%}
+.subj-h{font-size:17px;margin:18px 0 4px}
+.banner .bline{margin-top:6px}
+.strand{font-size:14px;color:var(--acc);padding:8px 12px 4px;border-top:1px solid var(--line)}
+.chbulk{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px 12px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.late-acts{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 6px}
+.hint{font-size:14px;color:var(--muted);padding:2px 2px 0}
 
 /* 章節 */
 .banner{background:var(--bg2);border-left:4px solid var(--acc);padding:10px 12px;border-radius:6px;margin-bottom:12px}
@@ -172,7 +190,7 @@ h2.late{color:var(--red)}
 #robar{position:sticky;top:0;z-index:15;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between;background:#FFF8E6;border-bottom:1px solid #E8D9A8;padding:8px 16px;font-size:14px}
 #robar .acts{display:flex;gap:6px}
 @media (min-width:768px){ .syncst,#robar{margin-left:var(--navW)} .syncst{padding:12px 32px 0} #robar{padding:10px 32px} body.t-home main{margin-left:0} }
-body.ro .revs button,body.ro #addBtn,body.ro .tcard .acts,body.ro .pool-wrap{display:none}
+body.ro .revs button,body.ro #addBtn,body.ro .tcard .acts,body.ro .pool-wrap,body.ro .chbulk,body.ro .late-acts{display:none}
 body.ro .fams button{pointer-events:none}
 body.ro .plan-grid{grid-template-columns:1fr}
 body.ro .day .chip{cursor:default}
@@ -201,13 +219,17 @@ body.ro .day .chip{cursor:default}
 <div id="syncSt" class="syncst" role="status" hidden></div>
 <main id="main"></main>
 <div id="layer"></div>
-<script id="catalog-embed" type="application/json">{"id":"math-kx-108","subject":"數學","publisher":"康軒","curriculum":"108","source":"均一教育平台 類康軒版（依康軒113學年度章節架構）","units":[{"id":"m-kx-7a-1-1","grade":"七上","ch":1,"chTitle":"整數的運算","sec":1,"title":"負數與數線","weight":1},{"id":"m-kx-7a-1-2","grade":"七上","ch":1,"chTitle":"整數的運算","sec":2,"title":"整數的加減","weight":1},{"id":"m-kx-7a-1-3","grade":"七上","ch":1,"chTitle":"整數的運算","sec":3,"title":"整數的乘除與四則運算","weight":1},{"id":"m-kx-7a-1-4","grade":"七上","ch":1,"chTitle":"整數的運算","sec":4,"title":"指數記法與科學記號","weight":1},{"id":"m-kx-7a-2-1","grade":"七上","ch":2,"chTitle":"分數的運算","sec":1,"title":"因數與倍數","weight":1},{"id":"m-kx-7a-2-2","grade":"七上","ch":2,"chTitle":"分數的運算","sec":2,"title":"最大公因數與最小公倍數","weight":1},{"id":"m-kx-7a-2-3","grade":"七上","ch":2,"chTitle":"分數的運算","sec":3,"title":"分數的四則運算","weight":1},{"id":"m-kx-7a-2-4","grade":"七上","ch":2,"chTitle":"分數的運算","sec":4,"title":"指數律","weight":1},{"id":"m-kx-7a-3-1","grade":"七上","ch":3,"chTitle":"一元一次方程式","sec":1,"title":"代數式的化簡","weight":1},{"id":"m-kx-7a-3-2","grade":"七上","ch":3,"chTitle":"一元一次方程式","sec":2,"title":"一元一次方程式","weight":1},{"id":"m-kx-7a-3-3","grade":"七上","ch":3,"chTitle":"一元一次方程式","sec":3,"title":"應用問題","weight":1},{"id":"m-kx-7b-1-1","grade":"七下","ch":1,"chTitle":"二元一次聯立方程式","sec":1,"title":"二元一次方程式","weight":1},{"id":"m-kx-7b-1-2","grade":"七下","ch":1,"chTitle":"二元一次聯立方程式","sec":2,"title":"解二元一次聯立方程式","weight":1},{"id":"m-kx-7b-1-3","grade":"七下","ch":1,"chTitle":"二元一次聯立方程式","sec":3,"title":"應用問題","weight":1},{"id":"m-kx-7b-2-1","grade":"七下","ch":2,"chTitle":"直角坐標與二元一次方程式的圖形","sec":1,"title":"直角坐標平面","weight":1},{"id":"m-kx-7b-2-2","grade":"七下","ch":2,"chTitle":"直角坐標與二元一次方程式的圖形","sec":2,"title":"二元一次方程式的圖形","weight":1},{"id":"m-kx-7b-3-1","grade":"七下","ch":3,"chTitle":"比與比例式","sec":1,"title":"比例式","weight":1},{"id":"m-kx-7b-3-2","grade":"七下","ch":3,"chTitle":"比與比例式","sec":2,"title":"正比與反比","weight":1},{"id":"m-kx-7b-4-1","grade":"七下","ch":4,"chTitle":"一元一次不等式","sec":1,"title":"認識一元一次不等式","weight":1},{"id":"m-kx-7b-4-2","grade":"七下","ch":4,"chTitle":"一元一次不等式","sec":2,"title":"解一元一次不等式","weight":1},{"id":"m-kx-7b-5-1","grade":"七下","ch":5,"chTitle":"統計","sec":1,"title":"統計圖表與資料分析","weight":1},{"id":"m-kx-7b-6-1","grade":"七下","ch":6,"chTitle":"生活中的幾何","sec":1,"title":"垂直、線對稱與三視圖","weight":1},{"id":"m-kx-8a-1-1","grade":"八上","ch":1,"chTitle":"乘法公式與多項式","sec":1,"title":"乘法公式","weight":1},{"id":"m-kx-8a-1-2","grade":"八上","ch":1,"chTitle":"乘法公式與多項式","sec":2,"title":"多項式與其加減運算","weight":1},{"id":"m-kx-8a-1-3","grade":"八上","ch":1,"chTitle":"乘法公式與多項式","sec":3,"title":"多項式的乘除運算","weight":1},{"id":"m-kx-8a-2-1","grade":"八上","ch":2,"chTitle":"平方根與畢氏定理","sec":1,"title":"平方根與近似值","weight":1},{"id":"m-kx-8a-2-2","grade":"八上","ch":2,"chTitle":"平方根與畢氏定理","sec":2,"title":"根式的運算","weight":1},{"id":"m-kx-8a-2-3","grade":"八上","ch":2,"chTitle":"平方根與畢氏定理","sec":3,"title":"畢氏定理","weight":1},{"id":"m-kx-8a-3-1","grade":"八上","ch":3,"chTitle":"因式分解","sec":1,"title":"利用提公因式與乘法公式做因式分解","weight":1},{"id":"m-kx-8a-3-2","grade":"八上","ch":3,"chTitle":"因式分解","sec":2,"title":"利用十字交乘法做因式分解","weight":1},{"id":"m-kx-8a-4-1","grade":"八上","ch":4,"chTitle":"一元二次方程式","sec":1,"title":"因式分解解一元二次方程式","weight":1},{"id":"m-kx-8a-4-2","grade":"八上","ch":4,"chTitle":"一元二次方程式","sec":2,"title":"配方法與公式解","weight":1},{"id":"m-kx-8a-4-3","grade":"八上","ch":4,"chTitle":"一元二次方程式","sec":3,"title":"應用問題","weight":1},{"id":"m-kx-8a-5-1","grade":"八上","ch":5,"chTitle":"統計資料處理","sec":1,"title":"資料整理與統計圖表","weight":1},{"id":"m-kx-8b-1-1","grade":"八下","ch":1,"chTitle":"數列與級數","sec":1,"title":"等差數列","weight":1},{"id":"m-kx-8b-1-2","grade":"八下","ch":1,"chTitle":"數列與級數","sec":2,"title":"等差級數","weight":1},{"id":"m-kx-8b-1-3","grade":"八下","ch":1,"chTitle":"數列與級數","sec":3,"title":"等比數列","weight":1},{"id":"m-kx-8b-2-1","grade":"八下","ch":2,"chTitle":"函數","sec":1,"title":"函數與函數圖形","weight":1},{"id":"m-kx-8b-3-1","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":1,"title":"三角形與多邊形的內角與外角","weight":1},{"id":"m-kx-8b-3-2","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":2,"title":"尺規作圖","weight":1},{"id":"m-kx-8b-3-3","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":3,"title":"三角形的全等性質","weight":1},{"id":"m-kx-8b-3-4","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":4,"title":"垂直平分線與角平分線的性質","weight":1},{"id":"m-kx-8b-3-5","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":5,"title":"三角形的邊角關係","weight":1},{"id":"m-kx-8b-4-1","grade":"八下","ch":4,"chTitle":"平行與四邊形","sec":1,"title":"平行","weight":1},{"id":"m-kx-8b-4-2","grade":"八下","ch":4,"chTitle":"平行與四邊形","sec":2,"title":"平行四邊形","weight":1},{"id":"m-kx-8b-4-3","grade":"八下","ch":4,"chTitle":"平行與四邊形","sec":3,"title":"特殊四邊形的性質","weight":1},{"id":"m-kx-9a-1-1","grade":"九上","ch":1,"chTitle":"相似形","sec":1,"title":"連比例","weight":1},{"id":"m-kx-9a-1-2","grade":"九上","ch":1,"chTitle":"相似形","sec":2,"title":"比例線段","weight":1},{"id":"m-kx-9a-1-3","grade":"九上","ch":1,"chTitle":"相似形","sec":3,"title":"縮放與相似","weight":1},{"id":"m-kx-9a-1-4","grade":"九上","ch":1,"chTitle":"相似形","sec":4,"title":"相似三角形的應用","weight":1},{"id":"m-kx-9a-2-1","grade":"九上","ch":2,"chTitle":"圓","sec":1,"title":"點、直線與圓之間的位置關係","weight":1},{"id":"m-kx-9a-2-2","grade":"九上","ch":2,"chTitle":"圓","sec":2,"title":"圓心角、圓周角與弧的關係","weight":1},{"id":"m-kx-9a-3-1","grade":"九上","ch":3,"chTitle":"幾何與證明","sec":1,"title":"證明與推理","weight":1},{"id":"m-kx-9a-3-2","grade":"九上","ch":3,"chTitle":"幾何與證明","sec":2,"title":"三角形的外心、內心與重心","weight":1},{"id":"m-kx-9b-1-1","grade":"九下","ch":1,"chTitle":"二次函數","sec":1,"title":"二次函數的圖形與最大值、最小值","weight":1},{"id":"m-kx-9b-2-1","grade":"九下","ch":2,"chTitle":"統計與機率","sec":1,"title":"資料的分析","weight":1},{"id":"m-kx-9b-2-2","grade":"九下","ch":2,"chTitle":"統計與機率","sec":2,"title":"機率","weight":1},{"id":"m-kx-9b-3-1","grade":"九下","ch":3,"chTitle":"生活中的立體圖形","sec":1,"title":"空間中的線、平面與形體","weight":1}]}</script>
+<script id="catalog-embed" type="application/json">[{"id":"math-kx-108","subject":"數學","short":"數","publisher":"康軒","curriculum":"108","source":"均一教育平台 類康軒版（依康軒113學年度章節架構）","groups":["七上","七下","八上","八下","九上","九下"],"units":[{"id":"m-kx-7a-1-1","grade":"七上","ch":1,"chTitle":"整數的運算","sec":1,"title":"負數與數線","weight":1},{"id":"m-kx-7a-1-2","grade":"七上","ch":1,"chTitle":"整數的運算","sec":2,"title":"整數的加減","weight":1},{"id":"m-kx-7a-1-3","grade":"七上","ch":1,"chTitle":"整數的運算","sec":3,"title":"整數的乘除與四則運算","weight":1},{"id":"m-kx-7a-1-4","grade":"七上","ch":1,"chTitle":"整數的運算","sec":4,"title":"指數記法與科學記號","weight":1},{"id":"m-kx-7a-2-1","grade":"七上","ch":2,"chTitle":"分數的運算","sec":1,"title":"因數與倍數","weight":1},{"id":"m-kx-7a-2-2","grade":"七上","ch":2,"chTitle":"分數的運算","sec":2,"title":"最大公因數與最小公倍數","weight":1},{"id":"m-kx-7a-2-3","grade":"七上","ch":2,"chTitle":"分數的運算","sec":3,"title":"分數的四則運算","weight":1},{"id":"m-kx-7a-2-4","grade":"七上","ch":2,"chTitle":"分數的運算","sec":4,"title":"指數律","weight":1},{"id":"m-kx-7a-3-1","grade":"七上","ch":3,"chTitle":"一元一次方程式","sec":1,"title":"代數式的化簡","weight":1},{"id":"m-kx-7a-3-2","grade":"七上","ch":3,"chTitle":"一元一次方程式","sec":2,"title":"一元一次方程式","weight":1},{"id":"m-kx-7a-3-3","grade":"七上","ch":3,"chTitle":"一元一次方程式","sec":3,"title":"應用問題","weight":1},{"id":"m-kx-7b-1-1","grade":"七下","ch":1,"chTitle":"二元一次聯立方程式","sec":1,"title":"二元一次方程式","weight":1},{"id":"m-kx-7b-1-2","grade":"七下","ch":1,"chTitle":"二元一次聯立方程式","sec":2,"title":"解二元一次聯立方程式","weight":1},{"id":"m-kx-7b-1-3","grade":"七下","ch":1,"chTitle":"二元一次聯立方程式","sec":3,"title":"應用問題","weight":1},{"id":"m-kx-7b-2-1","grade":"七下","ch":2,"chTitle":"直角坐標與二元一次方程式的圖形","sec":1,"title":"直角坐標平面","weight":1},{"id":"m-kx-7b-2-2","grade":"七下","ch":2,"chTitle":"直角坐標與二元一次方程式的圖形","sec":2,"title":"二元一次方程式的圖形","weight":1},{"id":"m-kx-7b-3-1","grade":"七下","ch":3,"chTitle":"比與比例式","sec":1,"title":"比例式","weight":1},{"id":"m-kx-7b-3-2","grade":"七下","ch":3,"chTitle":"比與比例式","sec":2,"title":"正比與反比","weight":1},{"id":"m-kx-7b-4-1","grade":"七下","ch":4,"chTitle":"一元一次不等式","sec":1,"title":"認識一元一次不等式","weight":1},{"id":"m-kx-7b-4-2","grade":"七下","ch":4,"chTitle":"一元一次不等式","sec":2,"title":"解一元一次不等式","weight":1},{"id":"m-kx-7b-5-1","grade":"七下","ch":5,"chTitle":"統計","sec":1,"title":"統計圖表與資料分析","weight":1},{"id":"m-kx-7b-6-1","grade":"七下","ch":6,"chTitle":"生活中的幾何","sec":1,"title":"垂直、線對稱與三視圖","weight":1},{"id":"m-kx-8a-1-1","grade":"八上","ch":1,"chTitle":"乘法公式與多項式","sec":1,"title":"乘法公式","weight":1},{"id":"m-kx-8a-1-2","grade":"八上","ch":1,"chTitle":"乘法公式與多項式","sec":2,"title":"多項式與其加減運算","weight":1},{"id":"m-kx-8a-1-3","grade":"八上","ch":1,"chTitle":"乘法公式與多項式","sec":3,"title":"多項式的乘除運算","weight":1},{"id":"m-kx-8a-2-1","grade":"八上","ch":2,"chTitle":"平方根與畢氏定理","sec":1,"title":"平方根與近似值","weight":1},{"id":"m-kx-8a-2-2","grade":"八上","ch":2,"chTitle":"平方根與畢氏定理","sec":2,"title":"根式的運算","weight":1},{"id":"m-kx-8a-2-3","grade":"八上","ch":2,"chTitle":"平方根與畢氏定理","sec":3,"title":"畢氏定理","weight":1},{"id":"m-kx-8a-3-1","grade":"八上","ch":3,"chTitle":"因式分解","sec":1,"title":"利用提公因式與乘法公式做因式分解","weight":1},{"id":"m-kx-8a-3-2","grade":"八上","ch":3,"chTitle":"因式分解","sec":2,"title":"利用十字交乘法做因式分解","weight":1},{"id":"m-kx-8a-4-1","grade":"八上","ch":4,"chTitle":"一元二次方程式","sec":1,"title":"因式分解解一元二次方程式","weight":1},{"id":"m-kx-8a-4-2","grade":"八上","ch":4,"chTitle":"一元二次方程式","sec":2,"title":"配方法與公式解","weight":1},{"id":"m-kx-8a-4-3","grade":"八上","ch":4,"chTitle":"一元二次方程式","sec":3,"title":"應用問題","weight":1},{"id":"m-kx-8a-5-1","grade":"八上","ch":5,"chTitle":"統計資料處理","sec":1,"title":"資料整理與統計圖表","weight":1},{"id":"m-kx-8b-1-1","grade":"八下","ch":1,"chTitle":"數列與級數","sec":1,"title":"等差數列","weight":1},{"id":"m-kx-8b-1-2","grade":"八下","ch":1,"chTitle":"數列與級數","sec":2,"title":"等差級數","weight":1},{"id":"m-kx-8b-1-3","grade":"八下","ch":1,"chTitle":"數列與級數","sec":3,"title":"等比數列","weight":1},{"id":"m-kx-8b-2-1","grade":"八下","ch":2,"chTitle":"函數","sec":1,"title":"函數與函數圖形","weight":1},{"id":"m-kx-8b-3-1","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":1,"title":"三角形與多邊形的內角與外角","weight":1},{"id":"m-kx-8b-3-2","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":2,"title":"尺規作圖","weight":1},{"id":"m-kx-8b-3-3","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":3,"title":"三角形的全等性質","weight":1},{"id":"m-kx-8b-3-4","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":4,"title":"垂直平分線與角平分線的性質","weight":1},{"id":"m-kx-8b-3-5","grade":"八下","ch":3,"chTitle":"三角形的基本性質","sec":5,"title":"三角形的邊角關係","weight":1},{"id":"m-kx-8b-4-1","grade":"八下","ch":4,"chTitle":"平行與四邊形","sec":1,"title":"平行","weight":1},{"id":"m-kx-8b-4-2","grade":"八下","ch":4,"chTitle":"平行與四邊形","sec":2,"title":"平行四邊形","weight":1},{"id":"m-kx-8b-4-3","grade":"八下","ch":4,"chTitle":"平行與四邊形","sec":3,"title":"特殊四邊形的性質","weight":1},{"id":"m-kx-9a-1-1","grade":"九上","ch":1,"chTitle":"相似形","sec":1,"title":"連比例","weight":1},{"id":"m-kx-9a-1-2","grade":"九上","ch":1,"chTitle":"相似形","sec":2,"title":"比例線段","weight":1},{"id":"m-kx-9a-1-3","grade":"九上","ch":1,"chTitle":"相似形","sec":3,"title":"縮放與相似","weight":1},{"id":"m-kx-9a-1-4","grade":"九上","ch":1,"chTitle":"相似形","sec":4,"title":"相似三角形的應用","weight":1},{"id":"m-kx-9a-2-1","grade":"九上","ch":2,"chTitle":"圓","sec":1,"title":"點、直線與圓之間的位置關係","weight":1},{"id":"m-kx-9a-2-2","grade":"九上","ch":2,"chTitle":"圓","sec":2,"title":"圓心角、圓周角與弧的關係","weight":1},{"id":"m-kx-9a-3-1","grade":"九上","ch":3,"chTitle":"幾何與證明","sec":1,"title":"證明與推理","weight":1},{"id":"m-kx-9a-3-2","grade":"九上","ch":3,"chTitle":"幾何與證明","sec":2,"title":"三角形的外心、內心與重心","weight":1},{"id":"m-kx-9b-1-1","grade":"九下","ch":1,"chTitle":"二次函數","sec":1,"title":"二次函數的圖形與最大值、最小值","weight":1},{"id":"m-kx-9b-2-1","grade":"九下","ch":2,"chTitle":"統計與機率","sec":1,"title":"資料的分析","weight":1},{"id":"m-kx-9b-2-2","grade":"九下","ch":2,"chTitle":"統計與機率","sec":2,"title":"機率","weight":1},{"id":"m-kx-9b-3-1","grade":"九下","ch":3,"chTitle":"生活中的立體圖形","sec":1,"title":"空間中的線、平面與形體","weight":1}]},{"id":"sci-kx","subject":"自然","short":"自","publisher":"康軒","curriculum":"108","source":"升學王 108課綱版本對照表（康軒頁）：上冊用115學年度、下冊用114學年度 PDF。https://www.go100.com.tw/108_comparison_table.php ；例：https://www.go100.com.tw/file/108_comparison_table/junior/8-2_comparison_physics_and_chemistry_114.pdf","groups":["七上","七下","八上","八下","九上","九下"],"units":[{"id":"sci-kx-7a-0-1","grade":"七上","ch":0,"chTitle":"緒論","sec":1,"title":"科學方法","weight":1,"strand":"生物"},{"id":"sci-kx-7a-1-1","grade":"七上","ch":1,"chTitle":"生命的特性","sec":1,"title":"生命現象","weight":1,"strand":"生物"},{"id":"sci-kx-7a-1-2","grade":"七上","ch":1,"chTitle":"生命的特性","sec":2,"title":"細胞","weight":1,"strand":"生物"},{"id":"sci-kx-7a-1-3","grade":"七上","ch":1,"chTitle":"生命的特性","sec":3,"title":"細胞所需的物質","weight":1,"strand":"生物"},{"id":"sci-kx-7a-1-4","grade":"七上","ch":1,"chTitle":"生命的特性","sec":4,"title":"從細胞到個體","weight":1,"strand":"生物"},{"id":"sci-kx-7a-2-1","grade":"七上","ch":2,"chTitle":"養分","sec":1,"title":"食物中的養分","weight":1,"strand":"生物"},{"id":"sci-kx-7a-2-2","grade":"七上","ch":2,"chTitle":"養分","sec":2,"title":"酵素","weight":1,"strand":"生物"},{"id":"sci-kx-7a-2-3","grade":"七上","ch":2,"chTitle":"養分","sec":3,"title":"植物如何獲得養分","weight":1,"strand":"生物"},{"id":"sci-kx-7a-2-4","grade":"七上","ch":2,"chTitle":"養分","sec":4,"title":"動物如何獲得養分","weight":1,"strand":"生物"},{"id":"sci-kx-7a-3-1","grade":"七上","ch":3,"chTitle":"生物的運輸與防禦","sec":1,"title":"植物的運輸構造","weight":1,"strand":"生物"},{"id":"sci-kx-7a-3-2","grade":"七上","ch":3,"chTitle":"生物的運輸與防禦","sec":2,"title":"植物體內物質的運輸","weight":1,"strand":"生物"},{"id":"sci-kx-7a-3-3","grade":"七上","ch":3,"chTitle":"生物的運輸與防禦","sec":3,"title":"人體內物質的運輸","weight":1,"strand":"生物"},{"id":"sci-kx-7a-3-4","grade":"七上","ch":3,"chTitle":"生物的運輸與防禦","sec":4,"title":"人體的防禦作用","weight":1,"strand":"生物"},{"id":"sci-kx-7a-4-1","grade":"七上","ch":4,"chTitle":"生物的協調作用","sec":1,"title":"神經系統","weight":1,"strand":"生物"},{"id":"sci-kx-7a-4-2","grade":"七上","ch":4,"chTitle":"生物的協調作用","sec":2,"title":"內分泌系統","weight":1,"strand":"生物"},{"id":"sci-kx-7a-4-3","grade":"七上","ch":4,"chTitle":"生物的協調作用","sec":3,"title":"生物的感應","weight":1,"strand":"生物"},{"id":"sci-kx-7a-5-1","grade":"七上","ch":5,"chTitle":"生物的恆定性","sec":1,"title":"恆定性與體溫的恆定","weight":1,"strand":"生物"},{"id":"sci-kx-7a-5-2","grade":"七上","ch":5,"chTitle":"生物的恆定性","sec":2,"title":"呼吸與氣體的恆定","weight":1,"strand":"生物"},{"id":"sci-kx-7a-5-3","grade":"七上","ch":5,"chTitle":"生物的恆定性","sec":3,"title":"血糖的恆定","weight":1,"strand":"生物"},{"id":"sci-kx-7a-5-4","grade":"七上","ch":5,"chTitle":"生物的恆定性","sec":4,"title":"排泄作用與水分的恆定","weight":1,"strand":"生物"},{"id":"sci-kx-7a-6-1","grade":"七上","ch":6,"chTitle":"跨科主題：世界的各種大小樣貌","sec":1,"title":"尺度的表示與比較","weight":1,"strand":"跨科"},{"id":"sci-kx-7b-1-1","grade":"七下","ch":1,"chTitle":"生殖","sec":1,"title":"細胞的分裂","weight":1,"strand":"生物"},{"id":"sci-kx-7b-1-2","grade":"七下","ch":1,"chTitle":"生殖","sec":2,"title":"無性生殖","weight":1,"strand":"生物"},{"id":"sci-kx-7b-1-3","grade":"七下","ch":1,"chTitle":"生殖","sec":3,"title":"有性生殖","weight":1,"strand":"生物"},{"id":"sci-kx-7b-2-1","grade":"七下","ch":2,"chTitle":"遺傳","sec":1,"title":"解開遺傳的奧祕","weight":1,"strand":"生物"},{"id":"sci-kx-7b-2-2","grade":"七下","ch":2,"chTitle":"遺傳","sec":2,"title":"人類的遺傳","weight":1,"strand":"生物"},{"id":"sci-kx-7b-2-3","grade":"七下","ch":2,"chTitle":"遺傳","sec":3,"title":"突變","weight":1,"strand":"生物"},{"id":"sci-kx-7b-2-4","grade":"七下","ch":2,"chTitle":"遺傳","sec":4,"title":"生物技術的應用","weight":1,"strand":"生物"},{"id":"sci-kx-7b-3-1","grade":"七下","ch":3,"chTitle":"地球上的生物","sec":1,"title":"持續改變的生命","weight":1,"strand":"生物"},{"id":"sci-kx-7b-3-2","grade":"七下","ch":3,"chTitle":"地球上的生物","sec":2,"title":"生物的命名與分類","weight":1,"strand":"生物"},{"id":"sci-kx-7b-3-3","grade":"七下","ch":3,"chTitle":"地球上的生物","sec":3,"title":"原核生物和原生生物","weight":1,"strand":"生物"},{"id":"sci-kx-7b-3-4","grade":"七下","ch":3,"chTitle":"地球上的生物","sec":4,"title":"真菌界","weight":1,"strand":"生物"},{"id":"sci-kx-7b-3-5","grade":"七下","ch":3,"chTitle":"地球上的生物","sec":5,"title":"植物界","weight":1,"strand":"生物"},{"id":"sci-kx-7b-3-6","grade":"七下","ch":3,"chTitle":"地球上的生物","sec":6,"title":"動物界","weight":1,"strand":"生物"},{"id":"sci-kx-7b-4-1","grade":"七下","ch":4,"chTitle":"生態系","sec":1,"title":"生物生存的環境","weight":1,"strand":"生物"},{"id":"sci-kx-7b-4-2","grade":"七下","ch":4,"chTitle":"生態系","sec":2,"title":"能量的流動與物質的循環","weight":1,"strand":"生物"},{"id":"sci-kx-7b-4-3","grade":"七下","ch":4,"chTitle":"生態系","sec":3,"title":"生物的交互關係","weight":1,"strand":"生物"},{"id":"sci-kx-7b-4-4","grade":"七下","ch":4,"chTitle":"生態系","sec":4,"title":"多采多姿的生態系","weight":1,"strand":"生物"},{"id":"sci-kx-7b-5-1","grade":"七下","ch":5,"chTitle":"人類與環境","sec":1,"title":"生物多樣性的重要性與危機","weight":1,"strand":"生物"},{"id":"sci-kx-7b-5-2","grade":"七下","ch":5,"chTitle":"人類與環境","sec":2,"title":"維護生物多樣性","weight":1,"strand":"生物"},{"id":"sci-kx-7b-6-1","grade":"七下","ch":6,"chTitle":"跨科主題：人、植物與環境的共存關係","sec":1,"title":"植物與水土保持、調節環境","weight":1,"strand":"跨科"},{"id":"sci-kx-8a-1-1","grade":"八上","ch":1,"chTitle":"基本測量","sec":1,"title":"長度與體積的測量","weight":1,"strand":"理化"},{"id":"sci-kx-8a-1-2","grade":"八上","ch":1,"chTitle":"基本測量","sec":2,"title":"質量與密度的測量","weight":1,"strand":"理化"},{"id":"sci-kx-8a-2-1","grade":"八上","ch":2,"chTitle":"物質的世界","sec":1,"title":"認識物質","weight":1,"strand":"理化"},{"id":"sci-kx-8a-2-2","grade":"八上","ch":2,"chTitle":"物質的世界","sec":2,"title":"水溶液","weight":1,"strand":"理化"},{"id":"sci-kx-8a-2-3","grade":"八上","ch":2,"chTitle":"物質的世界","sec":3,"title":"空氣的組成","weight":1,"strand":"理化"},{"id":"sci-kx-8a-3-1","grade":"八上","ch":3,"chTitle":"波動與聲音","sec":1,"title":"波的傳播","weight":1,"strand":"理化"},{"id":"sci-kx-8a-3-2","grade":"八上","ch":3,"chTitle":"波動與聲音","sec":2,"title":"聲波的產生與傳播","weight":1,"strand":"理化"},{"id":"sci-kx-8a-3-3","grade":"八上","ch":3,"chTitle":"波動與聲音","sec":3,"title":"聲波的反射與超聲波","weight":1,"strand":"理化"},{"id":"sci-kx-8a-3-4","grade":"八上","ch":3,"chTitle":"波動與聲音","sec":4,"title":"多變的聲音","weight":1,"strand":"理化"},{"id":"sci-kx-8a-4-1","grade":"八上","ch":4,"chTitle":"光","sec":1,"title":"光的傳播與光速","weight":1,"strand":"理化"},{"id":"sci-kx-8a-4-2","grade":"八上","ch":4,"chTitle":"光","sec":2,"title":"光的反射與面鏡","weight":1,"strand":"理化"},{"id":"sci-kx-8a-4-3","grade":"八上","ch":4,"chTitle":"光","sec":3,"title":"光的折射與透鏡","weight":1,"strand":"理化"},{"id":"sci-kx-8a-4-4","grade":"八上","ch":4,"chTitle":"光","sec":4,"title":"光學儀器","weight":1,"strand":"理化"},{"id":"sci-kx-8a-4-5","grade":"八上","ch":4,"chTitle":"光","sec":5,"title":"色光與顏色","weight":1,"strand":"理化"},{"id":"sci-kx-8a-5-1","grade":"八上","ch":5,"chTitle":"溫度與熱","sec":1,"title":"溫度與溫度計","weight":1,"strand":"理化"},{"id":"sci-kx-8a-5-2","grade":"八上","ch":5,"chTitle":"溫度與熱","sec":2,"title":"熱量與比熱","weight":1,"strand":"理化"},{"id":"sci-kx-8a-5-3","grade":"八上","ch":5,"chTitle":"溫度與熱","sec":3,"title":"熱對物質的影響","weight":1,"strand":"理化"},{"id":"sci-kx-8a-5-4","grade":"八上","ch":5,"chTitle":"溫度與熱","sec":4,"title":"熱的傳播方式","weight":1,"strand":"理化"},{"id":"sci-kx-8a-6-1","grade":"八上","ch":6,"chTitle":"探索物質組成","sec":1,"title":"元素的探索","weight":1,"strand":"理化"},{"id":"sci-kx-8a-6-2","grade":"八上","ch":6,"chTitle":"探索物質組成","sec":2,"title":"元素週期表","weight":1,"strand":"理化"},{"id":"sci-kx-8a-6-3","grade":"八上","ch":6,"chTitle":"探索物質組成","sec":3,"title":"化合物與原子概念的發展","weight":1,"strand":"理化"},{"id":"sci-kx-8a-6-4","grade":"八上","ch":6,"chTitle":"探索物質組成","sec":4,"title":"分子與化學式","weight":1,"strand":"理化"},{"id":"sci-kx-8b-1-1","grade":"八下","ch":1,"chTitle":"化學反應","sec":1,"title":"質量守恆","weight":1,"strand":"理化"},{"id":"sci-kx-8b-1-2","grade":"八下","ch":1,"chTitle":"化學反應","sec":2,"title":"化學反應的微觀世界","weight":1,"strand":"理化"},{"id":"sci-kx-8b-2-1","grade":"八下","ch":2,"chTitle":"氧化與還原","sec":1,"title":"氧化反應","weight":1,"strand":"理化"},{"id":"sci-kx-8b-2-2","grade":"八下","ch":2,"chTitle":"氧化與還原","sec":2,"title":"氧化與還原反應","weight":1,"strand":"理化"},{"id":"sci-kx-8b-3-1","grade":"八下","ch":3,"chTitle":"電解質及酸鹼反應","sec":1,"title":"認識電解質","weight":1,"strand":"理化"},{"id":"sci-kx-8b-3-2","grade":"八下","ch":3,"chTitle":"電解質及酸鹼反應","sec":2,"title":"常見的酸、鹼性物質","weight":1,"strand":"理化"},{"id":"sci-kx-8b-3-3","grade":"八下","ch":3,"chTitle":"電解質及酸鹼反應","sec":3,"title":"水溶液的酸鹼性","weight":1,"strand":"理化"},{"id":"sci-kx-8b-3-4","grade":"八下","ch":3,"chTitle":"電解質及酸鹼反應","sec":4,"title":"酸鹼中和","weight":1,"strand":"理化"},{"id":"sci-kx-8b-4-1","grade":"八下","ch":4,"chTitle":"反應速率與平衡","sec":1,"title":"反應速率","weight":1,"strand":"理化"},{"id":"sci-kx-8b-4-2","grade":"八下","ch":4,"chTitle":"反應速率與平衡","sec":2,"title":"可逆反應與平衡","weight":1,"strand":"理化"},{"id":"sci-kx-8b-5-1","grade":"八下","ch":5,"chTitle":"有機化合物","sec":1,"title":"認識有機化合物","weight":1,"strand":"理化"},{"id":"sci-kx-8b-5-2","grade":"八下","ch":5,"chTitle":"有機化合物","sec":2,"title":"常見的有機化合物","weight":1,"strand":"理化"},{"id":"sci-kx-8b-5-3","grade":"八下","ch":5,"chTitle":"有機化合物","sec":3,"title":"肥皂與清潔劑","weight":1,"strand":"理化"},{"id":"sci-kx-8b-5-4","grade":"八下","ch":5,"chTitle":"有機化合物","sec":4,"title":"生活中的有機聚合物","weight":1,"strand":"理化"},{"id":"sci-kx-8b-6-1","grade":"八下","ch":6,"chTitle":"力與壓力","sec":1,"title":"力與平衡","weight":1,"strand":"理化"},{"id":"sci-kx-8b-6-2","grade":"八下","ch":6,"chTitle":"力與壓力","sec":2,"title":"摩擦力","weight":1,"strand":"理化"},{"id":"sci-kx-8b-6-3","grade":"八下","ch":6,"chTitle":"力與壓力","sec":3,"title":"壓力","weight":1,"strand":"理化"},{"id":"sci-kx-8b-6-4","grade":"八下","ch":6,"chTitle":"力與壓力","sec":4,"title":"浮力","weight":1,"strand":"理化"},{"id":"sci-kx-8b-7-1","grade":"八下","ch":7,"chTitle":"跨科主題：低碳減塑護地球","sec":1,"title":"低碳減塑護地球","weight":1,"strand":"跨科"},{"id":"sci-kx-9a-1-1","grade":"九上","ch":1,"chTitle":"直線運動","sec":1,"title":"時間的測量","weight":1,"strand":"理化"},{"id":"sci-kx-9a-1-2","grade":"九上","ch":1,"chTitle":"直線運動","sec":2,"title":"位移與路徑長","weight":1,"strand":"理化"},{"id":"sci-kx-9a-1-3","grade":"九上","ch":1,"chTitle":"直線運動","sec":3,"title":"速率與速度","weight":1,"strand":"理化"},{"id":"sci-kx-9a-1-4","grade":"九上","ch":1,"chTitle":"直線運動","sec":4,"title":"加速度與等加速度運動","weight":1,"strand":"理化"},{"id":"sci-kx-9a-2-1","grade":"九上","ch":2,"chTitle":"力與運動","sec":1,"title":"牛頓第一運動定律","weight":1,"strand":"理化"},{"id":"sci-kx-9a-2-2","grade":"九上","ch":2,"chTitle":"力與運動","sec":2,"title":"牛頓第二運動定律","weight":1,"strand":"理化"},{"id":"sci-kx-9a-2-3","grade":"九上","ch":2,"chTitle":"力與運動","sec":3,"title":"牛頓第三運動定律","weight":1,"strand":"理化"},{"id":"sci-kx-9a-2-4","grade":"九上","ch":2,"chTitle":"力與運動","sec":4,"title":"圓周運動與萬有引力","weight":1,"strand":"理化"},{"id":"sci-kx-9a-3-1","grade":"九上","ch":3,"chTitle":"功與能","sec":1,"title":"功與功率","weight":1,"strand":"理化"},{"id":"sci-kx-9a-3-2","grade":"九上","ch":3,"chTitle":"功與能","sec":2,"title":"動能、位能與能量守恆","weight":1,"strand":"理化"},{"id":"sci-kx-9a-3-3","grade":"九上","ch":3,"chTitle":"功與能","sec":3,"title":"槓桿原理與靜力平衡","weight":1,"strand":"理化"},{"id":"sci-kx-9a-3-4","grade":"九上","ch":3,"chTitle":"功與能","sec":4,"title":"簡單機械","weight":1,"strand":"理化"},{"id":"sci-kx-9a-4-1","grade":"九上","ch":4,"chTitle":"基本的靜電現象與電路","sec":1,"title":"靜電現象","weight":1,"strand":"理化"},{"id":"sci-kx-9a-4-2","grade":"九上","ch":4,"chTitle":"基本的靜電現象與電路","sec":2,"title":"電流","weight":1,"strand":"理化"},{"id":"sci-kx-9a-4-3","grade":"九上","ch":4,"chTitle":"基本的靜電現象與電路","sec":3,"title":"電壓","weight":1,"strand":"理化"},{"id":"sci-kx-9a-4-4","grade":"九上","ch":4,"chTitle":"基本的靜電現象與電路","sec":4,"title":"電阻與歐姆定律","weight":1,"strand":"理化"},{"id":"sci-kx-9a-5-1","grade":"九上","ch":5,"chTitle":"水與陸地","sec":1,"title":"地球上的水","weight":1,"strand":"地科"},{"id":"sci-kx-9a-5-2","grade":"九上","ch":5,"chTitle":"水與陸地","sec":2,"title":"地貌的改變與平衡","weight":1,"strand":"地科"},{"id":"sci-kx-9a-5-3","grade":"九上","ch":5,"chTitle":"水與陸地","sec":3,"title":"地球上的岩石","weight":1,"strand":"地科"},{"id":"sci-kx-9a-6-1","grade":"九上","ch":6,"chTitle":"板塊運動與地球歷史","sec":1,"title":"地球構造與板塊運動","weight":1,"strand":"地科"},{"id":"sci-kx-9a-6-2","grade":"九上","ch":6,"chTitle":"板塊運動與地球歷史","sec":2,"title":"岩層記錄的地球歷史","weight":1,"strand":"地科"},{"id":"sci-kx-9a-6-3","grade":"九上","ch":6,"chTitle":"板塊運動與地球歷史","sec":3,"title":"臺灣的板塊和地震","weight":1,"strand":"地科"},{"id":"sci-kx-9a-7-1","grade":"九上","ch":7,"chTitle":"運動中的天體","sec":1,"title":"我們的宇宙","weight":1,"strand":"地科"},{"id":"sci-kx-9a-7-2","grade":"九上","ch":7,"chTitle":"運動中的天體","sec":2,"title":"轉動的地球","weight":1,"strand":"地科"},{"id":"sci-kx-9a-7-3","grade":"九上","ch":7,"chTitle":"運動中的天體","sec":3,"title":"日地月相對運動","weight":1,"strand":"地科"},{"id":"sci-kx-9a-8-1","grade":"九上","ch":8,"chTitle":"跨科主題：能源","sec":1,"title":"認識能源與能源的發展應用","weight":1,"strand":"跨科"},{"id":"sci-kx-9b-1-1","grade":"九下","ch":1,"chTitle":"電的應用","sec":1,"title":"電流的熱效應與電能","weight":1,"strand":"理化"},{"id":"sci-kx-9b-1-2","grade":"九下","ch":1,"chTitle":"電的應用","sec":2,"title":"電與生活","weight":1,"strand":"理化"},{"id":"sci-kx-9b-1-3","grade":"九下","ch":1,"chTitle":"電的應用","sec":3,"title":"電池","weight":1,"strand":"理化"},{"id":"sci-kx-9b-1-4","grade":"九下","ch":1,"chTitle":"電的應用","sec":4,"title":"電流的化學效應","weight":1,"strand":"理化"},{"id":"sci-kx-9b-2-1","grade":"九下","ch":2,"chTitle":"電流與磁現象","sec":1,"title":"磁鐵與磁場","weight":1,"strand":"理化"},{"id":"sci-kx-9b-2-2","grade":"九下","ch":2,"chTitle":"電流與磁現象","sec":2,"title":"電流的磁效應","weight":1,"strand":"理化"},{"id":"sci-kx-9b-2-3","grade":"九下","ch":2,"chTitle":"電流與磁現象","sec":3,"title":"電流與磁場的交互作用","weight":1,"strand":"理化"},{"id":"sci-kx-9b-2-4","grade":"九下","ch":2,"chTitle":"電流與磁現象","sec":4,"title":"電磁感應","weight":1,"strand":"理化"},{"id":"sci-kx-9b-3-1","grade":"九下","ch":3,"chTitle":"千變萬化的天氣","sec":1,"title":"大氣的組成和結構","weight":1,"strand":"地科"},{"id":"sci-kx-9b-3-2","grade":"九下","ch":3,"chTitle":"千變萬化的天氣","sec":2,"title":"天氣變化","weight":1,"strand":"地科"},{"id":"sci-kx-9b-3-3","grade":"九下","ch":3,"chTitle":"千變萬化的天氣","sec":3,"title":"氣團和鋒面","weight":1,"strand":"地科"},{"id":"sci-kx-9b-3-4","grade":"九下","ch":3,"chTitle":"千變萬化的天氣","sec":4,"title":"臺灣的氣象災害","weight":1,"strand":"地科"},{"id":"sci-kx-9b-4-1","grade":"九下","ch":4,"chTitle":"全球氣候變遷與因應","sec":1,"title":"海洋與大氣的交互作用","weight":1,"strand":"地科"},{"id":"sci-kx-9b-4-2","grade":"九下","ch":4,"chTitle":"全球氣候變遷與因應","sec":2,"title":"溫室效應與全球暖化","weight":1,"strand":"地科"}]},{"id":"eng-hk","subject":"英文","short":"英","publisher":"會考技能（不分版本）","curriculum":"108","source":"依國中教育會考英語科（閱讀＋聽力）題型與108課綱國中英語文語言結構整理；未逐條比對官方附錄，主要依經驗彙整。課綱參考：https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg024068/ch05/type2/gov40/num14/images/BB.pdf","groups":["文法","閱讀","聽力"],"units":[{"id":"eng-g-01","grade":"文法","ch":1,"chTitle":"文法","sec":null,"title":"現在簡單式（be 動詞與一般動詞）","weight":1,"strand":"文法"},{"id":"eng-g-02","grade":"文法","ch":2,"chTitle":"文法","sec":null,"title":"現在進行式","weight":1,"strand":"文法"},{"id":"eng-g-03","grade":"文法","ch":3,"chTitle":"文法","sec":null,"title":"過去簡單式","weight":1,"strand":"文法"},{"id":"eng-g-04","grade":"文法","ch":4,"chTitle":"文法","sec":null,"title":"未來式（will / be going to）","weight":1,"strand":"文法"},{"id":"eng-g-05","grade":"文法","ch":5,"chTitle":"文法","sec":null,"title":"過去進行式與時態綜合判斷","weight":1,"strand":"文法"},{"id":"eng-g-06","grade":"文法","ch":6,"chTitle":"文法","sec":null,"title":"現在完成式（含 for / since / ever / yet）","weight":1,"strand":"文法"},{"id":"eng-g-07","grade":"文法","ch":7,"chTitle":"文法","sec":null,"title":"助動詞（can, may, must, should, have to）","weight":1,"strand":"文法"},{"id":"eng-g-08","grade":"文法","ch":8,"chTitle":"文法","sec":null,"title":"名詞與數量詞（可數 / 不可數、some / any、many / much）","weight":1,"strand":"文法"},{"id":"eng-g-09","grade":"文法","ch":9,"chTitle":"文法","sec":null,"title":"代名詞（人稱、所有格、反身、one / another / the other）","weight":1,"strand":"文法"},{"id":"eng-g-10","grade":"文法","ch":10,"chTitle":"文法","sec":null,"title":"形容詞與副詞（含頻率副詞）","weight":1,"strand":"文法"},{"id":"eng-g-11","grade":"文法","ch":11,"chTitle":"文法","sec":null,"title":"比較級與最高級","weight":1,"strand":"文法"},{"id":"eng-g-12","grade":"文法","ch":12,"chTitle":"文法","sec":null,"title":"祈使句與感嘆句","weight":1,"strand":"文法"},{"id":"eng-g-13","grade":"文法","ch":13,"chTitle":"文法","sec":null,"title":"疑問詞問句（Wh- / How 系列）","weight":1,"strand":"文法"},{"id":"eng-g-14","grade":"文法","ch":14,"chTitle":"文法","sec":null,"title":"附加問句","weight":1,"strand":"文法"},{"id":"eng-g-15","grade":"文法","ch":15,"chTitle":"文法","sec":null,"title":"不定詞（to V）","weight":1,"strand":"文法"},{"id":"eng-g-16","grade":"文法","ch":16,"chTitle":"文法","sec":null,"title":"動名詞與 to V / V-ing 的選用","weight":1,"strand":"文法"},{"id":"eng-g-17","grade":"文法","ch":17,"chTitle":"文法","sec":null,"title":"感官動詞與使役動詞","weight":1,"strand":"文法"},{"id":"eng-g-18","grade":"文法","ch":18,"chTitle":"文法","sec":null,"title":"被動語態","weight":1,"strand":"文法"},{"id":"eng-g-19","grade":"文法","ch":19,"chTitle":"文法","sec":null,"title":"連接詞（對等與從屬：because, although, when, if…）","weight":1,"strand":"文法"},{"id":"eng-g-20","grade":"文法","ch":20,"chTitle":"文法","sec":null,"title":"條件句 if 與時間副詞子句（主要子句用未來式）","weight":1,"strand":"文法"},{"id":"eng-g-21","grade":"文法","ch":21,"chTitle":"文法","sec":null,"title":"間接問句","weight":1,"strand":"文法"},{"id":"eng-g-22","grade":"文法","ch":22,"chTitle":"文法","sec":null,"title":"關係代名詞（who / which / that）","weight":1,"strand":"文法"},{"id":"eng-g-23","grade":"文法","ch":23,"chTitle":"文法","sec":null,"title":"分詞當形容詞（-ing / -ed）","weight":1,"strand":"文法"},{"id":"eng-g-24","grade":"文法","ch":24,"chTitle":"文法","sec":null,"title":"介系詞（時間、地點、方式）","weight":1,"strand":"文法"},{"id":"eng-g-25","grade":"文法","ch":25,"chTitle":"文法","sec":null,"title":"常用句型（too…to、so…that、enough to、It takes / spend / cost）","weight":1,"strand":"文法"},{"id":"eng-r-01","grade":"閱讀","ch":1,"chTitle":"閱讀","sec":null,"title":"主旨大意","weight":1,"strand":"閱讀"},{"id":"eng-r-02","grade":"閱讀","ch":2,"chTitle":"閱讀","sec":null,"title":"細節理解","weight":1,"strand":"閱讀"},{"id":"eng-r-03","grade":"閱讀","ch":3,"chTitle":"閱讀","sec":null,"title":"推論（言外之意）","weight":1,"strand":"閱讀"},{"id":"eng-r-04","grade":"閱讀","ch":4,"chTitle":"閱讀","sec":null,"title":"字義猜測（上下文線索）","weight":1,"strand":"閱讀"},{"id":"eng-r-05","grade":"閱讀","ch":5,"chTitle":"閱讀","sec":null,"title":"指涉（代名詞指什麼）","weight":1,"strand":"閱讀"},{"id":"eng-r-06","grade":"閱讀","ch":6,"chTitle":"閱讀","sec":null,"title":"圖表與表格判讀","weight":1,"strand":"閱讀"},{"id":"eng-r-07","grade":"閱讀","ch":7,"chTitle":"閱讀","sec":null,"title":"實用文本（廣告、告示、菜單、時刻表）","weight":1,"strand":"閱讀"},{"id":"eng-r-08","grade":"閱讀","ch":8,"chTitle":"閱讀","sec":null,"title":"書信、Email 與對話閱讀","weight":1,"strand":"閱讀"},{"id":"eng-r-09","grade":"閱讀","ch":9,"chTitle":"閱讀","sec":null,"title":"作者目的、語氣與篇章結構","weight":1,"strand":"閱讀"},{"id":"eng-l-01","grade":"聽力","ch":1,"chTitle":"聽力","sec":null,"title":"辨識句意（看圖選句）","weight":1,"strand":"聽力"},{"id":"eng-l-02","grade":"聽力","ch":2,"chTitle":"聽力","sec":null,"title":"基本問答（選適當回應）","weight":1,"strand":"聽力"},{"id":"eng-l-03","grade":"聽力","ch":3,"chTitle":"聽力","sec":null,"title":"言談理解（對話與短文）","weight":1,"strand":"聽力"}]},{"id":"soc-kx-108u","subject":"社會","publisher":"康軒","curriculum":"108","source":"升學王 108課綱版本對照表（康軒頁，歷史/地理/公民各冊）：上冊115學年度、下冊114學年度。https://www.go100.com.tw/108_comparison_table.php ；例：https://www.go100.com.tw/file/108_comparison_table/junior/9-2_comparison_history_114.pdf ；單元分組：康軒課本的「篇/單元」是每冊每科一整篇（如七年級「第二篇 臺灣的歷史」、九上公民「第三單元 生活中的資源配置」，見學校課程計畫 https://ww1.sjjh.tp.edu.tw/uploads/1752229692557mFzilXVU.pdf 、https://course.cyc.edu.tw/course/pub/cou_down.php?fn=16236859766491892729c637kb7whvej7st87ce37v86u3z2qz357pma3f.pdf&q_year=115 ），粒度過粗，本檔以連續 2–3 課自編主題單元。","short":"社","groups":["七上","七下","八上","八下","九上","九下"],"units":[{"id":"soc-kx-7a-hu1","grade":"七上","ch":1,"chTitle":"史前與大航海時代的臺灣","sec":null,"title":"史前與大航海時代的臺灣（第1–3課）","weight":1,"strand":"歷史"},{"id":"soc-kx-7a-hu2","grade":"七上","ch":2,"chTitle":"清帝國時期的臺灣","sec":null,"title":"清帝國時期的臺灣（第4–6課）","weight":1,"strand":"歷史"},{"id":"soc-kx-7a-gu1","grade":"七上","ch":1,"chTitle":"位置與地圖","sec":null,"title":"位置與地圖（第1–2課）","weight":1,"strand":"地理"},{"id":"soc-kx-7a-gu2","grade":"七上","ch":2,"chTitle":"臺灣的地形與海域","sec":null,"title":"臺灣的地形與海域（第3–4課）","weight":1,"strand":"地理"},{"id":"soc-kx-7a-gu3","grade":"七上","ch":3,"chTitle":"臺灣的氣候與水文","sec":null,"title":"臺灣的氣候與水文（第5–6課）","weight":1,"strand":"地理"},{"id":"soc-kx-7a-cu1","grade":"七上","ch":1,"chTitle":"人性尊嚴、人權與性別平等","sec":null,"title":"人性尊嚴、人權與性別平等（第1–2課）","weight":1,"strand":"公民"},{"id":"soc-kx-7a-cu2","grade":"七上","ch":2,"chTitle":"家庭","sec":null,"title":"家庭（第3–4課）","weight":1,"strand":"公民"},{"id":"soc-kx-7a-cu3","grade":"七上","ch":3,"chTitle":"校園與社區部落的公共參與","sec":null,"title":"校園與社區部落的公共參與（第5–6課）","weight":1,"strand":"公民"},{"id":"soc-kx-7b-hu1","grade":"七下","ch":1,"chTitle":"日治時期的臺灣","sec":null,"title":"日治時期的臺灣（第1–3課）","weight":1,"strand":"歷史"},{"id":"soc-kx-7b-hu2","grade":"七下","ch":2,"chTitle":"戰後臺灣","sec":null,"title":"戰後臺灣（第4–6課）","weight":1,"strand":"歷史"},{"id":"soc-kx-7b-gu1","grade":"七下","ch":1,"chTitle":"臺灣的人口","sec":null,"title":"臺灣的人口（第1–2課）","weight":1,"strand":"地理"},{"id":"soc-kx-7b-gu2","grade":"七下","ch":2,"chTitle":"臺灣的產業","sec":null,"title":"臺灣的產業（第3–4課）","weight":1,"strand":"地理"},{"id":"soc-kx-7b-gu3","grade":"七下","ch":3,"chTitle":"聚落、交通與區域發展","sec":null,"title":"聚落、交通與區域發展（第5–6課）","weight":1,"strand":"地理"},{"id":"soc-kx-7b-cu1","grade":"七下","ch":1,"chTitle":"公民德性與志願結社","sec":null,"title":"公民德性與志願結社（第1–2課）","weight":1,"strand":"公民"},{"id":"soc-kx-7b-cu2","grade":"七下","ch":2,"chTitle":"多元文化與社會規範","sec":null,"title":"多元文化與社會規範（第3–4課）","weight":1,"strand":"公民"},{"id":"soc-kx-7b-cu3","grade":"七下","ch":3,"chTitle":"公平正義與社會福利","sec":null,"title":"公平正義與社會福利（第5–6課）","weight":1,"strand":"公民"},{"id":"soc-kx-8a-hu1","grade":"八上","ch":1,"chTitle":"商周至隋唐","sec":null,"title":"商周至隋唐（第1–2課）","weight":1,"strand":"歷史"},{"id":"soc-kx-8a-hu2","grade":"八上","ch":2,"chTitle":"宋元與明清帝國","sec":null,"title":"宋元與明清帝國（第3–4課）","weight":1,"strand":"歷史"},{"id":"soc-kx-8a-hu3","grade":"八上","ch":3,"chTitle":"晚清的變革與社會文化","sec":null,"title":"晚清的變革與社會文化（第5–6課）","weight":1,"strand":"歷史"},{"id":"soc-kx-8a-gu1","grade":"八上","ch":1,"chTitle":"中國的自然環境與人口","sec":null,"title":"中國的自然環境與人口（第1–2課）","weight":1,"strand":"地理"},{"id":"soc-kx-8a-gu2","grade":"八上","ch":2,"chTitle":"中國的產業與經濟發展","sec":null,"title":"中國的產業與經濟發展（第3–4課）","weight":1,"strand":"地理"},{"id":"soc-kx-8a-gu3","grade":"八上","ch":3,"chTitle":"東北亞","sec":null,"title":"東北亞（第5–6課）","weight":1,"strand":"地理"},{"id":"soc-kx-8a-cu1","grade":"八上","ch":1,"chTitle":"國家、民主與公共意見","sec":null,"title":"國家、民主與公共意見（第1–2課）","weight":1,"strand":"公民"},{"id":"soc-kx-8a-cu2","grade":"八上","ch":2,"chTitle":"權力分立與中央政府","sec":null,"title":"權力分立與中央政府（第3–4課）","weight":1,"strand":"公民"},{"id":"soc-kx-8a-cu3","grade":"八上","ch":3,"chTitle":"地方政府與政治參與","sec":null,"title":"地方政府與政治參與（第5–6課）","weight":1,"strand":"公民"},{"id":"soc-kx-8b-hu1","grade":"八下","ch":1,"chTitle":"中華民國早期的政治與思潮","sec":null,"title":"中華民國早期的政治與思潮（第1–2課）","weight":1,"strand":"歷史"},{"id":"soc-kx-8b-hu2","grade":"八下","ch":2,"chTitle":"現代國家的挑戰與戰爭","sec":null,"title":"現代國家的挑戰與戰爭（第3–4課）","weight":1,"strand":"歷史"},{"id":"soc-kx-8b-hu3","grade":"八下","ch":3,"chTitle":"戰後中國與東亞","sec":null,"title":"戰後中國與東亞（第5–6課）","weight":1,"strand":"歷史"},{"id":"soc-kx-8b-gu1","grade":"八下","ch":1,"chTitle":"全球氣候與季風亞洲（東南亞、南亞）","sec":null,"title":"全球氣候與季風亞洲（東南亞、南亞）（前導＋第1–2課）","weight":1,"strand":"地理"},{"id":"soc-kx-8b-gu2","grade":"八下","ch":2,"chTitle":"西亞與北非","sec":null,"title":"西亞與北非（第3–4課）","weight":1,"strand":"地理"},{"id":"soc-kx-8b-gu3","grade":"八下","ch":3,"chTitle":"漠南非洲","sec":null,"title":"漠南非洲（第5–6課）","weight":1,"strand":"地理"},{"id":"soc-kx-8b-cu1","grade":"八下","ch":1,"chTitle":"法律與民事規範","sec":null,"title":"法律與民事規範（第1–2課）","weight":1,"strand":"公民"},{"id":"soc-kx-8b-cu2","grade":"八下","ch":2,"chTitle":"刑法與紛爭解決","sec":null,"title":"刑法與紛爭解決（第3–4課）","weight":1,"strand":"公民"},{"id":"soc-kx-8b-cu3","grade":"八下","ch":3,"chTitle":"行政法與兒少保障","sec":null,"title":"行政法與兒少保障（第5–6課）","weight":1,"strand":"公民"},{"id":"soc-kx-9a-hu1","grade":"九上","ch":1,"chTitle":"古代文明：西亞、非洲與希臘羅馬","sec":null,"title":"古代文明：西亞、非洲與希臘羅馬（第1–2課）","weight":1,"strand":"歷史"},{"id":"soc-kx-9a-hu2","grade":"九上","ch":2,"chTitle":"普世宗教與近代歐洲的興起","sec":null,"title":"普世宗教與近代歐洲的興起（第3–4課）","weight":1,"strand":"歷史"},{"id":"soc-kx-9a-hu3","grade":"九上","ch":3,"chTitle":"近代歐洲的變革與民主革命","sec":null,"title":"近代歐洲的變革與民主革命（第5–6課）","weight":1,"strand":"歷史"},{"id":"soc-kx-9a-gu1","grade":"九上","ch":1,"chTitle":"歐洲與俄羅斯","sec":null,"title":"歐洲與俄羅斯（第1–2課）","weight":1,"strand":"地理"},{"id":"soc-kx-9a-gu2","grade":"九上","ch":2,"chTitle":"美洲","sec":null,"title":"美洲（第3–4課）","weight":1,"strand":"地理"},{"id":"soc-kx-9a-gu3","grade":"九上","ch":3,"chTitle":"大洋洲、兩極與氣候變遷","sec":null,"title":"大洋洲、兩極與氣候變遷（第5–6課）","weight":1,"strand":"地理"},{"id":"soc-kx-9a-cu1","grade":"九上","ch":1,"chTitle":"選擇與資源分配","sec":null,"title":"選擇與資源分配（第1–2課）","weight":1,"strand":"公民"},{"id":"soc-kx-9a-cu2","grade":"九上","ch":2,"chTitle":"市場、分工與貿易","sec":null,"title":"市場、分工與貿易（第3–4課）","weight":1,"strand":"公民"},{"id":"soc-kx-9a-cu3","grade":"九上","ch":3,"chTitle":"貨幣與勞動","sec":null,"title":"貨幣與勞動（第5–6課）","weight":1,"strand":"公民"},{"id":"soc-kx-9b-hu1","grade":"九下","ch":1,"chTitle":"現代國家與第一次世界大戰","sec":null,"title":"現代國家與第一次世界大戰（第1–2課）","weight":1,"strand":"歷史"},{"id":"soc-kx-9b-hu2","grade":"九下","ch":2,"chTitle":"第二次世界大戰與戰後世界","sec":null,"title":"第二次世界大戰與戰後世界（第3–4課）","weight":1,"strand":"歷史"},{"id":"soc-kx-9b-gu1","grade":"九下","ch":1,"chTitle":"地理議題：地名文化與農業食安","sec":null,"title":"地理議題：地名文化與農業食安（第1–2課）","weight":1,"strand":"地理"},{"id":"soc-kx-9b-cu1","grade":"九下","ch":1,"chTitle":"科技、智慧財產與媒體識讀","sec":null,"title":"科技、智慧財產與媒體識讀（第1–2課）","weight":1,"strand":"公民"},{"id":"soc-kx-9b-cu2","grade":"九下","ch":2,"chTitle":"全球化與國際參與","sec":null,"title":"全球化與國際參與（第3–4課）","weight":1,"strand":"公民"}]}]</script>
 <script>
 (function(){
 'use strict';
 const EXAM_DATE = '2027-05-15';   // 會考暫定日期（公告後改這裡）
 const STORE_KEY = 'huikao.v1';
-const CATALOG_URL = 'data/math-kx-108.json';
+const SUBJ_KEY = 'huikao.subj';   // 科目切換：只記在這台裝置，不同步
+// 章節表清單：加科目＝把檔名加在這裡（每檔要有 short、groups），再跑 python3 embed_catalog.py，sw.js 的 ASSETS 也要加
+const CATALOGS = ['data/math-kx-108.json', 'data/sci-kx.json', 'data/eng-hk.json', 'data/soc-kx.json'];
+const SUBJ_ORDER = ['數','自','英','社'];
+const PRIO_N = 10;   // 優先衝刺清單先顯示幾節
 const WD = ['日','一','二','三','四','五','六'];
 
 /* ---------- 雲端同步設定（跟統測單字 SRS App 同一個 Supabase 專案）。CONFIG 留空＝只存這台裝置
@@ -241,7 +263,7 @@ function md(s){ const d=parseDate(s); return (d.getMonth()+1)+'/'+d.getDate(); }
 function mdw(s){ return md(s)+'（'+WD[parseDate(s).getDay()]+'）'; }
 
 /* ---------- 資料儲存（雲端同步接在 save 這一層） ---------- */
-let READONLY = false;   // 老師端唯讀檢視：不存檔、不同步（不會把學生的資料寫進老師這台）
+let READONLY = false, SELFTEST = false;   // 老師端唯讀檢視：不存檔、不同步（不會把學生的資料寫進老師這台）
 let onSave = null;      // 雲端模式：存檔後排程上傳
 let storage = null;
 try { storage = window.localStorage; } catch(e) { storage = null; }
@@ -263,19 +285,56 @@ function save(){ if(READONLY) return; saveLocal(); if(onSave) onSave(); }
 function memStorage(){ const m={}; return {getItem:k=>k in m?m[k]:null, setItem:(k,v)=>{m[k]=String(v);}, removeItem:k=>{delete m[k];}}; }
 
 /* ---------- 章節表 ---------- */
-let UNITS = [], UNIT = {};
-const GRADES = ['七上','七下','八上','八下','九上','九下'];
-function setCatalog(cat){ UNITS = cat.units.map(u=>({...u})); UNIT = Object.create(null); /* 沒有原型：雲端來的怪 id（例 constructor）查不到東西 */ UNITS.forEach((u,i)=>{UNIT[u.id]=u; u._i=i;}); }
-function code(u){ return u.grade+' '+u.ch+'-'+u.sec; }
+let UNITS = [], UNIT = {}, SUBJECTS = [], MULTI = false;
+// 多份章節表合成一份：id 全部章節表不可重複（重複的後者丟掉，記在 dupes）；科目照 SUBJ_ORDER 排
+function mergeCatalogs(cats){
+  const units=[], seen=Object.create(null), dupes=[], subjects=[];
+  cats.forEach(cat=>{
+    const short=cat.short || String(cat.subject||'?').slice(0,1);
+    const groups=(Array.isArray(cat.groups)?cat.groups:[]).slice();
+    cat.units.forEach(u=>{ if(!groups.includes(u.grade)) groups.push(u.grade);   // 章節表沒列到的組別排最後
+      if(seen[u.id]){ dupes.push(u.id); return; } seen[u.id]=1; units.push({...u, subj:short}); });
+    subjects.push({short, name:cat.subject||short, groups});
+  });
+  const rank=s=>{ const i=SUBJ_ORDER.indexOf(s.short); return i<0 ? 99 : i; };
+  subjects.sort((a,b)=>rank(a)-rank(b));
+  return {units, subjects, dupes};
+}
+let CATS=[];
+function setCatalogs(cats){
+  CATS=cats; const m=mergeCatalogs(cats);
+  if(m.dupes.length) console.warn('章節表 id 重複，後面的已略過：', m.dupes);
+  SUBJECTS=m.subjects; MULTI=SUBJECTS.length>1;
+  UNITS=m.units; UNIT=Object.create(null); /* 沒有原型：雲端來的怪 id（例 constructor）查不到東西 */
+  // _i：排序用的全域順序（科目照 SUBJ_ORDER、科目內照章節表）
+  let i=0; SUBJECTS.forEach(s=>UNITS.filter(u=>u.subj===s.short).forEach(u=>{ u._i=i++; UNIT[u.id]=u; }));
+  UNITS.sort((a,b)=>a._i-b._i);
+  if(ui.subj!=='all' && !SUBJECTS.some(s=>s.short===ui.subj)) ui.subj='all';
+}
+function shownSubjects(){ return MULTI && ui.subj!=='all' ? SUBJECTS.filter(s=>s.short===ui.subj) : SUBJECTS; }
+function shownUnits(){ const ss=shownSubjects().map(s=>s.short); return UNITS.filter(u=>ss.includes(u.subj)); }
+// 依「科目 → 組別（七上…）」分組，順序照章節表的 groups
+function groupsOf(units){
+  const out=[];
+  SUBJECTS.forEach(s=>s.groups.forEach(g=>{ const us=units.filter(u=>u.subj===s.short && u.grade===g); if(us.length) out.push({s, g, us}); }));
+  return out;
+}
+function setSubj(v){ ui.subj=v; try { storage && storage.setItem(SUBJ_KEY,v); } catch(e){} }
+// 章節代號：數學／自然有節（1-2）；社會（單元）、英文 sec=null，不印編號（社會單元名稱已含「第X–Y課」）；英文的組別就是章名（文法），不重複寫
+function secCode(u){ return u.sec!=null ? u.ch+'-'+u.sec : ''; }
+function strandOf(u){ return u.strand && u.strand!==u.grade ? u.strand : ''; }
+function tileCode(u){ return u.sec!=null ? u.ch+'-'+u.sec : (strandOf(u).slice(0,1)+(u.ch||'')) || '•'; }
+function code(u){ return [MULTI?u.subj:'', u.grade, u.sec==null?strandOf(u):'', secCode(u)].filter(Boolean).join(' '); }
+function nameOf(u){ return [secCode(u), u.title].filter(Boolean).join(' '); }   // 組別底下顯示用（不含科目、組別）
 function label(u){ return code(u)+' '+u.title; }
 
 /* ---------- 規則 ---------- */
 function prog(id){ return state.progress[id] || {fam:null, reviews:0, updatedAt:0}; }
 function famClass(f){ return !f ? 'none' : f<=2 ? 'red' : f===3 ? 'yel' : 'grn'; }
 function needsHelp(p){ return !!p.fam && p.fam<=2 && p.reviews>=3; }
-function priority(){
+function priority(units){
   const rated=[], unrated=[];
-  UNITS.forEach(u=>{ const p=prog(u.id); if(!p.fam) unrated.push(u); else if(p.fam<=3) rated.push(u); });
+  (units||UNITS).forEach(u=>{ const p=prog(u.id); if(!p.fam) unrated.push(u); else if(p.fam<=3) rated.push(u); });
   rated.sort((a,b)=>{ const pa=prog(a.id),pb=prog(b.id); return pa.fam-pb.fam || pa.reviews-pb.reviews || a._i-b._i; });
   return {rated, unrated};
 }
@@ -296,12 +355,22 @@ function placeCard(unitId,date){
 function card(id){ return state.plan.find(c=>c.id===id); }
 function moveCard(id,date){ const c=card(id); c.date=date; c.updatedAt=Date.now(); save(); }
 function removeCard(id){ const c=card(id); c.deleted=true; c.updatedAt=Date.now(); save(); }
-function completeCard(id){ const c=card(id); if(c.doneAt) return; c.doneAt=Date.now(); c.updatedAt=c.doneAt; bumpReviews(c.unitId,1); }
-function undoComplete(id){ const c=card(id); if(!c.doneAt) return; c.doneAt=null; c.updatedAt=Date.now(); bumpReviews(c.unitId,-1); }
+function moveCards(ids,date){ const t=Date.now(); ids.forEach(id=>{ const c=card(id); c.date=date; c.updatedAt=t; }); save(); }
+function removeCards(ids){ const t=Date.now(); ids.forEach(id=>{ const c=card(id); c.deleted=true; c.updatedAt=t; }); save(); }
+// 完成時記下原本的分數（prevFam），完成後評的分數記在 rateFam：取消完成時若分數還是那次評的，就改回原本的
+// 這兩個欄位只存在這台（上傳時 dirtyRows 只挑固定欄位，雲端不會收到）
+function completeCard(id){ const c=card(id); if(c.doneAt || c.date>todayStr()) return false;   // 未來的卡不能先完成
+  c.doneAt=Date.now(); c.updatedAt=c.doneAt; c.prevFam=prog(c.unitId).fam; delete c.rateFam; bumpReviews(c.unitId,1); return true; }
+function rateCard(id,f){ const c=card(id); if(c.doneAt) c.rateFam=f; setFam(c.unitId,f); }
+function undoComplete(id){ const c=card(id); if(!c.doneAt) return; c.doneAt=null; c.updatedAt=Date.now();
+  if(c.rateFam!=null && prog(c.unitId).fam===c.rateFam && c.prevFam!==undefined) touch(c.unitId).fam=c.prevFam;
+  delete c.prevFam; delete c.rateFam; bumpReviews(c.unitId,-1); }
+// 整章設為同一分數；回傳實際改了幾節
+function setChapterFam(units,f){ const ch=units.filter(u=>prog(u.id).fam!==f); ch.forEach(u=>{ touch(u.id).fam=f; }); if(ch.length) save(); return ch.length; }
 
 /* ---------- 畫面 ---------- */
 const $main = document.getElementById('main'), $layer = document.getElementById('layer');
-const ui = { tab:'overview', sel:null, drawer:null, prompt:null, openWeeks:null, closedUnits:{} };
+const ui = { tab:'overview', sel:null, drawer:null, prompt:null, openWeeks:null, closedUnits:{}, subj:'all', prioAll:false };
 const esc = s => String(s).replace(/[&<>"]/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 
 function render(){
@@ -310,55 +379,91 @@ function render(){
   renderLayer();
 }
 
+function subjBar(){
+  if(!MULTI) return '';
+  return `<div class="subjbar" role="group" aria-label="科目">`+[{short:'all',name:'全部'},...SUBJECTS].map(s=>
+    `<button data-act="subj" data-s="${esc(s.short)}" aria-pressed="${ui.subj===s.short}"${s.short==='all'?'':` aria-label="${esc(s.name)}"`}>${esc(s.short==='all'?'全部':s.short)}</button>`).join('')+`</div>`;
+}
+function prioHtml(rated){
+  const shown=ui.prioAll ? rated : rated.slice(0,PRIO_N);
+  let h=`<ul class="prio">`+shown.map(u=>{const p=prog(u.id);
+    return `<li><span class="dot c-${famClass(p.fam)}">${p.fam}</span><div class="t">${esc(label(u))}${needsHelp(p)?'<span class="tag">需要老師幫忙</span>':''}<div class="muted">複習 ${p.reviews} 次${pendingFor(u.id)?'・已排進計畫':''}</div></div></li>`}).join('')+`</ul>`;
+  if(rated.length>PRIO_N) h+=`<button class="linkbtn more" data-act="prioAll">${ui.prioAll?'只看前 '+PRIO_N+' 節':'顯示全部（'+rated.length+' 節）'}</button>`;
+  return h;
+}
 function viewOverview(){
-  const t=todayStr(), days=daysBetween(t,EXAM_DATE);
-  const reds=UNITS.filter(u=>famClass(prog(u.id).fam)==='red');
+  const t=todayStr(), days=daysBetween(t,EXAM_DATE), units=shownUnits();
+  const reds=units.filter(u=>famClass(prog(u.id).fam)==='red');
   const unplanned=reds.filter(u=>!pendingFor(u.id));
-  const {rated,unrated}=priority();
+  const {rated,unrated}=priority(units);
+  const allMode=MULTI && ui.subj==='all';
   let h=`<div class="count"><div class="sub">距離會考（暫定 ${EXAM_DATE.replace(/-/g,'/')}）</div><b>${Math.max(0,days)}</b> 天　<span class="sub">約 ${Math.ceil(Math.max(0,days)/7)} 週</span></div>`;
   h+=`<p class="summary">紅色 <span class="r">${reds.length}</span> 節、其中 <span class="r">${unplanned.length}</span> 節還沒排進計畫</p>`;
-  h+=`<h2>全部章節</h2><div class="legend"><span><i class="c-red"></i>1–2 分</span><span><i class="c-yel"></i>3 分</span><span><i class="c-grn"></i>4–5 分</span><span><i class="c-none"></i>還沒評</span><span>格內數字＝複習次數</span></div>`;
-  GRADES.forEach(g=>{
-    const us=UNITS.filter(u=>u.grade===g); if(!us.length) return;
-    h+=`<div class="grade-row"><h3>${g}</h3><div class="tiles">`+us.map(u=>{const p=prog(u.id);
-      return `<button class="tile c-${famClass(p.fam)}" data-act="goUnit" data-unit="${u.id}" title="${esc(label(u))}" aria-label="${esc(label(u))}，${p.fam?p.fam+'分':'未評分'}，複習${p.reviews}次"><small>${u.ch}-${u.sec}</small><b>${p.reviews}</b></button>`}).join('')+`</div></div>`;
-  });
+  if(MULTI) h+=`<div style="margin-top:12px">${subjBar()}</div>`;
+  const legend=`<div class="legend"><span><i class="c-red"></i>1–2 分</span><span><i class="c-yel"></i>3 分</span><span><i class="c-grn"></i>4–5 分</span><span><i class="c-none"></i>還沒評</span>${allMode?'':'<span>格內數字＝複習次數</span>'}</div>`;
+  if(allMode){   // 全部科目：每科一條比例條，點了切到那一科
+    h+=`<h2>各科概況</h2>`+legend+SUBJECTS.map(s=>{
+      const us=UNITS.filter(u=>u.subj===s.short), n={red:0,yel:0,grn:0,none:0};
+      us.forEach(u=>n[famClass(prog(u.id).fam)]++);
+      const seg=k=>n[k] ? `<i class="c-${k}" style="width:${(n[k]/us.length*100).toFixed(2)}%"></i>` : '';
+      return `<button class="srow" data-act="subj" data-s="${esc(s.short)}" aria-label="${esc(s.name)}：紅 ${n.red}、黃 ${n.yel}、綠 ${n.grn}、還沒評 ${n.none}"><div class="hd">${esc(s.name)}<span>紅 ${n.red}・黃 ${n.yel}・綠 ${n.grn}・未評 ${n.none}／共 ${us.length} 節</span></div><div class="sbar">${seg('red')}${seg('yel')}${seg('grn')}${seg('none')}</div></button>`;
+    }).join('');
+  } else {
+    h+=`<h2>全部章節</h2>`+legend;
+    groupsOf(units).forEach(({g,us})=>{
+      h+=`<div class="grade-row"><h3>${esc(g)}</h3><div class="tiles">`+us.map(u=>{const p=prog(u.id);
+        return `<button class="tile c-${famClass(p.fam)}" data-act="goUnit" data-unit="${u.id}" title="${esc(label(u))}" aria-label="${esc(label(u))}，${p.fam?p.fam+'分':'未評分'}，複習${p.reviews}次"><small>${esc(tileCode(u))}</small><b>${p.reviews}</b></button>`}).join('')+`</div></div>`;
+    });
+  }
   h+=`<h2>優先衝刺清單</h2>`;
   if(!rated.length) h+=`<p class="empty">目前沒有 3 分以下的章節。${unrated.length?'先去「章節」評分吧。':''}</p>`;
-  else h+=`<ul class="prio">`+rated.map(u=>{const p=prog(u.id);
-    return `<li><span class="dot c-${famClass(p.fam)}">${p.fam}</span><div class="t">${esc(label(u))}${needsHelp(p)?'<span class="tag">需要老師幫忙</span>':''}<div class="muted">複習 ${p.reviews} 次${pendingFor(u.id)?'・已排進計畫':''}</div></div></li>`}).join('')+`</ul>`;
-  if(unrated.length) h+=`<h2>還沒評分（${unrated.length} 節）</h2><p class="muted">${unrated.map(u=>esc(code(u))).join('、')}</p><button class="btn" data-act="tab" data-tab="units">去評分</button>`;
+  else h+=prioHtml(rated);
+  if(unrated.length) h+=`<h2>還沒評分（${unrated.length} 節）</h2>`+(allMode?'':`<p class="muted">${unrated.map(u=>esc(code(u))).join('、')}</p>`)+`<button class="btn" data-act="tab" data-tab="units">去評分</button>`;
   $main.innerHTML=h;
 }
 
 function viewUnits(){
-  const rated=UNITS.filter(u=>prog(u.id).fam).length, N=UNITS.length;
-  let h='';
-  if(rated<N) h+=`<div class="banner"><b>先把每一節都評一次分</b>（1＝完全不會、5＝很有把握）<div class="muted">已評 ${rated}/${N}</div><div class="bar"><i style="width:${Math.round(rated/N*100)}%"></i></div></div>`;
-  GRADES.forEach(g=>{
-    const us=UNITS.filter(u=>u.grade===g); if(!us.length) return;
-    h+=`<details class="grade" data-key="${g}" ${ui.closedUnits[g]?'':'open'}><summary>${g}</summary>`;
-    [...new Set(us.map(u=>u.ch))].forEach(ch=>{
-      const cs=us.filter(u=>u.ch===ch), k=g+ch;
-      h+=`<details class="ch" data-key="${k}" ${ui.closedUnits[k]?'':'open'}><summary>第 ${ch} 章 ${esc(cs[0].chTitle)}</summary>`;
-      cs.forEach(u=>{const p=prog(u.id);
-        h+=`<div class="urow" id="u-${u.id}"><div class="name">${u.ch}-${u.sec} ${esc(u.title)}</div><div class="ctrls"><div class="fams" role="group" aria-label="熟悉度">`+
-          [1,2,3,4,5].map(f=>`<button class="f${f}" data-act="fam" data-unit="${u.id}" data-f="${f}" aria-pressed="${p.fam===f}">${f}</button>`).join('')+
-          `</div><div class="revs">複習<button data-act="rev" data-unit="${u.id}" data-d="-1" aria-label="次數減一">−</button><b>${p.reviews}</b><button data-act="rev" data-unit="${u.id}" data-d="1" aria-label="次數加一">＋</button>次</div></div></div>`;
+  const ss=shownSubjects(), units=shownUnits();
+  const prog_=ss.map(s=>{ const us=units.filter(u=>u.subj===s.short); return {s, n:us.length, r:us.filter(u=>prog(u.id).fam).length}; });
+  let h=subjBar();
+  if(prog_.some(x=>x.r<x.n)) h+=`<div class="banner"><b>先把每一節都評一次分</b>（1＝完全不會、5＝很有把握）`+
+    prog_.map(x=>`<div class="bline"><div class="muted">${MULTI?esc(x.s.name)+' ':''}已評 ${x.r}/${x.n}</div><div class="bar"><i style="width:${Math.round(x.r/x.n*100)}%"></i></div></div>`).join('')+`</div>`;
+  let lastS=null;
+  groupsOf(units).forEach(({s,g,us})=>{
+    if(MULTI && ss.length>1 && s!==lastS){ h+=`<h2 class="subj-h">${esc(s.name)}</h2>`; lastS=s; }
+    const gk=s.short+g;
+    h+=`<details class="grade" data-key="${esc(gk)}" ${ui.closedUnits[gk]?'':'open'}><summary>${MULTI?esc(s.short)+' ':''}${esc(g)}</summary>`;
+    const strands=[...new Set(us.map(u=>u.strand||''))];
+    strands.forEach(st=>{
+      const ss=us.filter(u=>(u.strand||'')===st);
+      if(strands.length>1 || (st && st!==g)) h+=`<h3 class="strand">${esc(st)}</h3>`;   // 分科：歷史／地理／公民、生物／理化…
+      [...new Set(ss.map(u=>u.sec==null ? 'L' : 'c'+u.ch))].forEach(key=>{
+        const cs=ss.filter(u=>(u.sec==null ? 'L' : 'c'+u.ch)===key), k=gk+'|'+st+'|'+key;
+        if(key==='L'){ h+=bulkRow(cs,'整組設為')+cs.map(urowHtml).join(''); return; }   // 以課為單位：不再包一層章
+        h+=`<details class="ch" data-key="${esc(k)}" ${ui.closedUnits[k]?'':'open'}><summary>${cs[0].ch>0?'第 '+cs[0].ch+' 章 ':''}${esc(cs[0].chTitle)}</summary>`+bulkRow(cs,'整章設為')+cs.map(urowHtml).join('')+`</details>`;
       });
-      h+=`</details>`;
     });
     h+=`</details>`;
   });
   $main.innerHTML=h;
 }
+function bulkRow(cs,txt){
+  return `<div class="chbulk">${txt}<div class="fams" role="group" aria-label="${txt}熟悉度">`+[1,2,3,4,5].map(f=>`<button class="f${f}" data-act="chFam" data-unit="${cs[0].id}" data-f="${f}" aria-pressed="${cs.every(u=>prog(u.id).fam===f)}">${f}</button>`).join('')+`</div></div>`;
+}
+function urowHtml(u){ const p=prog(u.id);
+  return `<div class="urow" id="u-${u.id}"><div class="name">${esc(nameOf(u))}</div><div class="ctrls"><div class="fams" role="group" aria-label="熟悉度">`+
+    [1,2,3,4,5].map(f=>`<button class="f${f}" data-act="fam" data-unit="${u.id}" data-f="${f}" aria-pressed="${p.fam===f}">${f}</button>`).join('')+
+    `</div><div class="revs">複習<button data-act="rev" data-unit="${u.id}" data-d="-1" aria-label="次數減一">−</button><b>${p.reviews}</b><button data-act="rev" data-unit="${u.id}" data-d="1" aria-label="次數加一">＋</button>次</div></div></div>`;
+}
+// 整章評分的範圍：有節的＝同一章；以課為單位的（sec=null）＝同組別同分科（例：社 七上 歷史）
+function chapterOf(id){ const u=UNIT[id]; return UNITS.filter(x=>x.subj===u.subj && x.grade===u.grade && (x.strand||'')===(u.strand||'') && (u.sec!=null ? x.sec!=null && x.ch===u.ch : x.sec==null)); }
 
 function chipClass(c,t){ return 'chip b-'+famClass(prog(c.unitId).fam)+(c.doneAt?' done':'')+(!c.doneAt&&c.date<t?' late':''); }
 function poolHtml(){
-  return GRADES.map(g=>{
-    const us=UNITS.filter(u=>u.grade===g).sort((a,b)=>{const fa=prog(a.id).fam||9, fb=prog(b.id).fam||9; return fa-fb || a._i-b._i;});
-    return `<h3>${g}</h3><div class="chips">`+us.map(u=>{const p=prog(u.id);
-      return `<button class="chip b-${famClass(p.fam)}${ui.sel&&ui.sel.unitId===u.id&&!ui.sel.cardId?' sel':''}" data-act="pick" data-unit="${u.id}"><span>${u.ch}-${u.sec} ${esc(u.title)}</span><em>${p.fam?p.fam+'分':'未評'}</em></button>`}).join('')+`</div>`;
+  return subjBar()+groupsOf(shownUnits()).map(({s,g,us})=>{
+    us=us.slice().sort((a,b)=>{const fa=prog(a.id).fam||9, fb=prog(b.id).fam||9; return fa-fb || a._i-b._i;});
+    return `<h3>${MULTI?esc(s.short)+' ':''}${esc(g)}</h3><div class="chips">`+us.map(u=>{const p=prog(u.id);
+      return `<button class="chip b-${famClass(p.fam)}${ui.sel&&ui.sel.unitId===u.id&&!ui.sel.cardId?' sel':''}" data-act="pick" data-unit="${u.id}"><span>${esc(nameOf(u))}</span><em>${p.fam?p.fam+'分':'未評'}</em></button>`}).join('')+`</div>`;
   }).join('');
 }
 function viewPlan(){
@@ -376,7 +481,7 @@ function viewPlan(){
     h+=`<section class="week"><button class="wk-head" data-act="toggleWeek" data-week="${w}" aria-expanded="${open}"><span>${md(w)}–${md(days[6])}${w===cur?'<span class="now">本週</span>':''}</span><span class="st">${cs.length} 張／完成 ${done}　${open?'▲':'▼'}</span></button>`;
     if(open){
       h+=`<div class="wk-days">`+days.map(d=>`<div class="day${d===t?' today':''}${d<t?' past':''}${d===EXAM_DATE?' exam':''}" data-act="day" data-date="${d}"><div class="lbl"><b>${WD[parseDate(d).getDay()]}</b> ${md(d)}</div><div class="cards">`+
-        cardsOn(d).map(c=>`<button class="${chipClass(c,t)}" data-act="card" data-card="${c.id}"><span>${UNIT[c.unitId].grade}${UNIT[c.unitId].ch}-${UNIT[c.unitId].sec} ${esc(UNIT[c.unitId].title)}</span></button>`).join('')+`</div></div>`).join('')+`</div>`;
+        cardsOn(d).map(c=>{ const u=UNIT[c.unitId]; return `<button class="${chipClass(c,t)}" data-act="card" data-card="${c.id}"><span>${esc(label(u))}</span></button>`; }).join('')+`</div></div>`).join('')+`</div>`;
     }
     h+=`</section>`;
   });
@@ -395,7 +500,7 @@ function tcard(c,t,late){
 function viewToday(){
   const t=todayStr(), late=overdue(t), list=cardsOn(t).sort((a,b)=>(!!a.doneAt)-(!!b.doneAt));
   let h='';
-  if(late.length) h+=`<h2 class="late">逾期（${late.length}）</h2>`+late.map(c=>tcard(c,t,true)).join('');
+  if(late.length) h+=`<h2 class="late">逾期（${late.length}）</h2><div class="late-acts"><button class="btn sm pri" data-act="lateToday">全部移到今天</button><button class="btn sm red" data-act="lateRemove">全部移除</button></div>`+late.map(c=>tcard(c,t,true)).join('');
   h+=`<h2>今天 ${mdw(t)}</h2>`;
   h+= list.length ? list.map(c=>tcard(c,t,false)).join('') : `<div class="empty">今天沒有排卡片。<button class="linkbtn" data-act="tab" data-tab="plan">去計畫排幾張</button></div>`;
   $main.innerHTML=h;
@@ -405,12 +510,15 @@ function renderLayer(){
   let h='';
   if(ui.drawer==='pool') h+=`<div class="backdrop" data-act="closeDrawer"></div><div class="drawer" role="dialog" aria-label="加入章節"><div class="hd"><b>選一個章節（弱的在前）</b><button class="btn sm" data-act="closeDrawer">關閉</button></div><div class="pool">${poolHtml()}</div></div>`;
   else if(ui.drawer && ui.drawer.card){ const c=card(ui.drawer.card), u=UNIT[c.unitId];
+    const future=!c.doneAt && c.date>todayStr();
     h+=`<div class="backdrop" data-act="closeDrawer"></div><div class="drawer" role="dialog" aria-label="卡片動作"><div class="hd"><b>${esc(label(u))}</b><button class="btn sm" data-act="closeDrawer">關閉</button></div><div class="muted">排在 ${mdw(c.date)}${c.doneAt?'・已完成':''}</div><div class="sheet-acts">`+
-      (c.doneAt?`<button class="btn" data-act="undo" data-card="${c.id}">取消完成</button>`:`<button class="btn pri" data-act="done" data-card="${c.id}">完成</button>`)+
+      (c.doneAt?`<button class="btn" data-act="undo" data-card="${c.id}">取消完成</button>`
+        : future?`<button class="btn pri" disabled aria-disabled="true" style="opacity:.45;cursor:default">完成</button><div class="hint">還沒到 ${mdw(c.date)}，到那天才能按完成；想提早做就先改期到今天。</div>`
+        :`<button class="btn pri" data-act="done" data-card="${c.id}">完成</button>`)+
       `<button class="btn" data-act="resched" data-card="${c.id}">改期</button><button class="btn red" data-act="remove" data-card="${c.id}">移除</button></div></div>`; }
   if(ui.prompt){ const c=card(ui.prompt), u=UNIT[c.unitId];
     h+=`<div class="prompt" role="status"><div>完成「${esc(u.title)}」，複習 ${prog(u.id).reviews} 次。現在熟悉度幾分？</div><div class="row">`+
-      [1,2,3,4,5].map(f=>`<button data-act="rate" data-unit="${u.id}" data-f="${f}">${f}</button>`).join('')+
+      [1,2,3,4,5].map(f=>`<button data-act="rate" data-card="${c.id}" data-f="${f}">${f}</button>`).join('')+
       `<button class="lnk" data-act="skipRate">略過</button><button class="lnk" data-act="undo" data-card="${c.id}">取消完成</button></div></div>`; }
   $layer.innerHTML=h;
 }
@@ -435,7 +543,7 @@ function dropOn(date){
 /* ---------- 事件 ---------- */
 let suppressClick=false;
 // 老師唯讀檢視時擋掉的動作（會改資料、或會打開改資料的抽屜）
-const RO_BLOCK=new Set(['fam','rev','openPool','pick','day','card','done','undo','remove','resched','toToday','rate','skipRate','syncLink']);
+const RO_BLOCK=new Set(['fam','chFam','rev','openPool','pick','day','card','done','undo','remove','resched','toToday','lateToday','lateRemove','rate','skipRate','syncLink']);
 document.addEventListener('click', e=>{
   if(suppressClick){ suppressClick=false; return; }
   const el=e.target.closest('[data-act]'); if(!el) return;
@@ -446,6 +554,12 @@ document.addEventListener('click', e=>{
     case 'tab': ui.drawer=null; go(a.tab); break;
     case 'goUnit': ui.closedUnits={}; go('units'); { const r=document.getElementById('u-'+a.unit); r&&r.scrollIntoView({block:'center'}); } break;
     case 'fam': setFam(a.unit,+a.f); render(); break;
+    case 'chFam': { const us=chapterOf(a.unit), f=+a.f, other=us.filter(u=>prog(u.id).fam && prog(u.id).fam!==f).length;
+      const w=UNIT[a.unit].sec==null ? '組' : '章';
+      if(other && !confirm(`這一${w}有 ${other} 節已經評過別的分數，要全部改成 ${f} 分嗎？`)) break;
+      const n=setChapterFam(us,f); render(); toast(n ? `整${w} ${us.length} 節都設為 ${f} 分` : `整${w}本來就是 ${f} 分`); break; }
+    case 'subj': setSubj(a.s); ui.prioAll=false; render(); if(ui.drawer==='pool') { const d=document.querySelector('.drawer'); d&&(d.scrollTop=0); } break;
+    case 'prioAll': ui.prioAll=!ui.prioAll; render(); break;
     case 'rev': bumpReviews(a.unit,+a.d); render(); break;
     case 'openPool': ui.drawer='pool'; renderLayer(); break;
     case 'closeDrawer': ui.drawer=null; renderLayer(); break;
@@ -454,16 +568,28 @@ document.addEventListener('click', e=>{
     case 'day': dropOn(a.date); break;
     case 'card': if(ui.sel){ dropOn(el.closest('.day').dataset.date); break; } ui.drawer={card:id}; renderLayer(); break;
     case 'toggleWeek': ui.openWeeks[a.week]=!ui.openWeeks[a.week]; render(); break;
-    case 'done': completeCard(id); ui.drawer=null; ui.prompt=id; render(); break;
+    case 'done': if(!completeCard(id)){ toast('還沒到那天，不能先按完成'); break; } ui.drawer=null; ui.prompt=id; render(); break;
     case 'undo': undoComplete(id); ui.drawer=null; if(ui.prompt===id) ui.prompt=null; render(); toast('已取消完成'); break;
+    case 'lateToday': { const ids=overdue(todayStr()).map(c=>c.id); if(!ids.length || !confirm(`把 ${ids.length} 張逾期卡片都移到今天？`)) break; moveCards(ids,todayStr()); render(); toast(`已把 ${ids.length} 張移到今天`); break; }
+    case 'lateRemove': { const ids=overdue(todayStr()).map(c=>c.id); if(!ids.length || !confirm(`把 ${ids.length} 張逾期卡片全部移除？\n（複習次數不會變）`)) break; removeCards(ids); render(); toast(`已移除 ${ids.length} 張`); break; }
     case 'remove': removeCard(id); ui.drawer=null; render(); toast('已移除'); break;
     case 'resched': ui.sel={cardId:id, unitId:card(id).unitId}; ui.drawer=null; ui.openWeeks=ui.openWeeks||{}; ui.openWeeks[mondayOf(todayStr())]=true; go('plan'); break;
-    case 'toToday': moveCard(id,todayStr()); render(); break;
-    case 'rate': setFam(a.unit,+a.f); ui.prompt=null; render(); toast('已更新為 '+a.f+' 分'); break;
+    case 'toToday': moveCard(id,todayStr()); render(); toast('已移到今天'); break;
+    case 'rate': rateCard(id,+a.f); ui.prompt=null; render(); toast('已更新為 '+a.f+' 分'); break;
     case 'skipRate': ui.prompt=null; renderLayer(); break;
   }
 });
 document.addEventListener('toggle', e=>{ const d=e.target; if(d.matches&&d.matches('details[data-key]')) ui.closedUnits[d.dataset.key]=!d.open; }, true);
+// 跨過午夜：「今天」、逾期、本週要換 → 回到畫面時、或每分鐘檢查一次日期有沒有變
+let shownDay=todayStr();
+function checkDay(){
+  const t=todayStr(); if(t===shownDay) return false;
+  shownDay=t; if(ui.openWeeks) ui.openWeeks[mondayOf(t)]=true;
+  if(!drag && !(READONLY && !ui.viewing) && !SELFTEST) render();   // 老師名單頁、自我測試頁不重畫
+  return true;
+}
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') checkDay(); });
+setInterval(checkDay,60000);
 addEventListener('hashchange',()=>{ if(READONLY && !ui.viewing) return; const t=location.hash.slice(1); if(t!==ui.tab && ['overview','units','plan','today'].includes(t)) go(t); });
 
 /* 電腦版拖曳：章節池的卡片拖到日期格（滑鼠才啟用，手機用點選） */
@@ -793,7 +919,7 @@ async function teacherView(id,nick){
   try { st=await TAPI.student(id); } catch(e){ $main.innerHTML=`<p class="empty">讀取失敗：${esc((e&&e.message)||e)}</p><p><button class="btn" id="tBack2">← 學生名單</button></p>`; byId('tBack2').onclick=()=>teacherHome(); return; }
   teacherShell(true);
   state=st;
-  Object.assign(ui,{tab:'overview', sel:null, drawer:null, prompt:null, openWeeks:null, closedUnits:{}, viewing:{id,nick}});
+  Object.assign(ui,{tab:'overview', sel:null, drawer:null, prompt:null, openWeeks:null, closedUnits:{}, subj:'all', viewing:{id,nick}});   // 看學生一律從「全部」開始，紅色數字才對得上名單
   $robar.innerHTML=`<span>唯讀檢視：<b>${esc(nick)}</b></span><span class="acts"><button class="btn sm" id="tRefresh">重新整理</button><button class="btn sm" id="tBack">← 學生名單</button></span>`;
   byId('tRefresh').onclick=()=>{ const t=ui.tab; teacherView(id,nick).then(()=>{ if(ui.viewing) go(t); }); };
   byId('tBack').onclick=()=>teacherHome();
@@ -964,13 +1090,88 @@ async function cloudTests(ok, eq){
   ok('老師名單：紅色節數、逾期張數（已完成／已刪除／未來的不算）', L.length===1 && L[0].reds===2 && L[0].late===1, JSON.stringify(L));
 }
 
+// 第二輪：多科目、整章評分、取消完成還原分數、逾期整批、未來卡、跨午夜
+async function r2Tests(ok, eq){
+  const real=CATS, $=q=>document.querySelector(q), $$=q=>document.querySelectorAll(q);
+  const t=todayStr();
+  // 合併與 id 重複
+  const fk=(id,grade,extra)=>({id,grade,ch:1,chTitle:'章',sec:1,title:'節'+id,weight:1,...extra});
+  const m=mergeCatalogs([{subject:'自然',short:'自',groups:['B','A'],units:[fk('x1','A'),fk('x2','B'),fk('x3','C')]},{subject:'數學',short:'數',units:[fk('x1','A'),fk('y1','A')]}]);
+  ok('多章節表合併：id 重複會被抓到、後者略過', eq(m.dupes,['x1']) && m.units.length===4 && m.units.find(u=>u.id==='x1').subj==='自');
+  ok('科目照 數→自 排；組別照章節表 groups，沒列到的排最後', eq(m.subjects.map(s=>s.short),['數','自']) && eq(m.subjects[1].groups,['B','A','C']) && eq(m.subjects[0].groups,['A']));
+  ok('正式章節表：全部 id 不重複、每科都有 short 與 groups', mergeCatalogs(real).dupes.length===0 && real.every(c=>c.short && Array.isArray(c.groups) && c.units.every(u=>c.groups.includes(u.grade))), real.map(c=>c.short+c.units.length).join(' '));
+  setCatalogs([{subject:'自然',short:'自',groups:['B','A'],units:[fk('x1','A'),fk('x2','B')]},{subject:'數學',short:'數',groups:['A'],units:[fk('y1','A')]}]);
+  ok('分組順序：科目→組別（照 groups）', eq(groupsOf(UNITS).map(x=>x.s.short+x.g),['數A','自B','自A']) && eq(UNITS.map(u=>u.id),['y1','x1','x2']));
+  setCatalogs(real);
+  // 每一節的名稱都畫得出來（社會／英文沒有節號、自然有第 0 章）
+  const badLbl=UNITS.filter(u=>{ const l=label(u), n=nameOf(u), c=tileCode(u); return !u.title || /null|undefined|NaN/.test(l+n+c) || !c || l.includes('  '); });
+  ok('每一節都有正常的名稱（沒有 null／undefined）', !badLbl.length, badLbl.slice(0,3).map(label).join('｜')||UNITS.length+' 節');
+  const dupLbl=UNITS.length-new Set(UNITS.map(label)).size;
+  ok('每一節的名稱不重複', !dupLbl, dupLbl+' 個重複');
+  const soc=UNITS.find(u=>u.sec==null && u.strand && u.strand!==u.grade && u.ch>0), eng=UNITS.find(u=>u.sec==null && u.strand===u.grade);
+  if(soc) ok('單元的名稱：科目 組別 分科 單元名（不印「第N課」）', label(soc)===`${soc.subj} ${soc.grade} ${soc.strand} ${soc.title}` && !UNITS.some(u=>u.sec==null && /^第\d+課/.test(nameOf(u))), label(soc));
+  if(eng) ok('組別就是章名（英文）：不重複寫章名', label(eng)===`${eng.subj} ${eng.grade} ${eng.title}`, label(eng));
+  // 科目切換
+  setSubj('zz'); setCatalogs(real); const fixed=ui.subj==='all';
+  setSubj(SUBJECTS[SUBJECTS.length-1].short); const one=ui.subj; ui.tab='overview'; render();
+  const onlyOne=shownUnits().every(u=>u.subj===one) && $$('.tile').length===UNITS.filter(u=>u.subj===one).length && $$('.subjbar button').length===SUBJECTS.length+1;
+  setSubj('all'); render(); const allRows=$$('.srow').length===SUBJECTS.length && !$$('.tile').length;
+  ui.tab='plan'; render(); const poolBar=!!$('.pool .subjbar');
+  ok('科目切換：只看一科、全部＝每科一條比例條、不存在的科目回到全部', MULTI ? fixed && onlyOne && allRows && poolBar && storage.getItem(SUBJ_KEY)==='all' : true, MULTI ? '' : '只有一科，略過');
+  const math=real.filter(c=>c.short==='數'); setCatalogs(math); ui.tab='overview'; render();
+  ok('只有一科時：不顯示切換列、名稱不加科目', !MULTI && !$('.subjbar') && $$('.tile').length===UNITS.length && code(UNITS[0])==='七上 1-1');
+  setCatalogs(real);
+  // 優先清單只先顯示前 10
+  state=emptyState(); UNITS.slice(0,12).forEach(u=>{ state.progress[u.id]={fam:2,reviews:0,updatedAt:1}; });
+  ui.tab='overview'; ui.prioAll=false; render(); const n10=$$('.prio li').length;
+  $('[data-act="prioAll"]').click(); const nAll=$$('.prio li').length; ui.prioAll=false;
+  ok('優先清單先顯示前 10、按「顯示全部」才全開', n10===PRIO_N && nAll===12, n10+'→'+nAll);
+  // 整章評分
+  state=emptyState(); const u0=UNITS[0], chap=chapterOf(u0.id);
+  setFam(chap[1].id,5); const n1=setChapterFam(chap,2), n2=setChapterFam(chap,2);
+  ok('整章設為：章內每節都改、已經一樣的不重寫', chap.length>1 && chap.every(u=>u.ch===u0.ch && u.grade===u0.grade && prog(u.id).fam===2) && n1===chap.length && n2===0);
+  const socL=UNITS.find(u=>u.subj==='社' && u.sec==null);
+  if(socL){ const grp=chapterOf(socL.id); ok('以課為單位的科目：整組＝同年級同分科', grp.length>1 && grp.every(u=>u.subj==='社' && u.grade===socL.grade && u.strand===socL.strand && u.sec==null)); }
+  // 取消完成 → 分數改回完成前
+  state=emptyState(); const a=u0.id; setFam(a,2); const c=placeCard(a,t);
+  completeCard(c.id); rateCard(c.id,4); const mid=prog(a).fam===4 && prog(a).reviews===1;
+  const up=dirtyRows(state,{p:{},c:{}}).plan[0];
+  undoComplete(c.id);
+  ok('取消完成：分數改回完成前、次數 −1；還原用的欄位不會上傳', mid && prog(a).fam===2 && prog(a).reviews===0 && eq(Object.keys(up).sort(),['date','deleted','doneAt','id','unitId','updatedAt']) && !('prevFam' in card(c.id)));
+  completeCard(c.id); rateCard(c.id,4); setFam(a,5); undoComplete(c.id); const kept=prog(a).fam===5;
+  const c2=placeCard(a,t); setFam(a,null); completeCard(c2.id); rateCard(c2.id,3); undoComplete(c2.id);
+  ok('取消完成：之後又在章節改過分數就不動；原本沒評分會回到沒評分', kept && prog(a).fam===null);
+  // 逾期整批
+  state=emptyState(); const L=[placeCard(UNITS[1].id,addDays(t,-3)), placeCard(UNITS[2].id,addDays(t,-1)), placeCard(UNITS[3].id,addDays(t,-2))];
+  moveCards(overdue(t).map(x=>x.id),t);
+  const moved=!overdue(t).length && cardsOn(t).length===3;
+  L.forEach(x=>moveCard(x.id,addDays(t,-1))); removeCards(overdue(t).map(x=>x.id));
+  const removed=L.every(x=>card(x.id).deleted) && !liveCards().length;
+  placeCard(UNITS[4].id,addDays(t,-1)); ui.tab='today'; render();
+  const btns=!!$('[data-act="lateToday"]') && !!$('[data-act="lateRemove"]');
+  ok('逾期整批：全部移到今天／全部移除', moved && removed && btns);
+  // 未來的卡不能先完成
+  state=emptyState(); const fut=placeCard(UNITS[5].id,addDays(t,2));
+  const r=completeCard(fut.id); ui.drawer={card:fut.id}; renderLayer();
+  const blocked=r===false && !card(fut.id).doneAt && prog(UNITS[5].id).reviews===0 && !$('.drawer [data-act="done"]') && !!$('.drawer .hint');
+  ui.drawer=null; renderLayer();
+  ok('未來的卡不能先完成（動作表的完成鈕停用並說明）', blocked);
+  // 跨午夜
+  shownDay=addDays(t,-1); ui.openWeeks={};
+  const rolled=checkDay(), again=checkDay();
+  ok('跨過午夜會換日（再檢查一次就不會重複）', rolled && !again && shownDay===t && ui.openWeeks[mondayOf(t)]===true);
+  ui.openWeeks=null; state=emptyState();
+}
+
 async function selftest(){
   storage = memStorage(); state = emptyState();   // 不碰真正的 localStorage
   const R=[]; const ok=(name,cond,info)=>R.push({name,pass:!!cond,info:info||''});
   const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
   const ids=UNITS.map(u=>u.id);
   ok('章節表 id 不重複', new Set(ids).size===ids.length, ids.length+' 節');
-  if(window.__fetchedCatalog) ok('內嵌備份章節表＝data JSON', eq(window.__fetchedCatalog, JSON.parse(document.getElementById('catalog-embed').textContent)));
+  const embed=JSON.parse(document.getElementById('catalog-embed').textContent);
+  ok('內嵌備份章節表數量＝CATALOGS', embed.length===CATALOGS.length, embed.length+'／'+CATALOGS.length);
+  CATALOGS.forEach((url,i)=>{ if(window.__fetchedCatalogs[i]) ok('內嵌備份章節表＝'+url, eq(window.__fetchedCatalogs[i], embed[i])); });
   ok('顏色對應', eq([null,1,2,3,4,5].map(famClass), ['none','red','red','yel','grn','grn']));
   const [a,b,c,d,e2,f]=ids;
   state.progress={[a]:{fam:3,reviews:0},[b]:{fam:1,reviews:4},[c]:{fam:1,reviews:2},[d]:{fam:2,reviews:0},[e2]:{fam:4,reviews:0}};
@@ -990,6 +1191,7 @@ async function selftest(){
   const c1=placeCard(a,'2026-11-20'); placeCard(a,'2026-11-27');
   ok('placeCard 放卡（同一節可排多次）', cardsOn('2026-11-20').length===1 && c1.unitId===a && !c1.doneAt && liveCards().filter(x=>x.unitId===a).length===2);
   moveCard(c1.id,'2026-11-21'); ok('改期', cardsOn('2026-11-21').length===1 && !cardsOn('2026-11-20').length);
+  moveCard(c1.id,todayStr());   // 第二輪起未來的卡不能先完成 → 先改到今天
   completeCard(c1.id); ok('完成 → 次數 +1', prog(a).reviews===1 && !!card(c1.id).doneAt);
   completeCard(c1.id); ok('重複按完成不會再加', prog(a).reviews===1);
   undoComplete(c1.id); ok('取消完成 → 次數 −1', prog(a).reviews===0 && !card(c1.id).doneAt);
@@ -1015,6 +1217,8 @@ async function selftest(){
   ok('不能排到或改期到過去的日期', r1===false && n1===0 && r2===false && card(c9.id).date===tday);
   ui.sel={unitId:a}; ok('今天可以排', dropOn(tday)===true && cardsOn(tday).length===2);
   ui.sel=null; document.querySelector('.toast')&&document.querySelector('.toast').remove();
+  try { await r2Tests(ok, eq); } catch(e){ ok('第二輪測試沒有中途出錯', false, String(e&&e.stack||e)); }
+  setCatalogs(CATS); setSubj('all'); state=emptyState(); Object.assign(ui,{tab:'overview',sel:null,drawer:null,prompt:null,prioAll:false});
   try { await cloudTests(ok, eq); } catch(e){ ok('雲端同步測試沒有中途出錯', false, String(e&&e.stack||e)); }
   READONLY=false; document.body.classList.remove('ro'); state=emptyState(); Object.assign(ui,{tab:'overview',sel:null,drawer:null,prompt:null});
   $layer.innerHTML=''; document.querySelector('.toast')&&document.querySelector('.toast').remove();
@@ -1026,14 +1230,18 @@ async function selftest(){
 
 /* ---------- 啟動 ---------- */
 async function boot(){
-  let cat=null;
-  if(location.protocol.startsWith('http')){
-    try { const r=await fetch(CATALOG_URL,{cache:'no-cache'}); if(r.ok){ cat=await r.json(); window.__fetchedCatalog=cat; } } catch(e){}
-  }
-  if(!cat) cat=JSON.parse(document.getElementById('catalog-embed').textContent);  // file:// 直接開檔時用內嵌備份
-  setCatalog(cat);
+  const embed=JSON.parse(document.getElementById('catalog-embed').textContent);  // file:// 直接開檔、或某個檔抓不到時用內嵌備份
+  window.__fetchedCatalogs=[];
+  const cats=await Promise.all(CATALOGS.map(async(url,i)=>{
+    if(location.protocol.startsWith('http')){
+      try { const r=await fetch(url,{cache:'no-cache'}); if(r.ok){ const c=await r.json(); window.__fetchedCatalogs[i]=c; return c; } } catch(e){}
+    }
+    return embed[i];
+  }));
+  try { const v=storage && storage.getItem(SUBJ_KEY); if(v) ui.subj=v; } catch(e){}
+  setCatalogs(cats.filter(Boolean));
   const qp=new URLSearchParams(location.search);
-  if(qp.get('selftest')==='1') return selftest();
+  if(qp.get('selftest')==='1'){ SELFTEST=true; return selftest(); }
   if(qp.get('selftest')==='teacher') return teacherBoot(fakeTeacherApi(demoServer()));   // 老師端示範：假資料、不連網
   if(qp.get('teacher')==='1') return teacherBoot();
   state=load();

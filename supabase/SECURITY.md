@@ -1,6 +1,6 @@
 # 會考複習總覽：雲端同步與老師端安全說明
 
-範圍：`index.html`（學生端同步、老師端唯讀檢視）＋`supabase/001_hk.sql`（表、RLS、RPC）＋`supabase/002_verify_hk.sql`（權限驗證）。
+範圍：`index.html`（學生端同步、老師端唯讀檢視）＋`supabase/001_hk.sql`（表、RLS、RPC）＋`supabase/002_verify_hk.sql`（權限驗證）＋`supabase/003_hk_backup.sql`（每日備份）＋`supabase/004_verify_backup.sql`（備份驗證）。
 Supabase 專案沿用「統測單字 SRS App」那一個（`knsdpvmhloobfduhfwyk`），只新增 `hk_` 開頭的表與函式，不改動 `srs_` 的任何東西。
 
 ## 一句話
@@ -12,8 +12,8 @@ Supabase 專案沿用「統測單字 SRS App」那一個（`knsdpvmhloobfduhfwyk
 
 | 身分 | 能做 | 不能做 |
 |---|---|---|
-| anon（學生端、或任何拿到網頁裡 anon key 的人） | `hk_load(代碼)`、`hk_save(代碼, 進度列, 排程列)`：只對「代碼對得上的那位學生」有效 | 讀寫任何表（四張表都 `revoke all`，也沒有 anon policy）；建學生、重設連結、`hk_is_teacher` 都沒有 EXECUTE 權限 |
-| authenticated 且在 `hk_teachers` | 讀 `hk_students`（只有 id/nickname/created_at/last_seen_at/link_reset_at，**不含** token_hash）、讀 `hk_progress`、`hk_plan`；`hk_create_student`、`hk_reset_link` | 直接寫任何表；讀 `hk_teachers` |
+| anon（學生端、或任何拿到網頁裡 anon key 的人） | `hk_load(代碼)`、`hk_save(代碼, 進度列, 排程列)`：只對「代碼對得上的那位學生」有效 | 讀寫任何表（五張表都 `revoke all`，也沒有 anon policy；含備份表 `hk_backup`）；建學生、重設連結、`hk_is_teacher` 都沒有 EXECUTE 權限 |
+| authenticated 且在 `hk_teachers` | 讀 `hk_students`（只有 id/nickname/created_at/last_seen_at/link_reset_at，**不含** token_hash）、讀 `hk_progress`、`hk_plan`、`hk_backup`（每日備份，日後做趨勢用）；`hk_create_student`、`hk_reset_link` | 直接寫任何表（含改／刪備份）；讀 `hk_teachers` |
 | authenticated 但不在名單 | 什麼都讀不到（RLS 回 0 列）；呼叫老師 RPC 會被 `42501` 擋 | — |
 | service_role / SQL Editor | 全部（Supabase 管理者） | — |
 
@@ -38,7 +38,12 @@ Supabase 專案沿用「統測單字 SRS App」那一個（`knsdpvmhloobfduhfwyk
 ### T1 學生連結外流（例：學生把連結貼到群組）
 - 後果：拿到連結的人可以讀、改**這一位**學生的熟悉度與排程。讀不到其他學生、讀不到老師資料。
 - 降低方法：重設連結（見上）；暱稱不放真名。
-- 剩餘風險：連結本身就是密碼，沒有第二道驗證（設計上就是免登入）。**沒有每日備份**（SRS App 有、這裡沒做）：被亂改只能靠學生自己的裝置再改回來。資料量很小（58 節＋幾百張卡），日後要補備份表很容易。
+- 剩餘風險：連結本身就是密碼，沒有第二道驗證（設計上就是免登入）。被亂改的那一天，從當天第一次上傳到發現之前，學生自己的正常修改會跟著退回（備份一天只存一份，見下）。
+
+- 每日備份（`003_hk_backup.sql`）：`hk_save` 在每位學生「台北時間每天第一次」通過格式檢查、準備寫入之前，先把雲端現在的進度＋排程整份存進 `hk_backup`（一人一天一列，同一天不重複、不覆蓋）。被亂改 → 先重設連結，再用文末「救援」SQL 退回某一天的起點。
+  - 拿到連結的人**碰不到備份**（anon 對 `hk_backup` 沒有任何權限，`hk_save` 也只會新增、不會改舊的），所以亂改最多讓「之後幾天」的備份是壞的，更早的備份都還在。
+  - 保留：**全部保留、不自動刪**。正常一天一份約 5–60 KB，180 天 × 幾位學生 ≈ 幾十 MB 以內。有人刻意灌到上限（5000 張卡）時一天可能接近 1 MB，見 T5。
+  - 那天沒有任何上傳 → 那天就沒有備份（日期會有空格，做趨勢時要注意）。刪除學生（`on delete cascade`）會連備份一起刪。
 
 ### T2 anon key 公開（網頁原始碼看得到）
 - anon key 本來就設計成公開的；它只代表「anon 身分」。上表 anon 能做的事，全部都要先有正確代碼。
@@ -59,6 +64,7 @@ Supabase 專案沿用「統測單字 SRS App」那一個（`knsdpvmhloobfduhfwyk
 - 同一位學生 1 秒內只收一次寫入（`too_fast`，App 會 3 秒後重送）；App 本身是改完 2 秒才送，而且只送改過的列。
 - `hk_save` 先鎖住該學生那一列（`for update`），兩台同時送也不會算錯總數上限。
 - 剩餘風險：Postgres 層沒有「每個 IP 幾次」的限流；大量亂打只能靠 Supabase 平台本身。對 1–2 位學生的家教 App 可接受。
+- 備份一人一天最多一份，所以拿到連結的人每天最多讓備份表多長一份（上限內約 1 MB）；長期被灌的話，用文末「清掉舊備份」那行刪。
 
 ### T6 學生端資料顯示在老師畫面（stored XSS）
 - 老師畫面有老師的登入憑證，所以：所有字串經 `esc()`；章節名稱只用章節表（`data/math-kx-108.json`）裡的；卡片 id／章節 id／日期在伺服器和 App 兩邊都過格式檢查才會放進 HTML 屬性。selftest 有一項專測怪 id 被丟掉。
@@ -90,15 +96,83 @@ Supabase 專案沿用「統測單字 SRS App」那一個（`knsdpvmhloobfduhfwyk
 | 測試本身有沒有用 | 故意改壞「新的贏」、唯讀擋按鈕、網址拿掉代碼、「沒下載過不上傳」、唯讀不存檔，確認對應測試變 FAIL | 都會 FAIL |
 | 沒有連結時跟以前一樣、不連雲端 | Playwright：開首頁，網路請求只有本站，SDK 沒載入，console 0 錯誤 | 通過 |
 | 老師端畫面 | `?selftest=teacher`（假資料）在 390×844、1280×800 截圖；新增學生、看連結、唯讀檢視、點卡片不會開抽屜 | 通過 |
+| **003／004（每日備份、救援 SQL）** | 一樣沒在任何 Postgres 上跑過；`hk_save` 本體用程式從 001 複製後 diff 確認只多了兩段（台北日期變數、備份步驟） | **未驗證** → 請在 003 之後跑 `004_verify_backup.sql`，並再跑一次 `002_verify_hk.sql` |
 | **SQL 本身（語法、RLS、grant、真的 supabase-js 呼叫）** | **沒有在任何 Postgres 上跑過**：這台電腦沒有 postgres/psql/docker，也依指示不碰正式專案 | **未驗證** → 請在 001 之後跑 `002_verify_hk.sql` |
 
 ## 上線後必做：`002_verify_hk.sql`
 001 跑完後，在 SQL Editor 貼上 `002_verify_hk.sql` 執行。它會假扮學生／老師／非老師三種身分實際測權限與合併規則，
 最後**故意丟出錯誤讓所有測試資料自動復原**。看到「驗證全部通過」開頭的紅字＝成功；看到「FAIL」或其他錯誤＝把訊息截圖回報。
 
+003 跑完後：貼上 `004_verify_backup.sql` 執行（成功的紅字開頭是「備份驗證全部通過」），**再跑一次 `002_verify_hk.sql`**（003 換掉了 `hk_save`，用 002 確認原本的格式檢查、上限、合併規則都沒變）。
+
+## 救援：把某位學生的進度退回某天的備份（SQL Editor）
+
+順序很重要：**先重設連結 → 再退回 → 最後把新連結私訊給學生**。不先重設的話，拿到舊連結的人可以馬上再改一次。
+
+```sql
+-- 1. 看有哪些備份（記下學生的 id 和要退回的日期 day；暱稱可能重複，所以用 id）
+select s.id, s.nickname, b.day, jsonb_array_length(b.progress) as 節數, jsonb_array_length(b.plan) as 卡數, b.created_at
+  from public.hk_backup b join public.hk_students s on s.id = b.student_id
+ order by s.nickname, b.day desc;
+
+-- 2.（可選）先看那天的內容：fam＝熟悉度、reviews＝複習次數
+select x.* from public.hk_backup b, jsonb_to_recordset(b.progress) x(unit_id text, fam int, reviews int)
+ where b.student_id = '學生id' and b.day = date '2026-11-20' order by x.unit_id;
+
+-- 3. 退回：只要改 v_sid、v_day 兩行，整段一起貼上 Run。
+--    「退回某天」＝那天第一次上傳之前的樣子（也就是前一天結束時的樣子）。
+--    做法：備份裡有的節／卡 → 改回備份的值；備份之後才出現的節 → 清成「未評分、0 次」；之後才出現的卡 → 軟刪除。
+--    有改到的列，時間一律設成「現在」（至少比雲端原本的新 1 毫秒）：學生的每台裝置下次同步都會改用這份，
+--    亂改時的舊版本也蓋不回來。沒改到的列不動。重複執行是安全的（第二次什麼都不會改）。
+--    這段的本體跟 004_verify_backup.sql 第 6 組測的那段一模一樣（改一邊要改另一邊）。
+do $restore$
+declare
+  v_sid uuid := '00000000-0000-0000-0000-000000000000';   -- ← 換成第 1 步查到的學生 id
+  v_day date := '2026-11-20';                             -- ← 換成要退回的那一天
+  v_b public.hk_backup; v_now timestamptz;
+begin
+  v_now := date_trunc('milliseconds', now());
+  select * into v_b from public.hk_backup b where b.student_id = v_sid and b.day = v_day;
+  if not found then raise exception '找不到這位學生在 % 的備份', v_day; end if;
+  perform 1 from public.hk_students s where s.id = v_sid for update;
+
+  insert into public.hk_progress as t (student_id, unit_id, fam, reviews, updated_at)
+  select v_sid, r.unit_id, r.fam, r.reviews, v_now
+    from jsonb_populate_recordset(null::public.hk_progress, v_b.progress) r
+  on conflict (student_id, unit_id) do update
+     set fam = excluded.fam, reviews = excluded.reviews,
+         updated_at = greatest(excluded.updated_at, t.updated_at + interval '1 millisecond')
+   where (t.fam, t.reviews) is distinct from (excluded.fam, excluded.reviews);
+  update public.hk_progress t
+     set fam = null, reviews = 0, updated_at = greatest(v_now, t.updated_at + interval '1 millisecond')
+   where t.student_id = v_sid
+     and (t.fam is not null or t.reviews <> 0)
+     and not exists (select 1 from jsonb_array_elements(v_b.progress) e(r) where e.r ->> 'unit_id' = t.unit_id);
+
+  insert into public.hk_plan as t (student_id, id, unit_id, date, done_at, deleted, updated_at)
+  select v_sid, r.id, r.unit_id, r.date, r.done_at, r.deleted, v_now
+    from jsonb_populate_recordset(null::public.hk_plan, v_b.plan) r
+  on conflict (student_id, id) do update
+     set unit_id = excluded.unit_id, date = excluded.date, done_at = excluded.done_at, deleted = excluded.deleted,
+         updated_at = greatest(excluded.updated_at, t.updated_at + interval '1 millisecond')
+   where (t.unit_id, t.date, t.done_at, t.deleted) is distinct from (excluded.unit_id, excluded.date, excluded.done_at, excluded.deleted);
+  update public.hk_plan t
+     set deleted = true, updated_at = greatest(v_now, t.updated_at + interval '1 millisecond')
+   where t.student_id = v_sid and not t.deleted
+     and not exists (select 1 from jsonb_array_elements(v_b.plan) e(r) where e.r ->> 'id' = t.id);
+end
+$restore$;
+```
+
+注意：
+- 學生在「退回之後」離線改、還沒上傳的東西，上傳時照常「時間新的贏」；在退回「之前」離線改、還沒上傳的，會被退回的版本蓋掉。
+- 被改壞的那份不會另外存檔；不放心可以先跑第 1、2 步截圖留底。
+- 清掉舊備份（平常不需要；例如只留最近 180 天）：
+  `delete from public.hk_backup where day < (now() at time zone 'Asia/Taipei')::date - 180;`
+
 ## 需要人工確認的假設
 1. 專案的 Email 自助註冊仍是關閉的；匿名登入（Anonymous sign-ins）沒有打開。
-2. `srs_teachers` 裡只有老師本人（001 檔尾會列出 hk_teachers 的 email）。
+2. `srs_teachers` 裡只有老師本人（001 檔尾會列出 hk_teachers 的 email）。`hk_teachers` 名單上的人都讀得到所有學生的備份（跟讀得到現在的進度是同一群人）。
 3. Supabase 專案是 Postgres 14 以上（`extract(epoch …)` 回傳精確小數，毫秒來回不失真；`gen_random_uuid()`、`sha256()` 是內建函式）。
 4. `gen_random_uuid()` 使用 Postgres 的強亂數來源。
 5. PostgREST 預設一次最多回 1000 列：老師端已分頁讀取（每次 1000 列）。

@@ -1,0 +1,498 @@
+{
+ "id": "soc-kx-108u",
+ "subject": "社會",
+ "publisher": "康軒",
+ "curriculum": "108",
+ "source": "升學王 108課綱版本對照表（康軒頁，歷史/地理/公民各冊）：上冊115學年度、下冊114學年度。https://www.go100.com.tw/108_comparison_table.php ；例：https://www.go100.com.tw/file/108_comparison_table/junior/9-2_comparison_history_114.pdf ；單元分組：康軒課本的「篇/單元」是每冊每科一整篇（如七年級「第二篇 臺灣的歷史」、九上公民「第三單元 生活中的資源配置」，見學校課程計畫 https://ww1.sjjh.tp.edu.tw/uploads/1752229692557mFzilXVU.pdf 、https://course.cyc.edu.tw/course/pub/cou_down.php?fn=16236859766491892729c637kb7whvej7st87ce37v86u3z2qz357pma3f.pdf&q_year=115 ），粒度過粗，本檔以連續 2–3 課自編主題單元。",
+ "short": "社",
+ "groups": [
+  "七上",
+  "七下",
+  "八上",
+  "八下",
+  "九上",
+  "九下"
+ ],
+ "units": [
+  {
+   "id": "soc-kx-7a-hu1",
+   "grade": "七上",
+   "ch": 1,
+   "chTitle": "史前與大航海時代的臺灣",
+   "sec": null,
+   "title": "史前與大航海時代的臺灣（第1–3課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-7a-hu2",
+   "grade": "七上",
+   "ch": 2,
+   "chTitle": "清帝國時期的臺灣",
+   "sec": null,
+   "title": "清帝國時期的臺灣（第4–6課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-7a-gu1",
+   "grade": "七上",
+   "ch": 1,
+   "chTitle": "位置與地圖",
+   "sec": null,
+   "title": "位置與地圖（第1–2課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-7a-gu2",
+   "grade": "七上",
+   "ch": 2,
+   "chTitle": "臺灣的地形與海域",
+   "sec": null,
+   "title": "臺灣的地形與海域（第3–4課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-7a-gu3",
+   "grade": "七上",
+   "ch": 3,
+   "chTitle": "臺灣的氣候與水文",
+   "sec": null,
+   "title": "臺灣的氣候與水文（第5–6課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-7a-cu1",
+   "grade": "七上",
+   "ch": 1,
+   "chTitle": "人性尊嚴、人權與性別平等",
+   "sec": null,
+   "title": "人性尊嚴、人權與性別平等（第1–2課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-7a-cu2",
+   "grade": "七上",
+   "ch": 2,
+   "chTitle": "家庭",
+   "sec": null,
+   "title": "家庭（第3–4課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-7a-cu3",
+   "grade": "七上",
+   "ch": 3,
+   "chTitle": "校園與社區部落的公共參與",
+   "sec": null,
+   "title": "校園與社區部落的公共參與（第5–6課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-7b-hu1",
+   "grade": "七下",
+   "ch": 1,
+   "chTitle": "日治時期的臺灣",
+   "sec": null,
+   "title": "日治時期的臺灣（第1–3課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-7b-hu2",
+   "grade": "七下",
+   "ch": 2,
+   "chTitle": "戰後臺灣",
+   "sec": null,
+   "title": "戰後臺灣（第4–6課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-7b-gu1",
+   "grade": "七下",
+   "ch": 1,
+   "chTitle": "臺灣的人口",
+   "sec": null,
+   "title": "臺灣的人口（第1–2課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-7b-gu2",
+   "grade": "七下",
+   "ch": 2,
+   "chTitle": "臺灣的產業",
+   "sec": null,
+   "title": "臺灣的產業（第3–4課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-7b-gu3",
+   "grade": "七下",
+   "ch": 3,
+   "chTitle": "聚落、交通與區域發展",
+   "sec": null,
+   "title": "聚落、交通與區域發展（第5–6課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-7b-cu1",
+   "grade": "七下",
+   "ch": 1,
+   "chTitle": "公民德性與志願結社",
+   "sec": null,
+   "title": "公民德性與志願結社（第1–2課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-7b-cu2",
+   "grade": "七下",
+   "ch": 2,
+   "chTitle": "多元文化與社會規範",
+   "sec": null,
+   "title": "多元文化與社會規範（第3–4課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-7b-cu3",
+   "grade": "七下",
+   "ch": 3,
+   "chTitle": "公平正義與社會福利",
+   "sec": null,
+   "title": "公平正義與社會福利（第5–6課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-8a-hu1",
+   "grade": "八上",
+   "ch": 1,
+   "chTitle": "商周至隋唐",
+   "sec": null,
+   "title": "商周至隋唐（第1–2課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-8a-hu2",
+   "grade": "八上",
+   "ch": 2,
+   "chTitle": "宋元與明清帝國",
+   "sec": null,
+   "title": "宋元與明清帝國（第3–4課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-8a-hu3",
+   "grade": "八上",
+   "ch": 3,
+   "chTitle": "晚清的變革與社會文化",
+   "sec": null,
+   "title": "晚清的變革與社會文化（第5–6課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-8a-gu1",
+   "grade": "八上",
+   "ch": 1,
+   "chTitle": "中國的自然環境與人口",
+   "sec": null,
+   "title": "中國的自然環境與人口（第1–2課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-8a-gu2",
+   "grade": "八上",
+   "ch": 2,
+   "chTitle": "中國的產業與經濟發展",
+   "sec": null,
+   "title": "中國的產業與經濟發展（第3–4課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-8a-gu3",
+   "grade": "八上",
+   "ch": 3,
+   "chTitle": "東北亞",
+   "sec": null,
+   "title": "東北亞（第5–6課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-8a-cu1",
+   "grade": "八上",
+   "ch": 1,
+   "chTitle": "國家、民主與公共意見",
+   "sec": null,
+   "title": "國家、民主與公共意見（第1–2課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-8a-cu2",
+   "grade": "八上",
+   "ch": 2,
+   "chTitle": "權力分立與中央政府",
+   "sec": null,
+   "title": "權力分立與中央政府（第3–4課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-8a-cu3",
+   "grade": "八上",
+   "ch": 3,
+   "chTitle": "地方政府與政治參與",
+   "sec": null,
+   "title": "地方政府與政治參與（第5–6課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-8b-hu1",
+   "grade": "八下",
+   "ch": 1,
+   "chTitle": "中華民國早期的政治與思潮",
+   "sec": null,
+   "title": "中華民國早期的政治與思潮（第1–2課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-8b-hu2",
+   "grade": "八下",
+   "ch": 2,
+   "chTitle": "現代國家的挑戰與戰爭",
+   "sec": null,
+   "title": "現代國家的挑戰與戰爭（第3–4課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-8b-hu3",
+   "grade": "八下",
+   "ch": 3,
+   "chTitle": "戰後中國與東亞",
+   "sec": null,
+   "title": "戰後中國與東亞（第5–6課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-8b-gu1",
+   "grade": "八下",
+   "ch": 1,
+   "chTitle": "全球氣候與季風亞洲（東南亞、南亞）",
+   "sec": null,
+   "title": "全球氣候與季風亞洲（東南亞、南亞）（前導＋第1–2課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-8b-gu2",
+   "grade": "八下",
+   "ch": 2,
+   "chTitle": "西亞與北非",
+   "sec": null,
+   "title": "西亞與北非（第3–4課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-8b-gu3",
+   "grade": "八下",
+   "ch": 3,
+   "chTitle": "漠南非洲",
+   "sec": null,
+   "title": "漠南非洲（第5–6課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-8b-cu1",
+   "grade": "八下",
+   "ch": 1,
+   "chTitle": "法律與民事規範",
+   "sec": null,
+   "title": "法律與民事規範（第1–2課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-8b-cu2",
+   "grade": "八下",
+   "ch": 2,
+   "chTitle": "刑法與紛爭解決",
+   "sec": null,
+   "title": "刑法與紛爭解決（第3–4課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-8b-cu3",
+   "grade": "八下",
+   "ch": 3,
+   "chTitle": "行政法與兒少保障",
+   "sec": null,
+   "title": "行政法與兒少保障（第5–6課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-9a-hu1",
+   "grade": "九上",
+   "ch": 1,
+   "chTitle": "古代文明：西亞、非洲與希臘羅馬",
+   "sec": null,
+   "title": "古代文明：西亞、非洲與希臘羅馬（第1–2課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-9a-hu2",
+   "grade": "九上",
+   "ch": 2,
+   "chTitle": "普世宗教與近代歐洲的興起",
+   "sec": null,
+   "title": "普世宗教與近代歐洲的興起（第3–4課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-9a-hu3",
+   "grade": "九上",
+   "ch": 3,
+   "chTitle": "近代歐洲的變革與民主革命",
+   "sec": null,
+   "title": "近代歐洲的變革與民主革命（第5–6課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-9a-gu1",
+   "grade": "九上",
+   "ch": 1,
+   "chTitle": "歐洲與俄羅斯",
+   "sec": null,
+   "title": "歐洲與俄羅斯（第1–2課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-9a-gu2",
+   "grade": "九上",
+   "ch": 2,
+   "chTitle": "美洲",
+   "sec": null,
+   "title": "美洲（第3–4課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-9a-gu3",
+   "grade": "九上",
+   "ch": 3,
+   "chTitle": "大洋洲、兩極與氣候變遷",
+   "sec": null,
+   "title": "大洋洲、兩極與氣候變遷（第5–6課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-9a-cu1",
+   "grade": "九上",
+   "ch": 1,
+   "chTitle": "選擇與資源分配",
+   "sec": null,
+   "title": "選擇與資源分配（第1–2課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-9a-cu2",
+   "grade": "九上",
+   "ch": 2,
+   "chTitle": "市場、分工與貿易",
+   "sec": null,
+   "title": "市場、分工與貿易（第3–4課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-9a-cu3",
+   "grade": "九上",
+   "ch": 3,
+   "chTitle": "貨幣與勞動",
+   "sec": null,
+   "title": "貨幣與勞動（第5–6課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-9b-hu1",
+   "grade": "九下",
+   "ch": 1,
+   "chTitle": "現代國家與第一次世界大戰",
+   "sec": null,
+   "title": "現代國家與第一次世界大戰（第1–2課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-9b-hu2",
+   "grade": "九下",
+   "ch": 2,
+   "chTitle": "第二次世界大戰與戰後世界",
+   "sec": null,
+   "title": "第二次世界大戰與戰後世界（第3–4課）",
+   "weight": 1,
+   "strand": "歷史"
+  },
+  {
+   "id": "soc-kx-9b-gu1",
+   "grade": "九下",
+   "ch": 1,
+   "chTitle": "地理議題：地名文化與農業食安",
+   "sec": null,
+   "title": "地理議題：地名文化與農業食安（第1–2課）",
+   "weight": 1,
+   "strand": "地理"
+  },
+  {
+   "id": "soc-kx-9b-cu1",
+   "grade": "九下",
+   "ch": 1,
+   "chTitle": "科技、智慧財產與媒體識讀",
+   "sec": null,
+   "title": "科技、智慧財產與媒體識讀（第1–2課）",
+   "weight": 1,
+   "strand": "公民"
+  },
+  {
+   "id": "soc-kx-9b-cu2",
+   "grade": "九下",
+   "ch": 2,
+   "chTitle": "全球化與國際參與",
+   "sec": null,
+   "title": "全球化與國際參與（第3–4課）",
+   "weight": 1,
+   "strand": "公民"
+  }
+ ]
+}

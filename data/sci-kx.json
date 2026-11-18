@@ -1,0 +1,1238 @@
+{
+ "id": "sci-kx",
+ "subject": "自然",
+ "short": "自",
+ "publisher": "康軒",
+ "curriculum": "108",
+ "source": "升學王 108課綱版本對照表（康軒頁）：上冊用115學年度、下冊用114學年度 PDF。https://www.go100.com.tw/108_comparison_table.php ；例：https://www.go100.com.tw/file/108_comparison_table/junior/8-2_comparison_physics_and_chemistry_114.pdf",
+ "groups": [
+  "七上",
+  "七下",
+  "八上",
+  "八下",
+  "九上",
+  "九下"
+ ],
+ "units": [
+  {
+   "id": "sci-kx-7a-0-1",
+   "grade": "七上",
+   "ch": 0,
+   "chTitle": "緒論",
+   "sec": 1,
+   "title": "科學方法",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-1-1",
+   "grade": "七上",
+   "ch": 1,
+   "chTitle": "生命的特性",
+   "sec": 1,
+   "title": "生命現象",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-1-2",
+   "grade": "七上",
+   "ch": 1,
+   "chTitle": "生命的特性",
+   "sec": 2,
+   "title": "細胞",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-1-3",
+   "grade": "七上",
+   "ch": 1,
+   "chTitle": "生命的特性",
+   "sec": 3,
+   "title": "細胞所需的物質",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-1-4",
+   "grade": "七上",
+   "ch": 1,
+   "chTitle": "生命的特性",
+   "sec": 4,
+   "title": "從細胞到個體",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-2-1",
+   "grade": "七上",
+   "ch": 2,
+   "chTitle": "養分",
+   "sec": 1,
+   "title": "食物中的養分",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-2-2",
+   "grade": "七上",
+   "ch": 2,
+   "chTitle": "養分",
+   "sec": 2,
+   "title": "酵素",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-2-3",
+   "grade": "七上",
+   "ch": 2,
+   "chTitle": "養分",
+   "sec": 3,
+   "title": "植物如何獲得養分",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-2-4",
+   "grade": "七上",
+   "ch": 2,
+   "chTitle": "養分",
+   "sec": 4,
+   "title": "動物如何獲得養分",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-3-1",
+   "grade": "七上",
+   "ch": 3,
+   "chTitle": "生物的運輸與防禦",
+   "sec": 1,
+   "title": "植物的運輸構造",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-3-2",
+   "grade": "七上",
+   "ch": 3,
+   "chTitle": "生物的運輸與防禦",
+   "sec": 2,
+   "title": "植物體內物質的運輸",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-3-3",
+   "grade": "七上",
+   "ch": 3,
+   "chTitle": "生物的運輸與防禦",
+   "sec": 3,
+   "title": "人體內物質的運輸",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-3-4",
+   "grade": "七上",
+   "ch": 3,
+   "chTitle": "生物的運輸與防禦",
+   "sec": 4,
+   "title": "人體的防禦作用",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-4-1",
+   "grade": "七上",
+   "ch": 4,
+   "chTitle": "生物的協調作用",
+   "sec": 1,
+   "title": "神經系統",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-4-2",
+   "grade": "七上",
+   "ch": 4,
+   "chTitle": "生物的協調作用",
+   "sec": 2,
+   "title": "內分泌系統",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-4-3",
+   "grade": "七上",
+   "ch": 4,
+   "chTitle": "生物的協調作用",
+   "sec": 3,
+   "title": "生物的感應",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-5-1",
+   "grade": "七上",
+   "ch": 5,
+   "chTitle": "生物的恆定性",
+   "sec": 1,
+   "title": "恆定性與體溫的恆定",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-5-2",
+   "grade": "七上",
+   "ch": 5,
+   "chTitle": "生物的恆定性",
+   "sec": 2,
+   "title": "呼吸與氣體的恆定",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-5-3",
+   "grade": "七上",
+   "ch": 5,
+   "chTitle": "生物的恆定性",
+   "sec": 3,
+   "title": "血糖的恆定",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-5-4",
+   "grade": "七上",
+   "ch": 5,
+   "chTitle": "生物的恆定性",
+   "sec": 4,
+   "title": "排泄作用與水分的恆定",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7a-6-1",
+   "grade": "七上",
+   "ch": 6,
+   "chTitle": "跨科主題：世界的各種大小樣貌",
+   "sec": 1,
+   "title": "尺度的表示與比較",
+   "weight": 1,
+   "strand": "跨科"
+  },
+  {
+   "id": "sci-kx-7b-1-1",
+   "grade": "七下",
+   "ch": 1,
+   "chTitle": "生殖",
+   "sec": 1,
+   "title": "細胞的分裂",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-1-2",
+   "grade": "七下",
+   "ch": 1,
+   "chTitle": "生殖",
+   "sec": 2,
+   "title": "無性生殖",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-1-3",
+   "grade": "七下",
+   "ch": 1,
+   "chTitle": "生殖",
+   "sec": 3,
+   "title": "有性生殖",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-2-1",
+   "grade": "七下",
+   "ch": 2,
+   "chTitle": "遺傳",
+   "sec": 1,
+   "title": "解開遺傳的奧祕",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-2-2",
+   "grade": "七下",
+   "ch": 2,
+   "chTitle": "遺傳",
+   "sec": 2,
+   "title": "人類的遺傳",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-2-3",
+   "grade": "七下",
+   "ch": 2,
+   "chTitle": "遺傳",
+   "sec": 3,
+   "title": "突變",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-2-4",
+   "grade": "七下",
+   "ch": 2,
+   "chTitle": "遺傳",
+   "sec": 4,
+   "title": "生物技術的應用",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-3-1",
+   "grade": "七下",
+   "ch": 3,
+   "chTitle": "地球上的生物",
+   "sec": 1,
+   "title": "持續改變的生命",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-3-2",
+   "grade": "七下",
+   "ch": 3,
+   "chTitle": "地球上的生物",
+   "sec": 2,
+   "title": "生物的命名與分類",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-3-3",
+   "grade": "七下",
+   "ch": 3,
+   "chTitle": "地球上的生物",
+   "sec": 3,
+   "title": "原核生物和原生生物",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-3-4",
+   "grade": "七下",
+   "ch": 3,
+   "chTitle": "地球上的生物",
+   "sec": 4,
+   "title": "真菌界",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-3-5",
+   "grade": "七下",
+   "ch": 3,
+   "chTitle": "地球上的生物",
+   "sec": 5,
+   "title": "植物界",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-3-6",
+   "grade": "七下",
+   "ch": 3,
+   "chTitle": "地球上的生物",
+   "sec": 6,
+   "title": "動物界",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-4-1",
+   "grade": "七下",
+   "ch": 4,
+   "chTitle": "生態系",
+   "sec": 1,
+   "title": "生物生存的環境",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-4-2",
+   "grade": "七下",
+   "ch": 4,
+   "chTitle": "生態系",
+   "sec": 2,
+   "title": "能量的流動與物質的循環",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-4-3",
+   "grade": "七下",
+   "ch": 4,
+   "chTitle": "生態系",
+   "sec": 3,
+   "title": "生物的交互關係",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-4-4",
+   "grade": "七下",
+   "ch": 4,
+   "chTitle": "生態系",
+   "sec": 4,
+   "title": "多采多姿的生態系",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-5-1",
+   "grade": "七下",
+   "ch": 5,
+   "chTitle": "人類與環境",
+   "sec": 1,
+   "title": "生物多樣性的重要性與危機",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-5-2",
+   "grade": "七下",
+   "ch": 5,
+   "chTitle": "人類與環境",
+   "sec": 2,
+   "title": "維護生物多樣性",
+   "weight": 1,
+   "strand": "生物"
+  },
+  {
+   "id": "sci-kx-7b-6-1",
+   "grade": "七下",
+   "ch": 6,
+   "chTitle": "跨科主題：人、植物與環境的共存關係",
+   "sec": 1,
+   "title": "植物與水土保持、調節環境",
+   "weight": 1,
+   "strand": "跨科"
+  },
+  {
+   "id": "sci-kx-8a-1-1",
+   "grade": "八上",
+   "ch": 1,
+   "chTitle": "基本測量",
+   "sec": 1,
+   "title": "長度與體積的測量",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-1-2",
+   "grade": "八上",
+   "ch": 1,
+   "chTitle": "基本測量",
+   "sec": 2,
+   "title": "質量與密度的測量",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-2-1",
+   "grade": "八上",
+   "ch": 2,
+   "chTitle": "物質的世界",
+   "sec": 1,
+   "title": "認識物質",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-2-2",
+   "grade": "八上",
+   "ch": 2,
+   "chTitle": "物質的世界",
+   "sec": 2,
+   "title": "水溶液",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-2-3",
+   "grade": "八上",
+   "ch": 2,
+   "chTitle": "物質的世界",
+   "sec": 3,
+   "title": "空氣的組成",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-3-1",
+   "grade": "八上",
+   "ch": 3,
+   "chTitle": "波動與聲音",
+   "sec": 1,
+   "title": "波的傳播",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-3-2",
+   "grade": "八上",
+   "ch": 3,
+   "chTitle": "波動與聲音",
+   "sec": 2,
+   "title": "聲波的產生與傳播",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-3-3",
+   "grade": "八上",
+   "ch": 3,
+   "chTitle": "波動與聲音",
+   "sec": 3,
+   "title": "聲波的反射與超聲波",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-3-4",
+   "grade": "八上",
+   "ch": 3,
+   "chTitle": "波動與聲音",
+   "sec": 4,
+   "title": "多變的聲音",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-4-1",
+   "grade": "八上",
+   "ch": 4,
+   "chTitle": "光",
+   "sec": 1,
+   "title": "光的傳播與光速",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-4-2",
+   "grade": "八上",
+   "ch": 4,
+   "chTitle": "光",
+   "sec": 2,
+   "title": "光的反射與面鏡",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-4-3",
+   "grade": "八上",
+   "ch": 4,
+   "chTitle": "光",
+   "sec": 3,
+   "title": "光的折射與透鏡",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-4-4",
+   "grade": "八上",
+   "ch": 4,
+   "chTitle": "光",
+   "sec": 4,
+   "title": "光學儀器",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-4-5",
+   "grade": "八上",
+   "ch": 4,
+   "chTitle": "光",
+   "sec": 5,
+   "title": "色光與顏色",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-5-1",
+   "grade": "八上",
+   "ch": 5,
+   "chTitle": "溫度與熱",
+   "sec": 1,
+   "title": "溫度與溫度計",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-5-2",
+   "grade": "八上",
+   "ch": 5,
+   "chTitle": "溫度與熱",
+   "sec": 2,
+   "title": "熱量與比熱",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-5-3",
+   "grade": "八上",
+   "ch": 5,
+   "chTitle": "溫度與熱",
+   "sec": 3,
+   "title": "熱對物質的影響",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-5-4",
+   "grade": "八上",
+   "ch": 5,
+   "chTitle": "溫度與熱",
+   "sec": 4,
+   "title": "熱的傳播方式",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-6-1",
+   "grade": "八上",
+   "ch": 6,
+   "chTitle": "探索物質組成",
+   "sec": 1,
+   "title": "元素的探索",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-6-2",
+   "grade": "八上",
+   "ch": 6,
+   "chTitle": "探索物質組成",
+   "sec": 2,
+   "title": "元素週期表",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-6-3",
+   "grade": "八上",
+   "ch": 6,
+   "chTitle": "探索物質組成",
+   "sec": 3,
+   "title": "化合物與原子概念的發展",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8a-6-4",
+   "grade": "八上",
+   "ch": 6,
+   "chTitle": "探索物質組成",
+   "sec": 4,
+   "title": "分子與化學式",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-1-1",
+   "grade": "八下",
+   "ch": 1,
+   "chTitle": "化學反應",
+   "sec": 1,
+   "title": "質量守恆",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-1-2",
+   "grade": "八下",
+   "ch": 1,
+   "chTitle": "化學反應",
+   "sec": 2,
+   "title": "化學反應的微觀世界",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-2-1",
+   "grade": "八下",
+   "ch": 2,
+   "chTitle": "氧化與還原",
+   "sec": 1,
+   "title": "氧化反應",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-2-2",
+   "grade": "八下",
+   "ch": 2,
+   "chTitle": "氧化與還原",
+   "sec": 2,
+   "title": "氧化與還原反應",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-3-1",
+   "grade": "八下",
+   "ch": 3,
+   "chTitle": "電解質及酸鹼反應",
+   "sec": 1,
+   "title": "認識電解質",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-3-2",
+   "grade": "八下",
+   "ch": 3,
+   "chTitle": "電解質及酸鹼反應",
+   "sec": 2,
+   "title": "常見的酸、鹼性物質",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-3-3",
+   "grade": "八下",
+   "ch": 3,
+   "chTitle": "電解質及酸鹼反應",
+   "sec": 3,
+   "title": "水溶液的酸鹼性",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-3-4",
+   "grade": "八下",
+   "ch": 3,
+   "chTitle": "電解質及酸鹼反應",
+   "sec": 4,
+   "title": "酸鹼中和",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-4-1",
+   "grade": "八下",
+   "ch": 4,
+   "chTitle": "反應速率與平衡",
+   "sec": 1,
+   "title": "反應速率",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-4-2",
+   "grade": "八下",
+   "ch": 4,
+   "chTitle": "反應速率與平衡",
+   "sec": 2,
+   "title": "可逆反應與平衡",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-5-1",
+   "grade": "八下",
+   "ch": 5,
+   "chTitle": "有機化合物",
+   "sec": 1,
+   "title": "認識有機化合物",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-5-2",
+   "grade": "八下",
+   "ch": 5,
+   "chTitle": "有機化合物",
+   "sec": 2,
+   "title": "常見的有機化合物",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-5-3",
+   "grade": "八下",
+   "ch": 5,
+   "chTitle": "有機化合物",
+   "sec": 3,
+   "title": "肥皂與清潔劑",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-5-4",
+   "grade": "八下",
+   "ch": 5,
+   "chTitle": "有機化合物",
+   "sec": 4,
+   "title": "生活中的有機聚合物",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-6-1",
+   "grade": "八下",
+   "ch": 6,
+   "chTitle": "力與壓力",
+   "sec": 1,
+   "title": "力與平衡",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-6-2",
+   "grade": "八下",
+   "ch": 6,
+   "chTitle": "力與壓力",
+   "sec": 2,
+   "title": "摩擦力",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-6-3",
+   "grade": "八下",
+   "ch": 6,
+   "chTitle": "力與壓力",
+   "sec": 3,
+   "title": "壓力",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-6-4",
+   "grade": "八下",
+   "ch": 6,
+   "chTitle": "力與壓力",
+   "sec": 4,
+   "title": "浮力",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-8b-7-1",
+   "grade": "八下",
+   "ch": 7,
+   "chTitle": "跨科主題：低碳減塑護地球",
+   "sec": 1,
+   "title": "低碳減塑護地球",
+   "weight": 1,
+   "strand": "跨科"
+  },
+  {
+   "id": "sci-kx-9a-1-1",
+   "grade": "九上",
+   "ch": 1,
+   "chTitle": "直線運動",
+   "sec": 1,
+   "title": "時間的測量",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-1-2",
+   "grade": "九上",
+   "ch": 1,
+   "chTitle": "直線運動",
+   "sec": 2,
+   "title": "位移與路徑長",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-1-3",
+   "grade": "九上",
+   "ch": 1,
+   "chTitle": "直線運動",
+   "sec": 3,
+   "title": "速率與速度",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-1-4",
+   "grade": "九上",
+   "ch": 1,
+   "chTitle": "直線運動",
+   "sec": 4,
+   "title": "加速度與等加速度運動",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-2-1",
+   "grade": "九上",
+   "ch": 2,
+   "chTitle": "力與運動",
+   "sec": 1,
+   "title": "牛頓第一運動定律",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-2-2",
+   "grade": "九上",
+   "ch": 2,
+   "chTitle": "力與運動",
+   "sec": 2,
+   "title": "牛頓第二運動定律",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-2-3",
+   "grade": "九上",
+   "ch": 2,
+   "chTitle": "力與運動",
+   "sec": 3,
+   "title": "牛頓第三運動定律",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-2-4",
+   "grade": "九上",
+   "ch": 2,
+   "chTitle": "力與運動",
+   "sec": 4,
+   "title": "圓周運動與萬有引力",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-3-1",
+   "grade": "九上",
+   "ch": 3,
+   "chTitle": "功與能",
+   "sec": 1,
+   "title": "功與功率",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-3-2",
+   "grade": "九上",
+   "ch": 3,
+   "chTitle": "功與能",
+   "sec": 2,
+   "title": "動能、位能與能量守恆",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-3-3",
+   "grade": "九上",
+   "ch": 3,
+   "chTitle": "功與能",
+   "sec": 3,
+   "title": "槓桿原理與靜力平衡",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-3-4",
+   "grade": "九上",
+   "ch": 3,
+   "chTitle": "功與能",
+   "sec": 4,
+   "title": "簡單機械",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-4-1",
+   "grade": "九上",
+   "ch": 4,
+   "chTitle": "基本的靜電現象與電路",
+   "sec": 1,
+   "title": "靜電現象",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-4-2",
+   "grade": "九上",
+   "ch": 4,
+   "chTitle": "基本的靜電現象與電路",
+   "sec": 2,
+   "title": "電流",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-4-3",
+   "grade": "九上",
+   "ch": 4,
+   "chTitle": "基本的靜電現象與電路",
+   "sec": 3,
+   "title": "電壓",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-4-4",
+   "grade": "九上",
+   "ch": 4,
+   "chTitle": "基本的靜電現象與電路",
+   "sec": 4,
+   "title": "電阻與歐姆定律",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9a-5-1",
+   "grade": "九上",
+   "ch": 5,
+   "chTitle": "水與陸地",
+   "sec": 1,
+   "title": "地球上的水",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9a-5-2",
+   "grade": "九上",
+   "ch": 5,
+   "chTitle": "水與陸地",
+   "sec": 2,
+   "title": "地貌的改變與平衡",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9a-5-3",
+   "grade": "九上",
+   "ch": 5,
+   "chTitle": "水與陸地",
+   "sec": 3,
+   "title": "地球上的岩石",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9a-6-1",
+   "grade": "九上",
+   "ch": 6,
+   "chTitle": "板塊運動與地球歷史",
+   "sec": 1,
+   "title": "地球構造與板塊運動",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9a-6-2",
+   "grade": "九上",
+   "ch": 6,
+   "chTitle": "板塊運動與地球歷史",
+   "sec": 2,
+   "title": "岩層記錄的地球歷史",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9a-6-3",
+   "grade": "九上",
+   "ch": 6,
+   "chTitle": "板塊運動與地球歷史",
+   "sec": 3,
+   "title": "臺灣的板塊和地震",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9a-7-1",
+   "grade": "九上",
+   "ch": 7,
+   "chTitle": "運動中的天體",
+   "sec": 1,
+   "title": "我們的宇宙",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9a-7-2",
+   "grade": "九上",
+   "ch": 7,
+   "chTitle": "運動中的天體",
+   "sec": 2,
+   "title": "轉動的地球",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9a-7-3",
+   "grade": "九上",
+   "ch": 7,
+   "chTitle": "運動中的天體",
+   "sec": 3,
+   "title": "日地月相對運動",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9a-8-1",
+   "grade": "九上",
+   "ch": 8,
+   "chTitle": "跨科主題：能源",
+   "sec": 1,
+   "title": "認識能源與能源的發展應用",
+   "weight": 1,
+   "strand": "跨科"
+  },
+  {
+   "id": "sci-kx-9b-1-1",
+   "grade": "九下",
+   "ch": 1,
+   "chTitle": "電的應用",
+   "sec": 1,
+   "title": "電流的熱效應與電能",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9b-1-2",
+   "grade": "九下",
+   "ch": 1,
+   "chTitle": "電的應用",
+   "sec": 2,
+   "title": "電與生活",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9b-1-3",
+   "grade": "九下",
+   "ch": 1,
+   "chTitle": "電的應用",
+   "sec": 3,
+   "title": "電池",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9b-1-4",
+   "grade": "九下",
+   "ch": 1,
+   "chTitle": "電的應用",
+   "sec": 4,
+   "title": "電流的化學效應",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9b-2-1",
+   "grade": "九下",
+   "ch": 2,
+   "chTitle": "電流與磁現象",
+   "sec": 1,
+   "title": "磁鐵與磁場",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9b-2-2",
+   "grade": "九下",
+   "ch": 2,
+   "chTitle": "電流與磁現象",
+   "sec": 2,
+   "title": "電流的磁效應",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9b-2-3",
+   "grade": "九下",
+   "ch": 2,
+   "chTitle": "電流與磁現象",
+   "sec": 3,
+   "title": "電流與磁場的交互作用",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9b-2-4",
+   "grade": "九下",
+   "ch": 2,
+   "chTitle": "電流與磁現象",
+   "sec": 4,
+   "title": "電磁感應",
+   "weight": 1,
+   "strand": "理化"
+  },
+  {
+   "id": "sci-kx-9b-3-1",
+   "grade": "九下",
+   "ch": 3,
+   "chTitle": "千變萬化的天氣",
+   "sec": 1,
+   "title": "大氣的組成和結構",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9b-3-2",
+   "grade": "九下",
+   "ch": 3,
+   "chTitle": "千變萬化的天氣",
+   "sec": 2,
+   "title": "天氣變化",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9b-3-3",
+   "grade": "九下",
+   "ch": 3,
+   "chTitle": "千變萬化的天氣",
+   "sec": 3,
+   "title": "氣團和鋒面",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9b-3-4",
+   "grade": "九下",
+   "ch": 3,
+   "chTitle": "千變萬化的天氣",
+   "sec": 4,
+   "title": "臺灣的氣象災害",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9b-4-1",
+   "grade": "九下",
+   "ch": 4,
+   "chTitle": "全球氣候變遷與因應",
+   "sec": 1,
+   "title": "海洋與大氣的交互作用",
+   "weight": 1,
+   "strand": "地科"
+  },
+  {
+   "id": "sci-kx-9b-4-2",
+   "grade": "九下",
+   "ch": 4,
+   "chTitle": "全球氣候變遷與因應",
+   "sec": 2,
+   "title": "溫室效應與全球暖化",
+   "weight": 1,
+   "strand": "地科"
+  }
+ ]
+}

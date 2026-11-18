@@ -1,8 +1,8 @@
 // 網路優先：有網路就抓最新版並順手存一份；沒網路才用存起來的舊版。
 // 每次改版把 CACHE 的數字 +1，舊快取會自動清掉。
-const CACHE = "huikao-v4";
+const CACHE = "huikao-v5";
 const ASSETS = [
-  "./", "./index.html", "./manifest.json", "./data/math-kx-108.json",
+  "./", "./index.html", "./manifest.json", "./data/math-kx-108.json", "./data/sci-kx.json", "./data/eng-hk.json", "./data/soc-kx.json",
   "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png", "./vendor/supabase.js"
 ];
 
